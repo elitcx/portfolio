@@ -7,6 +7,13 @@
     "image": "/images/webscraper.png"
     },
     {
+    "title": "Push Up and Pull Up Challenge App",
+    "description": "A tracker app for a year long pushup/pullup challenge where the user must do 1 pushup for everyday of the year and 1 pullup everyday for every week of the year",
+    "link": "https://elitcxchallenge.vercel.app",
+    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "image": "/images/challenge.png"
+    },
+    {
     "title": "Simple Chatbot",
     "description": "A simple chatbot that chooses responses based on a response list and uses a message probability system to figure out what the user typed",
     "link": "https://google.com",
