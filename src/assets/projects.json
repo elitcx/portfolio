@@ -1,0 +1,51 @@
+[
+    {
+    "title": "Tokopedia Webscraper",
+    "description": "A simple webscraper program to automatically search for a specific item and list all results in a spreadsheet",
+    "link": "https://google.com",
+    "categories" : ["Python", "BeautifulSoup","Pandas","Selenium"],
+    "image": "./images/webscraper.png"
+    },
+    {
+    "title": "Simple Chatbot",
+    "description": "A simple chatbot that chooses responses based on a response list and uses a message probability system to figure out what the user typed",
+    "link": "https://google.com",
+    "categories" : ["Python"],
+    "image": "./images/chatbot.png"
+    },
+    {
+    "title": "Live Product Showcase with React",
+    "description": "A product showcase website that pulls live data from a dummy.json link and provides functionality such as Search, Sort by Category, Sort by Price, Add to Cart, and Remove from Cart",
+    "link": "https://google.com",
+    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "image": "./images/banner.webp"
+    },
+    {
+    "title": "Finance Tracker",
+    "description": "A Finance Tracker program that runs in console that saves data locally based on input date. Provides options to Input, Delete, Edit past logs and shows balance and deposits",
+    "link": "https://google.com",
+    "categories" : ["Python"],
+    "image": "./images/financetrackercode.png"
+    },
+    {
+    "title": "To Do List",
+    "description": "A simple To Do List app to input tasks by date, shows task status, delete tasks, clear all tasks, and filter tasks by name",
+    "link": "https://google.com",
+    "categories" : ["HTML","CSS","JavaScript","Website"],
+    "image": "./images/todolist.png"
+    },
+    {
+    "title": "Plceholder",
+    "description": "A simple Plceholder made by Kiel bla bla bla bla bla",
+    "link": "https://google.com",
+    "categories" : ["Python", "C++"],
+    "image": "./images/banner.webp"
+    },
+    {
+    "id": 2,
+    "title": "AI Tool",
+    "description": "AI based project",
+    "image": "/images/ai.webp",
+    "categories": ["Python", "AI"]
+  }
+]
