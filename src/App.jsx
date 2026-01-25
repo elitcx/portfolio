@@ -61,16 +61,16 @@ function CertificateCard({image, title, description}){
 }
 
 const certificates = [
-  {image:'./images/certificates/image0.jpg', title:'Battle of Technology PingFEST UNS 2025', description:'2nd Place Team'},
-  {image:'./images/certificates/image1.jpg', title:'OSN Informatika Surakarta 2025', description:'Finalist'},
-  {image:'./images/certificates/image2.jpg', title:'Competitive Programming IAA UKDW Yogyakarta 2025', description:'2nd Place Team'},
-  {image:'./images/certificates/image3.jpg', title:'Informatics Rally Games and Logic (IRGL) PCU 2025', description:'3rd Place Team'},
-  {image:'./images/certificates/image4.jpg', title:'Final OMNAS 13 Matematika 2024', description:'Silver Medalist'},
-  {image:'./images/certificates/image5.jpg', title:'Final OMNAS 13 English 2024', description:'Silver Medalist'},
-  {image:'./images/certificates/image6.jpg', title:'National Junior Highschool Math Competition - Practo Math Academy 2024', description:'2nd Place'},
-  {image:'./images/certificates/image7.jpg', title:'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024', description:'Top 10 Team'},
-  {image:'./images/certificates/image8.jpg', title:'Intro to Software Engineering Course - RevoU 2025', description:'Finished'},
-  {image:'./images/certificates/image9.jpg', title:'Cybersecurity Workshop: "Breaking the Code: Outsmart, Decode, Conquer" - PSB Academy 2025', description:'2nd Place Team'},
+  {image:'/images/certificates/image0.jpg', title:'Battle of Technology PingFEST UNS 2025', description:'2nd Place Team'},
+  {image:'/images/certificates/image1.jpg', title:'OSN Informatika Surakarta 2025', description:'Finalist'},
+  {image:'/images/certificates/image2.jpg', title:'Competitive Programming IAA UKDW Yogyakarta 2025', description:'2nd Place Team'},
+  {image:'/images/certificates/image3.jpg', title:'Informatics Rally Games and Logic (IRGL) PCU 2025', description:'3rd Place Team'},
+  {image:'/images/certificates/image4.jpg', title:'Final OMNAS 13 Matematika 2024', description:'Silver Medalist'},
+  {image:'/images/certificates/image5.jpg', title:'Final OMNAS 13 English 2024', description:'Silver Medalist'},
+  {image:'/images/certificates/image6.jpg', title:'National Junior Highschool Math Competition - Practo Math Academy 2024', description:'2nd Place'},
+  {image:'/images/certificates/image7.jpg', title:'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024', description:'Top 10 Team'},
+  {image:'/images/certificates/image8.jpg', title:'Intro to Software Engineering Course - RevoU 2025', description:'Finished'},
+  {image:'/images/certificates/image9.jpg', title:'Cybersecurity Workshop: "Breaking the Code: Outsmart, Decode, Conquer" - PSB Academy 2025', description:'2nd Place Team'},
 ]
 
 function ItemGrid(){
@@ -155,7 +155,7 @@ function HomePage(props){
       {/* Card container */}
         <motion.div {...fadeIn}>
           <div className="picture-container min-h-80 md:h-full bg-red-300 rounded-xl flex-shrink-0 aspect-square" style={{
-            backgroundImage: "url('./images/banner.webp')",
+            backgroundImage: "url('/images/banner.webp')",
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover'
@@ -191,11 +191,11 @@ function HomePage(props){
         
         <div className='w-full h-[30vh] flex flex-row flex-start items-center'>
           <div className=" flex flex-col h-full justify-around mx-4">
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='./images/c++.png' className='w-8 mr-2'/>C++</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='./images/python.webp' className='w-8 mr-2'/>Python</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='./images/javascript.png' className='w-8 mr-2'/>JavaScript</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='./images/ReactJS.webp' className='w-8 mr-2'/>ReactJS</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='./images/sql.png' className='w-8 mr-2'/>SQL</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/c++.png' className='w-8 mr-2'/>C++</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/python.webp' className='w-8 mr-2'/>Python</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/javascript.png' className='w-8 mr-2'/>JavaScript</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/ReactJS.webp' className='w-8 mr-2'/>ReactJS</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/sql.png' className='w-8 mr-2'/>SQL</p>
           </div>
           <div className="flex flex-col h-full justify-around mx-2 w-full flex-shrink-1">
             <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate `} style={{"--target-sm": "41%", "--target-md": "82%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level (Algorithms/CP)</span></div>
@@ -229,9 +229,9 @@ function Contact(){
     <div className='flex min-h-[20vh] w-full flex-col p-8 items-center'>
       <h1 className='font-bold text-xl dark:text-white text-black mb-4' style={{fontFamily: 'Nunito Sans'}}>Contact Me:</h1>
       <div className='flex flex-row w-full max-w-[800px] h-[50%] gap-8 justify-between text-center font-bold' style={{fontFamily: 'Nunito Sans'}}>
-        <ContactCard icon='./images/instagram.webp' link='https://www.instagram.com/kenneth_kiel/#' platform='Instagram'/>
-        <ContactCard icon='./images/whatsapp.png' link='https://wa.me/62861592211' platform='WhatsApp'/>
-        <ContactCard icon='./images/github.svg' link='https://github.com/elitcx' platform='GitHub'/>
+        <ContactCard icon='/images/instagram.webp' link='https://www.instagram.com/kenneth_kiel/#' platform='Instagram'/>
+        <ContactCard icon='/images/whatsapp.png' link='https://wa.me/62861592211' platform='WhatsApp'/>
+        <ContactCard icon='/images/github.svg' link='https://github.com/elitcx' platform='GitHub'/>
       </div>
       <div className='text-center leading-8 mt-6' style={{fontFamily: 'Nunito Sans'}}>Kenneth Jehezkiel Marvel Wijaya's Personal Portfolio</div>
       <div className='text-center leading-8' style={{fontFamily: 'Nunito Sans'}}>Copyright © 2025</div>
