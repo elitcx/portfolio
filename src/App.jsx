@@ -236,7 +236,7 @@ function Contact(){
       <h1 className='font-bold text-xl dark:text-white text-black mb-4' style={{fontFamily: 'Nunito Sans'}}>Contact Me:</h1>
       <div className='flex flex-row w-full max-w-[800px] h-[50%] gap-8 justify-between text-center font-bold' style={{fontFamily: 'Nunito Sans'}}>
         <ContactCard icon='/images/instagram.webp' link='https://www.instagram.com/kenneth_kiel/#' platform='Instagram'/>
-        <ContactCard icon='/images/whatsapp.png' link='https://wa.me/62861592211' platform='WhatsApp'/>
+        <ContactCard icon='/images/whatsapp.png' link='https://wa.me/6282261592211' platform='WhatsApp'/>
         <ContactCard icon='/images/github.svg' link='https://github.com/elitcx' platform='GitHub'/>
       </div>
       <div className='text-center leading-8 mt-6' style={{fontFamily: 'Nunito Sans'}}>Kenneth Jehezkiel Marvel Wijaya's Personal Portfolio</div>
