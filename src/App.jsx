@@ -155,7 +155,7 @@ function HomePage(props){
 }, []);
 
   return (
-    <div id="home" className='w-full min-h-[50vh] dark:bg-sky-300 bg-blue-500 flex flex-col lg:flex-row px-10 md:py-24 gap-10 py-24 items-center flex-wrap' style={{flex: '1 0 auto'}}>
+    <div id="home" className='w-full min-h-[50vh] dark:bg-sky-300 bg-blue-500 flex flex-col lg:flex-row px-6 md:py-24 gap-10 py-24 items-center flex-wrap' style={{flex: '1 0 auto'}}>
       {/* Card container */}
         <motion.div {...fadeIn}>
           <div className="picture-container min-h-80 md:h-full bg-red-300 rounded-xl flex-shrink-0 aspect-square" style={{
@@ -178,18 +178,18 @@ function HomePage(props){
           </motion.div>
         </div>
 
-        <motion.div {...fadeIn} className='w-full max-w-[400px] md:max-w-full lg:w-full h-[15vh] flex flex-row items-center justify-center md:justify-around mb-10 text-center text-black mt-10 ' style={{flex: '1 1 auto'}}>
-          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
+        <motion.div {...fadeIn} className='w-full md:max-w-full lg:w-full h-[15vh] flex flex-row items-center justify-center md:justify-around mb-10 text-center text-black mt-10' style={{flex: '1 1 auto'}}>
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-3 md:mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>10+</h1>
-            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>NATIONAL COMPETITIONS WON</p>
+            <p className="text-xs md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>NATIONAL COMPETITIONS WON</p>
           </div> <hr className={verticalLineStyle} style={{transition: 'border-color 0.5s ease, color 0.5s ease'}} />
-          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-3 md:mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>15+</h1>
-            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>PROJECTS COMPLETED</p>
+            <p className="text-xs md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>PROJECTS COMPLETED</p>
           </div> <hr className={verticalLineStyle} style={{transition: 'border-color 0.5s ease, color 0.5s ease'}}/>
-          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-3 md:mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>5+</h1>
-            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>YEARS OF PROGRAMMING</p>
+            <p className="text-xs md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>YEARS OF PROGRAMMING</p>
           </div>
         </motion.div>
         
@@ -529,7 +529,7 @@ function App() {
         {page === 1 && (
           <div className='flex justify-center items-center w-full h-screen'>
             <div className='w-fit flex flex-col text-center'>
-              <p id='typewriter' className="typewriter leading-normal font-normal text-center block w-full max-w-full min-w-0 whitespace-nowrap" style={{fontFamily: 'Nunito Sans', textShadow: '0px 1px 2px #2d2a2d', fontSize: 'clamp(0.9rem, 3vw, 3rem)'}}>
+              <p id='typewriter' className="typewriter leading-normal font-normal text-center block w-full max-w-full min-w-0 whitespace-nowrap" style={{fontFamily: 'Nunito Sans', textShadow: '0px 1px 2px #2d2a2d', fontSize: 'clamp(0.7rem, 3vw, 3rem)'}}>
                 Hello, I'm <span className='dark:text-sky-300 text-blue-600 font-bold'>Kenneth Jehezkiel Marvel Wijaya.</span>
               </p>
               <button id='viewmore' type='button' onClick={scrollToHome} className='block text-black dark:text-white opacity-60 font-medium'>Scroll down to view more</button>
