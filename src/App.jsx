@@ -272,7 +272,7 @@ function ProjectCard({image, title, description, link, categories, setZoomImage}
   },[])
 
   return (
-    <div className='card rounded-xl p-5 backdrop-blur-md' style={{backgroundColor: 'rgba(255,255,255,0.1)', transition: 'transform 0.3s, box-shadow 0.3s', border: '1px solid rgba(255,255,255,0.2)'}}
+    <div className='card rounded-xl p-5 backdrop-blur-md ' style={{backgroundColor: 'rgba(255,255,255,0.1)', transition: 'transform 0.3s, box-shadow 0.3s', border: '1px solid rgba(255,255,255,0.2)'}}
     onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-8px)';
         e.currentTarget.style.boxShadow =
@@ -368,13 +368,13 @@ function PortfolioPage(props){
 
   return (
     <>
-      <div className='w-full min-h-screen flex flex-col dark:bg-blue-500 bg-sky-300 p-32 items-center'>
-        <h1 className='font-extrabold mb-4 text-center' style={{fontFamily: 'Nunito Sans', textShadow: '0 2px 10px rgba(0,0,0,0.3)', fontSize: '48px'}}>Browse Projects</h1>
-        <div className='w-full flex flex-row items-center gap-4 mb-5 justify-center'>
+      <div className='w-full min-h-screen flex flex-col dark:bg-blue-500 bg-sky-300 p-6 md:p-12 lg:p-32 items-center'>
+        <h1 className='font-extrabold mb-8 text-center text-3xl md:text-5xl mt-20' style={{fontFamily: 'Nunito Sans', textShadow: '0 2px 10px rgba(0,0,0,0.3)'}}>Browse Projects</h1>
+        <div className='w-full flex flex-col sm:flex-row items-center gap-3 md:gap-4 mb-8 justify-center px-4'>
           <input type='text' placeholder='Search for projects...' style={{width: '100%',
             maxWidth: '500px',
-            padding: '12px 20px',
-            fontSize: 16,
+            padding: '12px 16px',
+            fontSize: 14,
             borderRadius: 8,
             border: '2px solid rgba(255,255,255,0.2)',
             backgroundColor: 'rgba(255,255,255,0.1)',
@@ -424,7 +424,7 @@ function PortfolioPage(props){
                 <option className='text-black'>Website</option>
               </select>
         </div>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: '24px', maxWidth: '1200px', width: '100%'}}>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full mx-auto px-4'>
           {displayedProjects.map((project, index) => (
             <ProjectCard
             key={index}
