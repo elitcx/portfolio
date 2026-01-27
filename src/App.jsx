@@ -79,8 +79,8 @@ function ItemGrid(){
   const visibleItems = showAllCertificates ? certificates : certificates.slice(0, 3);
 
   return (
-    <>
-      <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: '24px', maxWidth: '1600px', width: '100%', margin: 'auto'}}>
+    <div className='flex-col flex items-center'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-8xl w-full mx-auto'>
         {visibleItems.map((item,index) =>
         <CertificateCard image={item.image} title={item.title} description={item.description} key={index}/>)}
       </div>
@@ -98,7 +98,7 @@ function ItemGrid(){
           </motion.button>
         </div>
       )}
-    </>
+    </div>
     
   )
 }
@@ -120,9 +120,9 @@ function HomePage(props){
 
   const verticalLineStyle = 'h-full border-2 border-defaultdark rounded-full';
   const lineBarStyle = 'border-4 rounded-full mx-6 border-black';
-  const skillStyle = 'flex flex-row w-full text-nowrap items-center  text-lg font-semibold drop-shadow-md';
+  const skillStyle = 'flex flex-row w-full text-nowrap items-center text-lg font-semibold drop-shadow-md';
   const badgeStyle = "skill-level px-2 py-1 rounded-lg text-xs md:text-sm font-medium dark:text-white text-black hover:scale-105";
-  const languageStyle = 'text-black font-bold text-md md:text-2xl';
+  const languageStyle = 'text-black font-bold text-sm md:text-2xl';
 
   useEffect(() => {
     const elements = document.getElementsByClassName('skill-level');
@@ -130,7 +130,10 @@ function HomePage(props){
       if (element.textContent.includes('Competition Level')){
         element.classList.add('dark:bg-red-800')
         element.classList.add('bg-red-300')
-      } else if (element.textContent.includes('Intermediate')){
+      } else if (element.textContent.includes('Comp. Level')){
+        element.classList.add('dark:bg-red-800')
+        element.classList.add('bg-red-300')
+      }else if (element.textContent.includes('Intermediate')){
         element.classList.add('dark:bg-yellow-600')
         element.classList.add('bg-yellow-400')
       } else if (element.textContent.includes('Beginner')){
@@ -175,40 +178,42 @@ function HomePage(props){
           </motion.div>
         </div>
 
-        <motion.div {...fadeIn} className='w-full lg:w-full h-[15vh] flex flex-row items-center justify-around mb-10 text-center text-black mt-10' style={{flex: '1 1 auto'}}>
-          <div className="space-y-4 mx-4">
+        <motion.div {...fadeIn} className='w-full max-w-[400px] md:max-w-full lg:w-full h-[15vh] flex flex-row items-center justify-center md:justify-around mb-10 text-center text-black mt-10 ' style={{flex: '1 1 auto'}}>
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>10+</h1>
-            <p className="text-md lg:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>NATIONAL COMPETITIONS WON</p>
+            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>NATIONAL COMPETITIONS WON</p>
           </div> <hr className={verticalLineStyle} style={{transition: 'border-color 0.5s ease, color 0.5s ease'}} />
-          <div className="space-y-4 mx-4">
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>15+</h1>
-            <p className="text-md lg:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>PROJECTS COMPLETED</p>
+            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>PROJECTS COMPLETED</p>
           </div> <hr className={verticalLineStyle} style={{transition: 'border-color 0.5s ease, color 0.5s ease'}}/>
-          <div className="space-y-4 mx-4">
+          <div className="flex flex-col gap-4 justify-start pt-6 h-full items-center mx-4">
             <h1 className='text-2xl lg:text-5xl font-extrabold' style={{fontFamily: 'Nunito Sans'}}>5+</h1>
-            <p className="text-md lg:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>YEARS OF PROGRAMMING</p>
+            <p className="text-sm md:text-xl font-bold opacity-70" style={{fontFamily: 'Nunito Sans'}}>YEARS OF PROGRAMMING</p>
           </div>
         </motion.div>
         
         <div className='w-full h-[30vh] flex flex-row flex-start items-center'>
           <div className=" flex flex-col h-full justify-around mx-4">
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/c++.png' className='w-8 mr-2'/>C++</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/python.webp' className='w-8 mr-2'/>Python</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/javascript.png' className='w-8 mr-2'/>JavaScript</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/ReactJS.webp' className='w-8 mr-2'/>ReactJS</p>
-            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/sql.png' className='w-8 mr-2'/>SQL</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/c++.png' className='w-6 md:w-8 mr-2'/>C++</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/python.webp' className='w-6 md:w-8 mr-2'/>Python</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/javascript.png' className='w-6 md:w-8 mr-2'/>JavaScript</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/ReactJS.webp' className='w-6 md:w-8 mr-2'/>ReactJS</p>
+            <p className={languageStyle} style={{fontFamily: 'Nunito Sans', display: 'flex', flexDirection: 'row', alignItems: 'center'}}><img src='/images/sql.png' className='w-6 md:w-8 mr-2'/>SQL</p>
           </div>
           <div className="flex flex-col h-full justify-around mx-2 w-full flex-shrink-1">
-            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate `} style={{"--target-sm": "41%", "--target-md": "82%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level (Algorithms/CP)</span></div>
-            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "36%", "--target-md": "72%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level (Automation/Py Scripts)</span></div>
-            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "26%", "--target-md": "52%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate (Frontend/Web)</span></div>
-            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "26%", "--target-md": "52%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate (Components/SPA)</span></div>
-            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "11%", "--target-md": "22%"}}></hr><span className={`${badgeStyle} block md:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Beginner</span><span className={`${badgeStyle} hidden md:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Beginner (CRUD Queries)</span></div>
+            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate `} style={{"--target-sm": "41%", "--target-md": "82%"}}></hr><span className={`${badgeStyle} block lg:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Comp. Level</span><span className={`${badgeStyle} hidden lg:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level (Algorithms/CP)</span></div>
+            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "36%", "--target-md": "72%"}}></hr><span className={`${badgeStyle} block lg:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Comp. Level</span><span className={`${badgeStyle} hidden lg:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Competition Level (Automation/Py Scripts)</span></div>
+            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "26%", "--target-md": "52%"}}></hr><span className={`${badgeStyle} block lg:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate</span><span className={`${badgeStyle} hidden lg:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate (Frontend/Web)</span></div>
+            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "26%", "--target-md": "52%"}}></hr><span className={`${badgeStyle} block lg:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate</span><span className={`${badgeStyle} hidden lg:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Intermediate (Components/SPA)</span></div>
+            <div className={skillStyle}><hr className={`${lineBarStyle} bar-animate`} style={{"--target-sm": "11%", "--target-md": "22%"}}></hr><span className={`${badgeStyle} block lg:hidden`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Beginner</span><span className={`${badgeStyle} hidden lg:block`} style={{transition: 'background-color 0.3s ease, transform 0.3s ease'}}>Beginner (CRUD Queries)</span></div>
           </div>
         </div>
         <hr className='w-full h-full border-4 border-defaultdark rounded-full my-10'/>
-        <motion.h1 {...fadeIn} className='text-black text-[2.5rem] md:text-[3rem] font-bold text-center w-full' style={{fontFamily: 'Nunito Sans'}}>My Certifications</motion.h1>
-        <ItemGrid/>
+        <div className='flex flex-col gap-20 items-center'>
+          <motion.h1 {...fadeIn} className='text-black text-[2.5rem] md:text-[3rem] font-bold text-center w-full' style={{fontFamily: 'Nunito Sans'}}>My Certifications</motion.h1>
+          <ItemGrid/>
+        </div>
         
     </div>
   )

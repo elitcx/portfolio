@@ -8,6 +8,7 @@ body {
 :root {
     /* don't force overflow on the root element — it can interfere with sticky positioning */
     overflow-y: visible;
+    overflow-x: hidden;
 }
 
 #typewriter {
