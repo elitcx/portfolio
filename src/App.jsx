@@ -61,14 +61,15 @@ function CertificateCard({image, title, description}){
 }
 
 const certificates = [
-  {image:'/images/certificates/image0.jpg', title:'Battle of Technology PingFEST UNS 2025', description:'2nd Place Team'},
+  {image:'/images/certificates/image0.jpg', title:'Battle of Technology PingFEST UNS 2025', description:'2nd Place'},
+  {image:'/images/certificates/image2.jpg', title:'Competitive Programming IAA UKDW Yogyakarta 2025', description:'2nd Place'},
   {image:'/images/certificates/image1.jpg', title:'OSN Informatika Surakarta 2025', description:'Finalist'},
-  {image:'/images/certificates/image2.jpg', title:'Competitive Programming IAA UKDW Yogyakarta 2025', description:'2nd Place Team'},
-  {image:'/images/certificates/image3.jpg', title:'Informatics Rally Games and Logic (IRGL) PCU 2025', description:'3rd Place Team'},
+  {image:'/images/certificates/logicodix.png', title:'Logicodix Programming & Coding Competition UNESA 2025', description:'2nd Place'},
+  {image:'/images/certificates/image3.jpg', title:'Informatics Rally Games and Logic (IRGL) PCU 2025', description:'3rd Place'},
   {image:'/images/certificates/image4.jpg', title:'Final OMNAS 13 Matematika 2024', description:'Silver Medalist'},
   {image:'/images/certificates/image5.jpg', title:'Final OMNAS 13 English 2024', description:'Silver Medalist'},
   {image:'/images/certificates/image6.jpg', title:'National Junior Highschool Math Competition - Practo Math Academy 2024', description:'2nd Place'},
-  {image:'/images/certificates/image7.jpg', title:'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024', description:'Top 10 Team'},
+  {image:'/images/certificates/image7.jpg', title:'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024', description:'Top 10'},
   {image:'/images/certificates/image8.jpg', title:'Intro to Software Engineering Course - RevoU 2025', description:'Finished'},
   {image:'/images/certificates/image9.jpg', title:'Cybersecurity Workshop: "Breaking the Code: Outsmart, Decode, Conquer" - PSB Academy 2025', description:'2nd Place Team'},
 ]
