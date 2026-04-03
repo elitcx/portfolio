@@ -63,9 +63,9 @@ export const stats = [
 ];
 
 export const skills = [
-  { lang: 'C++',        icon: '/images/c++.webp',        pct: 82, label: 'Competition Level · Algorithms / CP' },
+  { lang: 'C++',        icon: '/images/c.webp',        pct: 82, label: 'Competition Level · Algorithms / CP' },
   { lang: 'Python',     icon: '/images/python.webp',    pct: 72, label: 'Competition Level · Automation / Scripts' },
-  { lang: 'JavaScript', icon: '/images/javascript.png', pct: 52, label: 'Intermediate · Frontend / Web' },
+  { lang: 'JavaScript', icon: '/images/javascript.webp', pct: 52, label: 'Intermediate · Frontend / Web' },
   { lang: 'ReactJS',    icon: '/images/ReactJS.webp',   pct: 52, label: 'Intermediate · Components / SPA' },
   { lang: 'SQL',        icon: '/images/sql.webp',        pct: 22, label: 'Beginner · CRUD Queries' },
 ];
