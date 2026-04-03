@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from './Button.jsx';
-import { useTypewriter } from '../hooks/Usetypewriter.js';
+import { useTypewriter } from '../hooks/UseTypewriter.js';
 import { TYPEWRITER_WORDS } from '../utils/Constants.js';
 
 export default function Hero({ onScroll }) {
