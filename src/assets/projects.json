@@ -1,58 +1,51 @@
 [
     {
-    "title": "Tokopedia Webscraper",
-    "description": "A simple webscraper program to automatically search for a specific item and list all results in a spreadsheet",
-    "link": "https://google.com",
-    "categories" : ["Python", "BeautifulSoup","Pandas","Selenium"],
-    "image": "/images/webscraper.png"
+    "title": "One Choice Endless Paths",
+    "description": "An interactive narrative that places you in the role of a young person faced with a seemingly simple act of kindness: helping an elderly person find a seat.",
+    "link": "https://onechoiceep.vercel.app",
+    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "image": "/images/onechoiceep.png"
     },
     {
     "title": "Push Up and Pull Up Challenge App",
     "description": "A tracker app for a year long pushup/pullup challenge where the user must do 1 pushup for everyday of the year and 1 pullup everyday for every week of the year",
     "link": "https://elitcxchallenge.vercel.app",
     "categories" : ["HTML","CSS","JavaScript","React","Website"],
-    "image": "/images/challenge.png"
+    "image": "/images/challenge.webp"
+    },
+    {
+    "title": "Tokopedia Webscraper",
+    "description": "A simple webscraper program to automatically search for a specific item and list all results in a spreadsheet",
+    "link": "https://github.com/elitcx/Tokopedia-Webscraper",
+    "categories" : ["Python", "BeautifulSoup","Pandas","Selenium"],
+    "image": "/images/webscraper.webp"
     },
     {
     "title": "Simple Chatbot",
     "description": "A simple chatbot that chooses responses based on a response list and uses a message probability system to figure out what the user typed",
-    "link": "https://google.com",
+    "link": "https://github.com/elitcx/Simple-Chatbot",
     "categories" : ["Python"],
-    "image": "/images/chatbot.png"
-    },
-    {
-    "title": "Live Product Showcase with React",
-    "description": "A product showcase website that pulls live data from a dummy.json link and provides functionality such as Search, Sort by Category, Sort by Price, Add to Cart, and Remove from Cart",
-    "link": "https://google.com",
-    "categories" : ["HTML","CSS","JavaScript","React","Website"],
-    "image": "/images/banner.webp"
+    "image": "/images/chatbot.webp"
     },
     {
     "title": "Finance Tracker",
     "description": "A Finance Tracker program that runs in console that saves data locally based on input date. Provides options to Input, Delete, Edit past logs and shows balance and deposits",
-    "link": "https://google.com",
+    "link": "https://github.com/elitcx/Finance-Tracker",
     "categories" : ["Python"],
-    "image": "/images/financetrackercode.png"
+    "image": "/images/financetrackercode.webp"
     },
     {
     "title": "To Do List",
     "description": "A simple To Do List app to input tasks by date, shows task status, delete tasks, clear all tasks, and filter tasks by name",
-    "link": "https://google.com",
+    "link": "https://elitcx.github.io/",
     "categories" : ["HTML","CSS","JavaScript","Website"],
-    "image": "/images/todolist.png"
+    "image": "/images/todolist.webp"
     },
     {
-    "title": "Plceholder",
-    "description": "A simple Plceholder made by Kiel bla bla bla bla bla",
-    "link": "https://google.com",
-    "categories" : ["Python", "C++"],
-    "image": "/images/banner.webp"
-    },
-    {
-    "id": 2,
-    "title": "AI Tool",
-    "description": "AI based project",
-    "image": "/images/ai.webp",
-    "categories": ["Python", "AI"]
-  }
+    "title": "Traffic Maze Solver",
+    "description": "A Dijkstra Algorithm Implementation in C++ to simulate finding the fastest/least dense route in high traffic using a simulated 2D Grid as map.",
+    "link": "https://github.com/elitcx/Traffic-Maze-Solver",
+    "categories" : ["C++", "DSA"],
+    "image": "/images/traffic.jpeg"
+    }
 ]

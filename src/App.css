@@ -1,102 +1,46 @@
+/* ── App.css ───────────────────────────────────────────────── */
 
-body {
-    transition: background-color 0.5s ease, color 0.5s ease;
-    /* let the browser decide scroll behavior (auto) so sticky can reference the viewport */
-    overflow-y: auto;
+/* Smooth page transitions */
+* {
+  box-sizing: border-box;
 }
 
-:root {
-    /* don't force overflow on the root element — it can interfere with sticky positioning */
-    overflow-y: visible;
-    overflow-x: hidden;
+/* Typewriter cursor blink */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-#typewriter {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .10em solid rgb(0, 140, 255); /* The typewriter cursor */
-  /* allow wrapping on small screens so text doesn't get cut off */
-  white-space: nowrap; /* Keeps the content on a single line for the typewriter */
-  display: inline-block; /* allow width animation while keeping it inline */
-  max-width: 100%;
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
-    z-index: 1;
-    
-}
-
-/* The typing effect */
+/* Typewriter hero animation */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from { width: 0; }
+  to   { width: 100%; }
 }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: rgb(0, 140, 255); }
+@keyframes blink {
+  50% { border-color: transparent; }
 }
 
-#viewmore {
-    opacity: 0;
-    animation:
-        fadeIn 1.5s ease-in forwards,
-        slideInFromBottom 1s ease-out forwards;
-    animation-delay: 4s;
-}
-
-#viewmorebutton {
-  opacity: 0;
-    animation:
-        fadeIn 1.5s ease-in forwards,
-        slideInFromBottom 1s ease-out forwards;
-    animation-delay: 4s;
-}
-
-/* Start at 0 width so animation can grow */
+/* Skill bar animation */
 .bar-animate {
-  width: 0 !important;
-  transition: width 1.5s ease-in-out;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .bar-animate.active {
-  width: var(--target-sm) !important;
+  width: var(--target-md, 50%);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .bar-animate.active {
-    width: var(--target-md) !important;
+    width: var(--target-sm, 30%);
   }
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 0.6; }
-}
-
-@keyframes slideInFromBottom {
-      0% { transform: translateY(0); opacity: 0; }
-      100% { transform: translateY(100%); opacity: 0.6; }
-    }
-
-
-
-.picture-container {
-  transform: scaleX(-1);
-}
-
-.certificate-container:hover > img {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.3);
-}
-
-.certificate-container:hover > *:not(img) {
-  transform: translateY(-8px);
-  text-shadow: 0 12px 48px rgba(0,0,0,0.3);
-}
-
-.certificate-container > * {
-  transition: all 0.2s;
+/* Line clamp utility (fallback for older browsers) */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
