@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ImageZoom from './ImageZoom.jsx';
+import ImageZoom from './Imagezoom.jsx';
 import { fadeUp, stagger } from '../utils/Animations.js';
 import { getCategoryColor, CATEGORIES } from '../utils/Constants.js';
 import projects from '../assets/projects.json';
