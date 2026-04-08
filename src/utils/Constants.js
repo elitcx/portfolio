@@ -84,7 +84,7 @@ export const certificates = [
   { image: '/images/certificates/image8.webp',    title: 'Intro to Software Engineering Course - RevoU 2025',                        description: 'Completed' },
   { image: '/images/certificates/image9.webp',    title: 'Cybersecurity Workshop: "Breaking the Code" - PSB Academy 2025',           description: 'Completed' },
   { image: '/images/certificates/osis.jpeg',    title: 'Tutor Sebaya 2024-2025',           description: 'Mentor' },
-  { image: '/images/certificates/uic.jpeg',    title: 'Ursulin Investment Club',           description: 'Member' },
+  { image: '/images/certificates/uic.jpeg',    title: 'Ursulin Investment Club 2024-2025',           description: 'Member' },
 ];
 
 export const contactLinks = [
