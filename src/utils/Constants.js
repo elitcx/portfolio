@@ -78,10 +78,13 @@ export const certificates = [
   { image: '/images/certificates/image3.webp',    title: 'Informatics Rally Games and Logic (IRGL) PCU 2025',                         description: '3rd Place' },
   { image: '/images/certificates/image4.webp',    title: 'Final OMNAS 13 Matematika 2024',                                           description: 'Silver Medalist' },
   { image: '/images/certificates/image5.webp',    title: 'Final OMNAS 13 English 2024',                                              description: 'Silver Medalist' },
+  { image: '/images/certificates/ilpc.jpeg', title: 'Semifinal ILPC Ubaya 2026', description: 'Semifinalist'},
   { image: '/images/certificates/image6.webp',    title: 'National Junior Highschool Math Competition - Practo Math Academy 2024',    description: '2nd Place' },
   { image: '/images/certificates/image7.webp',    title: 'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024',          description: 'Top 10' },
   { image: '/images/certificates/image8.webp',    title: 'Intro to Software Engineering Course - RevoU 2025',                        description: 'Completed' },
   { image: '/images/certificates/image9.webp',    title: 'Cybersecurity Workshop: "Breaking the Code" - PSB Academy 2025',           description: 'Completed' },
+  { image: '/images/certificates/osis.jpeg',    title: 'Tutor Sebaya 2024-2025',           description: 'Mentor' },
+  { image: '/images/certificates/uic.webp',    title: 'Ursulin Investment Club',           description: 'Member' },
 ];
 
 export const contactLinks = [
