@@ -84,7 +84,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
 
   const tokens = {
     bg:         isDark ? 'oklch(0.09 0.012 58)'    : 'oklch(0.97 0.008 58)',
-    dotColor:   isDark ? 'rgba(255, 255, 255, 0.20)' : 'rgba(15, 10, 5, 0.12)',
+    dotColor:   isDark ? 'rgba(255, 255, 255, 0.20)' : 'rgba(15, 10, 5, 0.35)',
     staticDot:  isDark ? 'rgba(255,255,255,0.07)'  : 'rgba(15,10,5,0.05)',
     name:       isDark ? 'oklch(0.985 0.004 240)'  : 'oklch(0.10 0.015 58)',
     label:      isDark ? 'oklch(0.62 0.008 240)'   : 'oklch(0.42 0.010 58)',
