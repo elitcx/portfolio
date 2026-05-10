@@ -31,6 +31,7 @@ export default function ImageZoom({ src, alt, onClose }) {
           onClick={(e) => e.stopPropagation()}
         />
         <button
+          autoFocus
           onClick={onClose}
           className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center"
           aria-label="Close image zoom"

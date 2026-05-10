@@ -16,13 +16,19 @@ function ProjectCard({ image, title, description, link, categories, onZoom }) {
       className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-slate-800/60 border border-black/5 dark:border-white/10 shadow-sm hover:shadow-2xl transition-shadow duration-500"
     >
       <div className="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-900">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in"
+        <button
+          type="button"
+          className="block w-full h-full"
           onClick={() => onZoom({ src: image, alt: title })}
-        />
+          aria-label={`View screenshot of ${title}`}
+        >
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in"
+          />
+        </button>
       </div>
 
       <div className="flex flex-col gap-3 p-5 flex-1">
@@ -93,11 +99,13 @@ export default function PortfolioPage() {
       <div className="w-full min-h-screen flex flex-col dark:bg-slate-950 bg-slate-50 pt-28 pb-24 px-6">
         <div className="max-w-6xl mx-auto w-full flex flex-col gap-10">
 
-          <motion.div {...fadeUp} className="text-center">
-            <p className="text-xs font-bold tracking-widest uppercase text-indigo-500 dark:text-indigo-400 mb-2">
+          <motion.div {...fadeUp}>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
               My Work
             </p>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white">Projects</h1>
+            <h1 className="font-display font-black text-slate-900 dark:text-white leading-none" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.03em' }}>
+              Projects
+            </h1>
           </motion.div>
 
           {/* Filters */}

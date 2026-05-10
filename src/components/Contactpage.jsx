@@ -9,10 +9,10 @@ export default function ContactPage() {
       <div className="max-w-xl w-full flex flex-col gap-10 text-center">
 
         <motion.div {...fadeUp}>
-          <p className="text-xs font-bold tracking-widest uppercase text-indigo-500 dark:text-indigo-400 mb-2">
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
             Get In Touch
           </p>
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+          <h1 className="font-display font-black text-slate-900 dark:text-white leading-none mb-4" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.03em' }}>
             Let's Connect
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">

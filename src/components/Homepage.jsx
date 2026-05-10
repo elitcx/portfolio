@@ -1,51 +1,111 @@
-import React, { useState, useRef, useEffect, memo } from 'react';
+import React, { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import ImageZoom from './Imagezoom.jsx';
-import { fadeUp, stagger } from '../utils/Animations.js';
+import { fadeUp, stagger, revealUp, slideInLeft } from '../utils/Animations.js';
 import {
   computeAge,
   getSkillLevel,
   SKILL_LEVELS,
-  stats,
   skills,
   certificates,
 } from '../utils/Constants.js';
+
+function awardBadgeClass(description) {
+  const d = description.toLowerCase();
+  if (d.includes('silver') || d.includes('2nd'))
+    return 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border-slate-300/60 dark:border-white/20';
+  if (d.includes('3rd'))
+    return 'bg-amber-50 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-300/50 dark:border-amber-500/20';
+  if (d.includes('finalist') || d.includes('semifinalist'))
+    return 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-500/20';
+  return 'bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/10';
+}
 
 // ─── About ────────────────────────────────────────────────────────────────────
 
 function About() {
   const age = computeAge('2008-11-22');
+  const photoRef = useRef(null);
+  const wrapperRef = useRef(null);
+
+  const handlePhotoMove = useCallback((e) => {
+    if (!photoRef.current || !wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const ry = ((e.clientX - cx) / (rect.width / 2)) * 7;
+    const rx = ((e.clientY - cy) / (rect.height / 2)) * -7;
+    photoRef.current.style.willChange = 'transform';
+    photoRef.current.style.transition = '';
+    photoRef.current.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+  }, []);
+
+  const handlePhotoLeave = useCallback(() => {
+    if (!photoRef.current) return;
+    photoRef.current.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+    photoRef.current.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    photoRef.current.style.willChange = 'auto';
+  }, []);
 
   return (
     <section className="w-full dark:bg-slate-900 bg-slate-50 px-6 py-24 md:py-32">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-start">
 
-        <motion.div {...stagger(0)} className="w-full md:w-auto shrink-0">
+        {/* Profile photo — scale + lift entrance, then cursor tilt */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          className="w-full md:w-auto shrink-0"
+        >
           <div
-            className="w-full aspect-square md:w-72 md:h-72 rounded-3xl shadow-2xl bg-slate-200 dark:bg-slate-700 overflow-hidden ring-4 ring-indigo-500/20"
-            style={{
-              backgroundImage: "url('/images/banner.webp')",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-            role="img"
-            aria-label="Kenneth's profile photo"
-          />
+            ref={wrapperRef}
+            onMouseMove={handlePhotoMove}
+            onMouseLeave={handlePhotoLeave}
+            className="w-full aspect-square md:w-[22rem] md:h-[22rem]"
+            style={{ perspective: '700px' }}
+          >
+            <div
+              ref={photoRef}
+              className="w-full h-full rounded-3xl shadow-2xl bg-slate-200 dark:bg-slate-700 overflow-hidden ring-[3px] ring-indigo-500/15 dark:ring-indigo-400/20"
+              style={{
+                backgroundImage: "url('/images/banner.webp')",
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }}
+              role="img"
+              aria-label="Kenneth's profile photo"
+            />
+          </div>
         </motion.div>
 
         <div className="flex flex-col gap-6">
-          <motion.div {...stagger(1)}>
-            <p className="text-xs font-bold tracking-widest uppercase text-indigo-500 dark:text-indigo-400 mb-2">
+          {/* Section heading with clip-path reveal */}
+          <div className="relative overflow-visible">
+            <span
+              className="absolute -top-6 -right-2 font-display font-black leading-none select-none pointer-events-none text-slate-900/[0.04] dark:text-white/[0.04]"
+              style={{ fontSize: 'clamp(5rem, 10vw, 8rem)' }}
+              aria-hidden="true"
+            >01</span>
+            <motion.p {...fadeUp} className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
               About Me
-            </p>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Hi, I'm Kenneth Jehezkiel M.W.
-            </h2>
-          </motion.div>
+            </motion.p>
+            <motion.h2
+              {...revealUp}
+              className="font-display font-black text-slate-900 dark:text-white leading-none"
+              style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', letterSpacing: '-0.025em' }}
+            >
+              Hi, I'm Kenneth<br className="hidden md:block" /> Jehezkiel M.W.
+            </motion.h2>
+          </div>
 
           <motion.p
-            {...stagger(2)}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl text-justify"
           >
             I'm a{' '}
@@ -62,38 +122,7 @@ function About() {
               I'm always eager to learn, build, and grow.
             </strong>
           </motion.p>
-
-          <motion.div {...stagger(3)} className="flex flex-wrap gap-3 text-sm font-medium">
-            <span className="px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20">
-              🚀 Aspiring Developer
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-500/20">
-              💡 Problem Solver
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/20">
-              🏆 Competitive Programmer
-            </span>
-          </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Stats ────────────────────────────────────────────────────────────────────
-
-function Stats() {
-  return (
-    <section className="w-full bg-indigo-600 dark:bg-indigo-700 px-6 py-14">
-      <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6 text-white text-center">
-        {stats.map((s, i) => (
-          <motion.div key={i} {...stagger(i)} className="flex flex-col gap-1">
-            <span className="text-3xl md:text-5xl font-black">{s.value}</span>
-            <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-80">
-              {s.label}
-            </span>
-          </motion.div>
-        ))}
       </div>
     </section>
   );
@@ -102,9 +131,9 @@ function Stats() {
 // ─── Skill Row ────────────────────────────────────────────────────────────────
 
 const LEVEL_DOT_COLOR = {
-  'Competition Level': 'bg-red-400 dark:bg-red-400',
-  'Intermediate':      'bg-amber-400 dark:bg-amber-400',
-  'Beginner':          'bg-emerald-400 dark:bg-emerald-400',
+  'Competition Level': 'bg-red-400',
+  'Intermediate':      'bg-amber-400',
+  'Beginner':          'bg-emerald-400',
 };
 
 function getLevelKey(label) {
@@ -122,38 +151,36 @@ function SkillRow({ lang, icon, pct, label, index }) {
   const [showTip, setShowTip] = useState(false);
 
   return (
-    <motion.div {...stagger(index)} className="flex flex-col gap-1.5">
+    <motion.div {...slideInLeft(index)} className="flex flex-col gap-1.5">
 
-      {/* Row: icon + name · bar · badge/dot */}
       <div className="flex items-center gap-3">
 
-        {/* Language */}
         <div className="flex items-center gap-2 w-28 shrink-0">
           <img src={icon} alt={lang} className="w-5 h-5 object-contain" />
           <span className="text-sm font-bold text-slate-800 dark:text-slate-200">{lang}</span>
         </div>
 
-        {/* Bar */}
         <div className="flex-1 bg-slate-200 dark:bg-white/10 rounded-full h-2 overflow-hidden">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${pct}%` }}
-            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 }}
+            className="h-full rounded-full bg-indigo-500 origin-left will-change-transform"
+            style={{ width: `${pct}%` }}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
             viewport={{ once: true }}
           />
         </div>
 
         {/* Full pill — md and up */}
         <span
-          className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${level.bg} ${level.text} ${level.border} shrink-0 hidden md:block`}
+          className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${level.bg} ${level.text} ${level.border} shrink-0 hidden md:block transition-all duration-200 hover:brightness-110`}
         >
           {shortLabel}
         </span>
 
-        {/* Coloured dot — mobile only, tap to reveal popover */}
+        {/* Coloured dot — mobile only */}
         <button
-          className="relative md:hidden shrink-0 flex items-center justify-center w-6 h-6 focus:outline-none"
+          className="relative md:hidden shrink-0 flex items-center justify-center w-11 h-11 focus:outline-none"
           onClick={() => setShowTip((v) => !v)}
           aria-label={`Show skill level: ${shortLabel}`}
         >
@@ -164,7 +191,7 @@ function SkillRow({ lang, icon, pct, label, index }) {
               initial={{ opacity: 0, scale: 0.9, y: 4 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.15 }}
-              className={`absolute right-0 top-8 z-20 min-w-max px-3 py-2 rounded-xl border shadow-lg text-left ${level.bg} ${level.border}`}
+              className={`absolute right-0 top-12 z-20 min-w-max px-3 py-2 rounded-xl border shadow-lg text-left ${level.bg} ${level.border}`}
             >
               <p className={`text-xs font-bold ${level.text}`}>{shortLabel}</p>
               {detailLabel && (
@@ -175,7 +202,6 @@ function SkillRow({ lang, icon, pct, label, index }) {
         </button>
       </div>
 
-      {/* Detail sub-label — desktop only */}
       {detailLabel && (
         <p className="hidden md:block text-[11px] text-slate-400 dark:text-slate-500 pl-7">{detailLabel}</p>
       )}
@@ -185,16 +211,25 @@ function SkillRow({ lang, icon, pct, label, index }) {
 
 function Skills() {
   return (
-    <section className="w-full dark:bg-slate-900 bg-slate-50 px-6 py-24">
+    <section className="w-full dark:bg-slate-950 bg-white px-6 py-24">
       <div className="max-w-3xl mx-auto flex flex-col gap-12">
-        <motion.div {...fadeUp} className="text-center">
-          <p className="text-xs font-bold tracking-widest uppercase text-indigo-500 dark:text-indigo-400 mb-2">
+        <div className="relative overflow-visible">
+          <span
+            className="absolute -top-5 -right-2 font-display font-black leading-none select-none pointer-events-none text-slate-900/[0.04] dark:text-white/[0.04]"
+            style={{ fontSize: 'clamp(5rem, 10vw, 8rem)' }}
+            aria-hidden="true"
+          >02</span>
+          <motion.p {...fadeUp} className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
             Technical Skills
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
+          </motion.p>
+          <motion.h2
+            {...revealUp}
+            className="font-display font-black text-slate-900 dark:text-white leading-none"
+            style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', letterSpacing: '-0.02em' }}
+          >
             What I Work With
-          </h2>
-        </motion.div>
+          </motion.h2>
+        </div>
 
         <div className="flex flex-col gap-5">
           {skills.map((skill, i) => (
@@ -202,12 +237,11 @@ function Skills() {
           ))}
         </div>
 
-        {/* Legend */}
         <div className="flex flex-wrap gap-3 justify-center pt-2">
           {Object.entries(SKILL_LEVELS).map(([label, cls]) => (
             <span
               key={label}
-              className={`text-xs px-3 py-1 rounded-full border font-semibold ${cls.bg} ${cls.text} ${cls.border}`}
+              className={`text-xs px-3 py-1 rounded-full border font-semibold transition-all duration-200 hover:brightness-110 ${cls.bg} ${cls.text} ${cls.border}`}
             >
               {label}
             </span>
@@ -220,7 +254,7 @@ function Skills() {
 
 // ─── Certificate Card ─────────────────────────────────────────────────────────
 
-const CertificateCard = memo(function CertificateCard({ image, title, description }) {
+const CertificateCard = memo(function CertificateCard({ image, title, description, index }) {
   const [zoomOpen, setZoomOpen] = useState(false);
   const [inView, setInView] = useState(false);
   const cardRef = useRef(null);
@@ -236,7 +270,6 @@ const CertificateCard = memo(function CertificateCard({ image, title, descriptio
       },
       { rootMargin: '120px', threshold: 0.1 }
     );
-
     observer.observe(cardRef.current);
     return () => observer.disconnect();
   }, []);
@@ -245,37 +278,41 @@ const CertificateCard = memo(function CertificateCard({ image, title, descriptio
 
   return (
     <>
-      <div
-        ref={cardRef}
-        className="group flex flex-col gap-3 rounded-2xl overflow-hidden bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-sm transform transition-transform duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md"
+      <motion.div
+        initial={{ opacity: 0, y: 60, scale: 0.94 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: (index % 3) * 0.12 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
-        <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/3]">
-          <img
-            src={actualSrc}
-            alt={title}
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-            width="640"
-            height="480"
-            className="w-full h-full object-cover cursor-zoom-in transition-transform duration-300 ease-out group-hover:scale-105"
+        <div
+          ref={cardRef}
+          className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md"
+        >
+          <button
+            type="button"
+            className="relative overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/3] w-full"
             onClick={() => setZoomOpen(true)}
-          />
-          <div
-            className="absolute inset-0 cursor-zoom-in"
-            onClick={() => setZoomOpen(true)}
-            aria-hidden="true"
-          />
+            aria-label={`View certificate: ${title}`}
+          >
+            <img
+              src={actualSrc}
+              alt={title}
+              decoding="async"
+              width="640"
+              height="480"
+              className="w-full h-full object-cover cursor-zoom-in transition-transform duration-300 ease-out group-hover:scale-105"
+            />
+          </button>
+          <div className="px-5 py-4 flex flex-col gap-2">
+            <h3 className="font-bold text-sm md:text-base leading-snug text-slate-900 dark:text-white">
+              {title}
+            </h3>
+            <span className={`self-start text-xs font-semibold px-2 py-0.5 rounded-full border ${awardBadgeClass(description)}`}>
+              {description}
+            </span>
+          </div>
         </div>
-        <div className="px-5 pb-5 flex flex-col gap-1">
-          <h3 className="font-bold text-sm md:text-base leading-snug text-slate-900 dark:text-white">
-            {title}
-          </h3>
-          <span className="text-xs font-semibold tracking-wide text-indigo-600 dark:text-indigo-400 uppercase">
-            {description}
-          </span>
-        </div>
-      </div>
+      </motion.div>
 
       {zoomOpen && (
         <ImageZoom src={image} alt={title} onClose={() => setZoomOpen(false)} />
@@ -284,43 +321,33 @@ const CertificateCard = memo(function CertificateCard({ image, title, descriptio
   );
 });
 
+
 function Certifications() {
-  const [showAll, setShowAll] = useState(false);
-  const visible = showAll ? certificates : certificates.slice(0, 6);
-
   return (
-    <section className="w-full bg-white dark:bg-slate-950 px-6 py-24">
+    <section className="w-full bg-slate-50 dark:bg-slate-900 px-6 py-24">
       <div className="max-w-6xl mx-auto flex flex-col gap-12">
-        <motion.div {...fadeUp} className="text-center">
-          <p className="text-xs font-bold tracking-widest uppercase text-indigo-500 dark:text-indigo-400 mb-2">
+        <div className="relative overflow-visible">
+          <span
+            className="absolute -top-5 -right-2 font-display font-black leading-none select-none pointer-events-none text-slate-900/[0.04] dark:text-white/[0.04]"
+            style={{ fontSize: 'clamp(5rem, 10vw, 8rem)' }}
+            aria-hidden="true"
+          >03</span>
+          <motion.p {...fadeUp} className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
             Achievements
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-            Certifications & Awards
-          </h2>
-        </motion.div>
-
-        <div className="flex flex-col items-center gap-8 w-full">
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.1 }}
+          </motion.p>
+          <motion.h2
+            {...revealUp}
+            className="font-display font-black text-slate-900 dark:text-white leading-none"
+            style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', letterSpacing: '-0.02em' }}
           >
-            {visible.map((item, i) => (
-              <CertificateCard key={item.title} {...item} />
-            ))}
-          </motion.div>
+            Certifications & Awards
+          </motion.h2>
+        </div>
 
-          {certificates.length > 6 && (
-            <button
-              onClick={() => setShowAll((p) => !p)}
-              className="px-6 py-2.5 rounded-full border-2 border-slate-300 dark:border-white/20 text-sm font-semibold text-slate-700 dark:text-white/80 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors duration-200"
-            >
-              {showAll ? 'Show Less' : `Show All (${certificates.length - 6} more)`}
-            </button>
-          )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {certificates.map((item, i) => (
+            <CertificateCard key={item.title} index={i} {...item} />
+          ))}
         </div>
       </div>
     </section>
@@ -333,7 +360,6 @@ export default function HomePage() {
   return (
     <div id="home" className="w-full flex flex-col">
       <About />
-      <Stats />
       <Skills />
       <Certifications />
     </div>
