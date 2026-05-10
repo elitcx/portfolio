@@ -11,29 +11,13 @@
   50%       { opacity: 0; }
 }
 
-/* Typewriter hero animation */
-@keyframes typing {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-/* Skill bar animation */
-.bar-animate {
-  width: 0;
-  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.bar-animate.active {
-  width: var(--target-md, 50%);
-}
-
-@media (max-width: 768px) {
-  .bar-animate.active {
-    width: var(--target-sm, 30%);
+/* Reduced-motion safety net for CSS transitions */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -41,6 +25,7 @@
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

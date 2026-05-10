@@ -4,7 +4,6 @@ import './Switch.css'
 function ThemeSlider({ darkMode, toggleDarkMode }){
   function handleClick(){
     if (typeof toggleDarkMode === 'function') toggleDarkMode(!darkMode)
-    console.log('Mode changed.')
   }
 
   return (

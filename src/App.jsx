@@ -44,11 +44,27 @@ export default function App() {
     document.body.style.color           = darkMode ? '#f1f5f9' : '#0f172a';
   }, [darkMode]);
 
+  // Developer Easter egg
+  useEffect(() => {
+    const b = 'font-family:monospace;font-weight:bold;font-size:14px;color:#d4a54a;';
+    const s = 'font-family:monospace;font-size:11px;color:#64748b;';
+    const l = 'font-family:monospace;font-size:11px;color:#6366f1;';
+    console.log('%cKenneth Jehezkiel M.W.', b);
+    console.log('%cCompetitive Programmer · Surakarta, Indonesia', s);
+    console.log('%chttps://github.com/elitcx', l);
+  }, []);
+
   return (
     <div
       className="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen"
       style={{ transition: 'background-color 0.4s ease, color 0.4s ease' }}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-lg"
+      >
+        Skip to content
+      </a>
       <NavigationBar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -56,10 +72,10 @@ export default function App() {
         changePage={setPage}
       />
 
-      <main className="flex flex-col flex-1 w-full">
+      <main id="main-content" className="flex flex-col flex-1 w-full">
         {page === 1 && (
           <>
-            <Hero onScroll={scrollToAbout} />
+            <Hero onScroll={scrollToAbout} theme={darkMode ? 'dark' : 'light'} />
             <HomePage />
           </>
         )}
