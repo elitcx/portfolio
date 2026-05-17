@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, memo, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import ImageZoom from './Imagezoom.jsx';
 import { fadeUp, stagger, revealUp, slideInLeft } from '../utils/Animations.js';
 import {
@@ -149,9 +149,11 @@ function SkillRow({ lang, icon, pct, label, index }) {
   const shortLabel = label.split('·')[0].trim();
   const detailLabel = label.split('·')[1]?.trim();
   const [showTip, setShowTip] = useState(false);
+  const rowRef = useRef(null);
+  const isInView = useInView(rowRef, { once: true });
 
   return (
-    <motion.div {...slideInLeft(index)} className="flex flex-col gap-1.5">
+    <motion.div ref={rowRef} {...slideInLeft(index)} className="flex flex-col gap-1.5">
 
       <div className="flex items-center gap-3">
 
@@ -165,9 +167,8 @@ function SkillRow({ lang, icon, pct, label, index }) {
             className="h-full rounded-full bg-indigo-500 origin-left will-change-transform"
             style={{ width: `${pct}%` }}
             initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
-            viewport={{ once: true }}
           />
         </div>
 
