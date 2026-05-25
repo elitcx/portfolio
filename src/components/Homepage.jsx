@@ -47,6 +47,15 @@ function About() {
     photoRef.current.style.willChange = 'auto';
   }, []);
 
+  const TIMELINE = [
+    { year: '2014', text: 'Cousin showed me Minecraft. Computers became home.' },
+    { year: '2017', text: 'Discovered Roblox Studio. Built games in Lua — one reached ~1,000 players.' },
+    { year: '2021', text: 'Junior high: Python, SQL, HTML. YouTube tutorials. The foundation.' },
+    { year: '2023', text: 'School C++ class → self-studied docs → selected for OSN Informatika.' },
+    { year: '2024', text: 'Algorithms, data structures, competitive programming. Went deep.' },
+    { year: '2025', text: 'HTML/CSS/JS → accidentally joined a React course → never looked back.' },
+  ];
+
   return (
     <section className="w-full dark:bg-slate-900 bg-slate-50 px-6 py-24 md:py-32">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-start">
@@ -123,6 +132,59 @@ function About() {
             </strong>
           </motion.p>
         </div>
+      </div>
+
+      {/* Row 2: Timeline left, facts + goal right */}
+      <div className="max-w-6xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+
+        {/* Left — timeline: hollow past dots, filled current, visible rail */}
+        <div className="flex flex-col gap-4">
+          <motion.p {...fadeUp} className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500">
+            How it started
+          </motion.p>
+          <div className="relative flex flex-col gap-4">
+            <span className="absolute left-[5px] top-3 bottom-3 w-px bg-slate-300 dark:bg-white/20" />
+            {TIMELINE.map((entry, i) => (
+              <motion.div key={entry.year} {...slideInLeft(i)} className="flex gap-4 items-start">
+                <span className={`mt-[3px] shrink-0 w-3 h-3 rounded-full border-2 z-10 ${
+                  i === TIMELINE.length - 1
+                    ? 'bg-indigo-500 border-indigo-400 shadow-[0_0_0_3px_oklch(0.6_0.25_270/0.12)]'
+                    : 'bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-white/30'
+                }`} />
+                <span className="font-mono text-[11px] font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase shrink-0 w-10 tabular-nums">{entry.year}</span>
+                <span className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">{entry.text}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right — fact cards + goal card */}
+        <div className="flex flex-col gap-4">
+          <motion.div {...fadeUp} className="grid grid-cols-2 gap-3">
+            {[
+              { label: 'Based in',      value: 'Solo, Indonesia' },
+              { label: 'Speaks',        value: 'Indonesian · English · Chinese' },
+              { label: 'Outside code',  value: 'Rock climbing · Gaming · Photography' },
+              { label: 'Why I started', value: 'Colorful code looked cool. Then it got serious.' },
+            ].map(({ label, value }) => (
+              <div key={label} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 flex flex-col gap-1.5">
+                <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500">{label}</p>
+                <p className="text-sm text-slate-700 dark:text-slate-200 leading-snug">{value}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            {...fadeUp}
+            className="rounded-xl border border-indigo-200 dark:border-indigo-400/30 bg-indigo-50/60 dark:bg-indigo-500/10 p-5 flex flex-col gap-1.5"
+          >
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-indigo-500 dark:text-indigo-400">What drives me</p>
+            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+              I build things people feel grateful exist — starting with problems I hit every day.
+            </p>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );
