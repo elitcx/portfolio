@@ -21,6 +21,20 @@ export const CATEGORY_COLORS = {
   javascript: '#eab308',
   react: '#10b981',
   website: '#8b5cf6',
+  'react native': '#06b6d4',
+  'full stack': '#f97316',
+  'full-stack': '#f97316',
+  firebase: '#fbbf24',
+  ios: '#a855f7',
+  android: '#22c55e',
+  mobile: '#ec4899',
+  nextjs: '#94a3b8',
+  'api integration': '#14b8a6',
+  ai: '#d946ef',
+  beautifulsoup: '#4ade80',
+  pandas: '#60a5fa',
+  selenium: '#facc15',
+  dsa: '#fb923c',
 };
 
 export function getCategoryColor(cat) {
@@ -79,6 +93,8 @@ export const certificates = [
   { image: '/images/certificates/image4.webp',    title: 'Final OMNAS 13 Matematika 2024',                                           description: 'Silver Medalist' },
   { image: '/images/certificates/image5.webp',    title: 'Final OMNAS 13 English 2024',                                              description: 'Silver Medalist' },
   { image: '/images/certificates/ilpc.jpeg', title: 'Semifinal ILPC Ubaya 2026', description: 'Semifinalist'},
+  { image: '/images/certificates/npc.webp', title: 'Final Schematics National Programming Contest - Junior - ITS 2026', description: 'Finalist'},
+  { image: '/images/certificates/findit.webp', title: 'Informatics Competition Find IT UGM 2026', description: 'Participant'},
   { image: '/images/certificates/image6.webp',    title: 'National Junior Highschool Math Competition - Practo Math Academy 2024',    description: '2nd Place' },
   { image: '/images/certificates/image7.webp',    title: 'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024',          description: 'Top 10' },
   { image: '/images/certificates/image8.webp',    title: 'Intro to Software Engineering Course - RevoU 2025',                        description: 'Completed' },
@@ -93,7 +109,7 @@ export const contactLinks = [
   { icon: '/images/github.svg',     label: 'GitHub',    href: 'https://github.com/elitcx' },
 ];
 
-export const CATEGORIES = ['All', 'C++', 'Python', 'Website', 'React'];
+export const CATEGORIES = ['All', 'C++', 'Python', 'Website', 'React','Full-Stack', 'Mobile'];
 
 export const PAGE_TITLES = {
   1: 'Kenneth · Portfolio',
