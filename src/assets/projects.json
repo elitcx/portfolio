@@ -1,5 +1,19 @@
 [
     {
+    "title": "StudyMate",
+    "description": "A smart learning platform for students, teachers, and administrators at SMA Regina Pacis Surakarta to keep track of exams, materials, quizzes, and grades.",
+    "link": "https://github.com/elitcx/StudyMate",
+    "categories" : ["React Native", "Full-Stack","Firebase","iOS","Android","Mobile"],
+    "image": "/images/studymate.webp"
+    },
+    {
+    "title": "Personal Dashboard",
+    "description": "A smart AI-Powered personal dashboard with Google Calendar, Gemini API, and weather integration to track and manage schedule, health, sleep, habits, gym progress, finance, and more.",
+    "link": "https://github.com/elitcx/dashboard",
+    "categories" : ["NextJS","React","HTML","CSS","Website","API Integration","AI"],
+    "image": "/images/dashboard.webp"
+    },
+    {
     "title": "One Choice Endless Paths",
     "description": "An interactive narrative that places you in the role of a young person faced with a seemingly simple act of kindness: helping an elderly person find a seat.",
     "link": "https://onechoiceep.vercel.app",
