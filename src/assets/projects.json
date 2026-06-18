@@ -10,7 +10,7 @@
     "title": "Personal Dashboard",
     "description": "A smart AI-Powered personal dashboard with Google Calendar, Gemini API, and weather integration to track and manage schedule, health, sleep, habits, gym progress, finance, and more.",
     "link": "https://github.com/elitcx/dashboard",
-    "deployed": "elitcx123.vercel.app",
+    "deployed": "https://elitcx123.vercel.app",
     "categories" : ["NextJS","React","HTML","CSS","Website","API Integration","AI","Full-Stack"],
     "image": "/images/dashboard.webp"
     },
