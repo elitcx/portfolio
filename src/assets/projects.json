@@ -14,16 +14,26 @@
     "image": "/images/dashboard.webp"
     },
     {
+    "title": "UTech Community Website",
+    "description": "Community website for UTech, a community that for students of SMA-SMP Regina Pacis to explore and develop their potential in modern technology.",
+    "link": "https://github.com/elitcx/utech-website",
+    "deployed": "https://ursulinetechnology.vercel.app/",
+    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "image": "/images/utech.webp"
+    },
+    {
     "title": "One Choice Endless Paths",
     "description": "An interactive narrative that places you in the role of a young person faced with a seemingly simple act of kindness: helping an elderly person find a seat.",
-    "link": "https://onechoiceep.vercel.app",
+    "link": "https://github.com/elitcx/onechoiceendlesspaths",
+    "deployed": "https://onechoiceep.vercel.app",
     "categories" : ["HTML","CSS","JavaScript","React","Website"],
     "image": "/images/onechoiceep.png"
     },
     {
     "title": "Push Up and Pull Up Challenge App",
     "description": "A tracker app for a year long pushup/pullup challenge where the user must do 1 pushup for everyday of the year and 1 pullup everyday for every week of the year",
-    "link": "https://elitcxchallenge.vercel.app",
+    "link": "https://github.com/elitcx/fitness-challenge",
+    "deployed": "https://elitcxchallenge.vercel.app",
     "categories" : ["HTML","CSS","JavaScript","React","Website"],
     "image": "/images/challenge.webp"
     },
