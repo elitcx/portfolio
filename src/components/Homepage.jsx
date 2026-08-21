@@ -8,6 +8,8 @@ import {
   skills,
   stats,
   certificates,
+  computeAge,
+  BIRTH_DATE,
   getBadgeColor,
   thumbSrc,
   fullSrc,
@@ -322,7 +324,7 @@ export default function HomePage() {
                   textWrap: 'pretty',
                 }}
               >
-                I'm a <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>17-year-old student at SMA Regina Pacis Surakarta</strong>,
+                I'm a <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>{computeAge(BIRTH_DATE)}-year-old student at SMA Regina Pacis Surakarta</strong>,
                 passionate about <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>Software Engineering and Development</strong>.
                 I love turning ideas into real, working applications and exploring how code can solve everyday problems.
               </p>
