@@ -17,7 +17,7 @@ export default function App() {
       if (saved === 'dark') return true;
       if (saved === 'light') return false;
     } catch { /* ignore */ }
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? true;
   });
 
   const [page, setPage] = useState(1);
@@ -28,7 +28,7 @@ export default function App() {
   }, []);
 
   const scrollToAbout = useCallback(() => {
-    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
   // Scroll to top and update tab title on page change
@@ -37,11 +37,10 @@ export default function App() {
     document.title = PAGE_TITLES[page] ?? 'Kenneth · Portfolio';
   }, [page]);
 
-  // Apply dark mode class and body colors
+  // Drive the design tokens off <html data-pt="dark|light">
   useEffect(() => {
+    document.documentElement.setAttribute('data-pt', darkMode ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', darkMode);
-    document.body.style.backgroundColor = darkMode ? '#020617' : '#f8fafc';
-    document.body.style.color           = darkMode ? '#f1f5f9' : '#0f172a';
   }, [darkMode]);
 
   // Developer Easter egg
@@ -56,15 +55,24 @@ export default function App() {
 
   return (
     <div
-      className="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen"
-      style={{ transition: 'background-color 0.4s ease, color 0.4s ease' }}
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'var(--bg)',
+        color: 'var(--fg)',
+        fontFamily: 'Barlow, system-ui, sans-serif',
+        overflowX: 'hidden',
+        transition: 'background .4s ease, color .4s ease',
+      }}
     >
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-red-600 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-lg"
       >
         Skip to content
       </a>
+
       <NavigationBar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -72,7 +80,7 @@ export default function App() {
         changePage={setPage}
       />
 
-      <main id="main-content" className="flex flex-col flex-1 w-full">
+      <main id="main-content" style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '100%' }}>
         {page === 1 && (
           <>
             <Hero onScroll={scrollToAbout} theme={darkMode ? 'dark' : 'light'} />

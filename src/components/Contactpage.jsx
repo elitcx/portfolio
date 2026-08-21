@@ -1,49 +1,135 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { fadeUp, stagger } from '../utils/Animations.js';
-import { contactLinks } from '../utils/Constants.js';
+import { useReveal } from '../hooks/UseReveal.js';
+import { contactLinks, iconSrc } from '../utils/Constants.js';
 
 export default function ContactPage() {
+  const reveal = useReveal();
+
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center dark:bg-slate-950 bg-slate-50 px-6 pt-28 pb-24">
-      <div className="max-w-xl w-full flex flex-col gap-10 text-center">
+    <section
+      data-screen-label="Contact"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '150px 24px 110px',
+        background: 'var(--bg)',
+      }}
+    >
+      <div style={{ maxWidth: 1180, margin: '0 auto', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
+          <span
+            style={{
+              fontFamily: 'var(--label)',
+              fontSize: 13,
+              fontWeight: 600,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'var(--dim)',
+            }}
+          >
+            Get in touch
+          </span>
+          <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
+          <span
+            style={{
+              fontFamily: 'var(--label)',
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'var(--faint)',
+            }}
+          >
+            Surakarta, ID
+          </span>
+        </div>
 
-        <motion.div {...fadeUp}>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
-            Get In Touch
-          </p>
-          <h1 className="font-display font-black text-slate-900 dark:text-white leading-none mb-4" style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', letterSpacing: '-0.03em' }}>
-            Let's Connect
-          </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
-            Have a project in mind or just want to say hello? I'm always open to new opportunities
-            and conversations.
-          </p>
-        </motion.div>
+        <h1
+          style={{
+            margin: 0,
+            fontFamily: 'var(--display)',
+            fontWeight: 900,
+            fontSize: 'clamp(3.2rem, 10.5vw, 8.6rem)',
+            lineHeight: 0.86,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Let's Connect
+        </h1>
 
-        <motion.div {...stagger(1)} className="flex flex-col gap-4">
-          {contactLinks.map((c, i) => (
-            <motion.a
-              key={i}
+        <p
+          style={{
+            margin: '34px 0 0',
+            maxWidth: '52ch',
+            fontSize: 'clamp(1.02rem, 1.35vw, 1.2rem)',
+            lineHeight: 1.7,
+            color: 'var(--mut)',
+            textWrap: 'pretty',
+          }}
+        >
+          Have a project in mind or just want to say hello? I'm always open to new opportunities and conversations.
+        </p>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            columnGap: 28,
+            rowGap: 8,
+            marginTop: 64,
+            borderTop: '1px solid var(--line)',
+          }}
+        >
+          {contactLinks.map((c) => (
+            <a
+              key={c.label}
+              data-reveal
+              ref={reveal}
               href={c.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ x: 6 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800/60 border border-black/5 dark:border-white/10 shadow-sm hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-all duration-300 group"
+              className="kj-row"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                padding: '28px 16px',
+                marginLeft: -16,
+              }}
             >
-              <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center shrink-0">
-                <img src={c.icon} alt={c.label} className="w-6 h-6 object-contain" />
-              </div>
-              <span className="font-bold text-slate-800 dark:text-white text-sm">{c.label}</span>
-              <span className="ml-auto text-slate-400 group-hover:text-indigo-500 transition-colors text-lg">
-                →
+              <img
+                src={iconSrc(c.icon)}
+                alt=""
+                aria-hidden="true"
+                width="26"
+                height="26"
+                decoding="async"
+                style={{ width: 26, height: 26, flexShrink: 0, objectFit: 'contain', filter: c.flip }}
+              />
+              <span style={{ display: 'flex', flexDirection: 'column', gap: 5, minWidth: 0 }}>
+                <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 19, letterSpacing: '0.01em', color: 'var(--fg)' }}>
+                  {c.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'var(--label)',
+                    fontSize: 11,
+                    fontWeight: 600,
+                    letterSpacing: '0.16em',
+                    textTransform: 'uppercase',
+                    color: 'var(--dim)',
+                  }}
+                >
+                  {c.handle}
+                </span>
               </span>
-            </motion.a>
+              <span aria-hidden="true" style={{ marginLeft: 'auto', fontSize: 20, color: 'var(--dim)' }}>→</span>
+            </a>
           ))}
-        </motion.div>
-
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

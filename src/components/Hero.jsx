@@ -1,223 +1,372 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { usePrefersReducedMotion } from '../hooks/UseReveal.js';
 
 const GRID = 28;
-const INFLUENCE = 200;
-const PULL = 12;
+const INFLUENCE = 210;
+const PULL = 13;
+const TAU = 6.2832;
 
-function HeroCanvas({ mouseRef, dotColor }) {
+// Ring dots are bucketed by intensity so each frame issues ~13 fill() calls
+// instead of one per dot. At 1080p the naive version was ~2,800 per frame.
+const BUCKETS = 12;
+
+/**
+ * Dot grid that ripples outward from a wandering source, bends away from the
+ * cursor, and drifts on a slow sine wave when the pointer is elsewhere.
+ *
+ * The loop is suspended whenever the hero is scrolled out of view or the tab
+ * is hidden — otherwise it keeps burning main-thread time while the reader is
+ * down in the certificate grid, which is exactly when frames matter most.
+ */
+function HeroCanvas({ isDark, reduced }) {
   const canvasRef = useRef(null);
+  const isDarkRef = useRef(isDark);
+  const drawRef = useRef(null);
+
+  // Repaint on theme change without tearing down the loop. Under reduced
+  // motion nothing is scheduled, so the repaint has to be requested here or
+  // the dots keep the previous theme's colour.
+  useEffect(() => {
+    isDarkRef.current = isDark;
+    drawRef.current?.();
+  }, [isDark]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let raf;
+    if (!canvas) return undefined;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const parent = canvas.parentElement;
 
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+    let raf = 0;
+    let visible = true;
+    let src = { x: 0, y: 0 };
+    let radius = 0;
+    let maxR = 1200;
+    const mouse = { x: -9999, y: -9999 };
+
+    // Reused per-frame scratch buffers — no allocation in the draw loop.
+    const buckets = Array.from({ length: BUCKETS }, () => []);
+
+    const newSource = () => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      src = { x: (0.12 + Math.random() * 0.76) * w, y: (0.18 + Math.random() * 0.64) * h };
+      radius = 0;
     };
 
-    const draw = () => {
-      const { width: w, height: h } = canvas;
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      maxR = Math.hypot(canvas.offsetWidth, canvas.offsetHeight);
+      newSource();
+      if (reduced) draw();
+    };
+
+    const onMove = (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    };
+    const onLeave = () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
+
+    function draw() {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
       ctx.clearRect(0, 0, w, h);
 
-      const { x: mx, y: my } = mouseRef.current;
-      const hasMouse = mx > -100;
       const t = performance.now() / 1000;
+      const dark = isDarkRef.current;
+      const baseA = dark ? 0.17 : 0.3;
+      const baseRGB = dark ? '255,255,255' : '15,23,42';
+      const ringBoost = dark ? 0.85 : 0.6;
+      const hasMouse = mouse.x > -100;
 
-      ctx.fillStyle = dotColor;
+      if (!reduced) {
+        radius += 3.4;
+        if (radius > maxR + 140) newSource();
+      }
+
+      for (let i = 0; i < BUCKETS; i++) buckets[i].length = 0;
+
+      // Pass 1 — every base-intensity dot goes into a single path.
+      ctx.fillStyle = `rgba(${baseRGB},${baseA})`;
       ctx.beginPath();
 
       for (let gy = 0; gy <= h + GRID; gy += GRID) {
         for (let gx = 0; gx <= w + GRID; gx += GRID) {
-          let px = gx, py = gy;
+          let px = gx;
+          let py = gy;
 
-          if (hasMouse) {
-            const dx = mx - gx;
-            const dy = my - gy;
-            const d = Math.hypot(dx, dy);
-            if (d > 0 && d < INFLUENCE) {
-              const f = (1 - d / INFLUENCE) ** 2 * PULL;
-              px += (dx / d) * f;
-              py += (dy / d) * f;
-            }
-          } else {
-            const wave = Math.sin(gx / 80 + t * 0.6) * Math.cos(gy / 100 + t * 0.45) * 10;
+          const mdx = mouse.x - gx;
+          const mdy = mouse.y - gy;
+          const md = hasMouse ? Math.hypot(mdx, mdy) : Infinity;
+
+          if (md > 0 && md < INFLUENCE) {
+            const f = (1 - md / INFLUENCE) ** 2 * PULL;
+            px += (mdx / md) * f;
+            py += (mdy / md) * f;
+          } else if (!reduced) {
+            const wave = Math.sin(gx / 90 + t * 0.5) * Math.cos(gy / 110 + t * 0.4) * 5;
             px += wave;
-            py += wave * 0.55;
+            py += wave * 0.5;
           }
 
-          ctx.moveTo(px + 1, py);
-          ctx.arc(px, py, 1, 0, 6.2832);
+          let bucket = -1;
+          if (!reduced) {
+            const dx = gx - src.x;
+            const dy = gy - src.y;
+            const d = Math.hypot(dx, dy);
+            const ring = Math.exp(-((d - radius) ** 2) / 3200);
+            if (ring > 0.02) bucket = Math.min(BUCKETS - 1, (ring * BUCKETS) | 0);
+          }
+
+          if (bucket < 0) {
+            ctx.moveTo(px + 1, py);
+            ctx.arc(px, py, 1, 0, TAU);
+          } else {
+            const b = buckets[bucket];
+            b.push(px, py);
+          }
         }
       }
 
       ctx.fill();
-      raf = requestAnimationFrame(draw);
+
+      // Pass 2 — one path per intensity bucket for the expanding ring.
+      for (let i = 0; i < BUCKETS; i++) {
+        const pts = buckets[i];
+        if (pts.length === 0) continue;
+
+        const ring = (i + 0.5) / BUCKETS;
+        const alpha = baseA + ring * ringBoost;
+        const size = 1 + ring * 1.7;
+        const rgb = ring > 0.22 ? '34,211,238' : baseRGB;
+
+        ctx.fillStyle = `rgba(${rgb},${alpha.toFixed(3)})`;
+        ctx.beginPath();
+        for (let j = 0; j < pts.length; j += 2) {
+          ctx.moveTo(pts[j] + size, pts[j + 1]);
+          ctx.arc(pts[j], pts[j + 1], size, 0, TAU);
+        }
+        ctx.fill();
+      }
+    }
+
+    drawRef.current = draw;
+
+    const loop = () => {
+      draw();
+      raf = requestAnimationFrame(loop);
     };
+
+    const start = () => {
+      if (raf || reduced || !visible || document.hidden) return;
+      raf = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    // Suspend while the hero is off screen or the tab is backgrounded.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) start();
+        else stop();
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const onVisibility = () => (document.hidden ? stop() : start());
 
     resize();
     window.addEventListener('resize', resize);
-    draw();
+    document.addEventListener('visibilitychange', onVisibility);
+    if (!reduced) {
+      parent?.addEventListener('mousemove', onMove, { passive: true });
+      parent?.addEventListener('mouseleave', onLeave, { passive: true });
+    }
+    start();
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      drawRef.current = null;
+      io.disconnect();
       window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVisibility);
+      parent?.removeEventListener('mousemove', onMove);
+      parent?.removeEventListener('mouseleave', onLeave);
     };
-  }, [mouseRef, dotColor]);
+  }, [reduced]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
     />
   );
 }
 
+const META = {
+  fontFamily: 'var(--label)',
+  fontSize: 11,
+  fontWeight: 600,
+  letterSpacing: '0.28em',
+  textTransform: 'uppercase',
+  color: 'var(--dim)',
+};
+
 export default function Hero({ onScroll, theme = 'dark' }) {
-  const prefersReduced = useReducedMotion();
-  const mouseRef = useRef({ x: -9999, y: -9999 });
+  const reduced = usePrefersReducedMotion();
   const isDark = theme === 'dark';
 
-  const tokens = {
-    bg:         isDark ? 'oklch(0.09 0.012 58)'    : 'oklch(0.97 0.008 58)',
-    dotColor:   isDark ? 'rgba(255, 255, 255, 0.20)' : 'rgba(15, 10, 5, 0.35)',
-    staticDot:  isDark ? 'rgba(255,255,255,0.07)'  : 'rgba(15,10,5,0.05)',
-    name:       isDark ? 'oklch(0.985 0.004 240)'  : 'oklch(0.10 0.015 58)',
-    label:      isDark ? 'oklch(0.62 0.008 240)'   : 'oklch(0.42 0.010 58)',
-    discipline: isDark ? 'oklch(0.50 0.01 240)'    : 'oklch(0.48 0.012 240)',
-    scroll:     isDark ? 'oklch(0.38 0.008 240)'   : 'oklch(0.52 0.008 240)',
-  };
-
-  const onMouseMove = useCallback((e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-  }, []);
-
-  const onMouseLeave = useCallback(() => {
-    mouseRef.current = { x: -9999, y: -9999 };
-  }, []);
-
   return (
-    <div
-      className="relative flex flex-col w-full h-screen overflow-hidden"
-      style={{ background: tokens.bg }}
-      onMouseMove={prefersReduced ? undefined : onMouseMove}
-      onMouseLeave={prefersReduced ? undefined : onMouseLeave}
+    <section
+      className="kj-hero"
+      data-screen-label="Hero"
+      style={{
+        position: 'relative',
+        minHeight: 640,
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        background: 'var(--herobg)',
+      }}
     >
-      {prefersReduced ? (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            backgroundImage: `radial-gradient(circle, ${tokens.staticDot} 1px, transparent 0)`,
-            backgroundSize: '28px 28px',
-          }}
-        />
-      ) : (
-        <HeroCanvas mouseRef={mouseRef} dotColor={tokens.dotColor} />
-      )}
+      <HeroCanvas isDark={isDark} reduced={reduced} />
 
-      {/* Top metadata bar */}
-      <div className="relative z-10 flex items-center justify-between px-6 sm:px-10 md:px-14 pt-8">
-        <motion.span
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono text-[10px] tracking-[0.3em] uppercase"
-          style={{ color: tokens.label }}
-          aria-hidden="true"
-        >
-          Portfolio · 2025
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono text-[10px] tracking-[0.25em] uppercase"
-          style={{ color: tokens.label }}
-          aria-hidden="true"
-        >
-          Surakarta, ID
-        </motion.span>
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'radial-gradient(115% 75% at 50% 42%, transparent 32%, var(--herobg) 100%)',
+        }}
+      />
+
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          gap: 20,
+          padding: '88px 24px 0',
+          ...META,
+        }}
+      >
+        <span>Portfolio · 2025</span>
+        <span>Surakarta, ID</span>
       </div>
 
-      {/* Main name block */}
-      <div className="relative z-10 flex flex-col justify-center flex-1 px-6 sm:px-10 md:px-14 pb-16">
-        <h1 className="sr-only">Kenneth Jehezkiel M.W. — Competitive Programmer from Surakarta</h1>
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '0 24px 64px',
+        }}
+      >
+        <h1 style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+          Kenneth Jehezkiel M.W. — Competitive Programmer from Surakarta
+        </h1>
 
-        <div style={{ overflow: 'hidden' }} aria-hidden="true">
-          <motion.span
-            initial={{ y: '115%', scaleX: 0.97 }}
-            animate={{ y: '0%', scaleX: 1 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="block font-display font-black leading-none"
+        <div style={{ overflow: 'hidden', paddingBottom: '0.04em' }} aria-hidden="true">
+          <div
+            className="kj-rise"
             style={{
-              fontSize: 'clamp(5rem, 18vw, 15rem)',
-              letterSpacing: '-0.04em',
-              marginLeft: '-0.02em',
-              transformOrigin: 'left bottom',
-              color: tokens.name,
+              display: 'block',
+              fontFamily: 'var(--display)',
+              fontWeight: 900,
+              lineHeight: 0.84,
+              letterSpacing: 0,
+              fontKerning: 'normal',
+              fontFeatureSettings: "'kern' 1",
+              fontSize: 'clamp(3.6rem, 25.5vw, 21rem)',
+              color: 'var(--fg)',
+              marginLeft: '-0.018em',
+              whiteSpace: 'nowrap',
             }}
-            aria-hidden="true"
           >
             KENNETH
-          </motion.span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-5 mt-4 sm:mt-5">
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 22 }}>
+          <span
+            className="kj-wipe"
             aria-hidden="true"
             style={{
-              height: '2px',
+              display: 'block',
               width: 'clamp(2.5rem, 5vw, 5rem)',
-              transformOrigin: 'left',
+              height: 2,
+              background: 'var(--red)',
               flexShrink: 0,
             }}
-            className="bg-indigo-600"
           />
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[11px] sm:text-xs tracking-[0.22em] uppercase"
-            style={{ color: tokens.discipline }}
+          <span
+            style={{
+              fontFamily: 'var(--label)',
+              fontSize: 'clamp(11px, 1.1vw, 13px)',
+              fontWeight: 600,
+              letterSpacing: '0.26em',
+              textTransform: 'uppercase',
+              color: 'var(--mut)',
+            }}
           >
             Competitive Programmer · Surakarta
-          </motion.p>
+          </span>
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1.5 }}
+      <button
         onClick={onScroll}
-        aria-label="Scroll to About section"
-        className="absolute bottom-8 right-6 sm:right-10 md:right-14 z-10 flex flex-col items-center gap-2"
+        aria-label="Scroll to about"
+        style={{
+          position: 'absolute',
+          zIndex: 2,
+          bottom: 34,
+          right: 24,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 10,
+          background: 'transparent',
+          border: 0,
+          cursor: 'pointer',
+          fontFamily: 'var(--label)',
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: '0.32em',
+          textTransform: 'uppercase',
+          color: 'var(--dim)',
+          padding: 0,
+        }}
       >
+        Scroll
         <span
-          className="font-mono text-[9px] tracking-[0.35em] uppercase"
-          style={{ writingMode: 'vertical-rl', color: tokens.scroll }}
-        >
-          Scroll
-        </span>
-        <div
           aria-hidden="true"
           style={{
-            width: '1px',
-            height: '2.5rem',
-            background: `linear-gradient(to bottom, ${tokens.scroll}, transparent)`,
+            display: 'block',
+            width: 1,
+            height: 40,
+            background: 'linear-gradient(to bottom, var(--dim), transparent)',
           }}
         />
-      </motion.button>
-    </div>
+      </button>
+    </section>
   );
 }
