@@ -1,5 +1,10 @@
 // ─── Age ──────────────────────────────────────────────────────────────────────
 
+// Months are zero-based: 10 = November. Built in local time on purpose —
+// new Date('2008-11-22') is UTC midnight, which is still the 21st for
+// visitors west of UTC and would advance the age a day early.
+export const BIRTH_DATE = new Date(2008, 10, 22);
+
 export function computeAge(birthDate) {
   const today = new Date();
   const birth = new Date(birthDate);
