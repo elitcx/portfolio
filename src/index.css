@@ -2,33 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-@theme{
-  --color-defaultdark: #191a1b;
+/* ── Design tokens ─────────────────────────────────────────────
+   Dark is the default; `data-pt="light"` on <html> flips the set. */
+:root {
+  --bg: #0C0B0B;
+  --panel: #151414;
+  --card: rgba(255, 255, 255, 0.04);
+  --hov: rgba(255, 255, 255, 0.05);
+
+  --fg: #EDECEA;
+  --mut: #9B9894;
+  --dim: #6E6B68;
+  --faint: #3B3937;
+
+  --line: rgba(255, 255, 255, 0.10);
+  --line2: rgba(255, 255, 255, 0.06);
+
+  --red: #DC2626;
+  --red-l: #F87171;
+  --cyan: #22D3EE;
+
+  --sh: rgba(0, 0, 0, 0.32);
+  --sh-nav: rgba(0, 0, 0, 0.28);
+
+  --herobg: #090808;
+  --iconflip: invert(1);
+  --track: rgb(135, 150, 165);
+
+  --display: 'Barlow Semi Condensed', system-ui, sans-serif;
+  --label: 'Barlow Semi Condensed', system-ui, sans-serif;
 }
 
-:root {
-  font-family: 'Barlow', system-ui, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+:root[data-pt="light"] {
+  --bg: #F5F4F2;
+  --panel: #FFFFFF;
+  --card: #FFFFFF;
+  --hov: rgba(20, 19, 18, 0.045);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  /* background-color removed so app controls page background dynamically */
+  --fg: #141312;
+  --mut: #5E5B57;
+  --dim: #7A766F;
+  --faint: #9C9891;
+  --red-l: #B91C1C;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --defaultdark: hsl(200, 6%, 10%);
-  --lighterdark: hsl(200, 6%, 20%);  
+  --line: rgba(0, 0, 0, 0.10);
+  --line2: rgba(0, 0, 0, 0.05);
+
+  --herobg: #F7F6F4;
+  --iconflip: none;
+  --track: #C9C6C1;
+  --sh: rgba(0, 0, 0, 0.10);
+  --sh-nav: rgba(0, 0, 0, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   display: block;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Barlow, system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body, #root {
   width: 100%;
   min-height: 100%;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--red-l);
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+input {
+  font-family: inherit;
 }

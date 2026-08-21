@@ -1,191 +1,350 @@
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useMemo, useState } from 'react';
+
 import ImageZoom from './Imagezoom.jsx';
-import { fadeUp, stagger } from '../utils/Animations.js';
-import { getCategoryColor, CATEGORIES } from '../utils/Constants.js';
 import projects from '../assets/projects.json';
+import { useReveal } from '../hooks/UseReveal.js';
+import { CATEGORIES, getCategoryColor, thumbSrc, fullSrc } from '../utils/Constants.js';
 
-// ─── Project Card ─────────────────────────────────────────────────────────────
+const EYEBROW = {
+  fontFamily: 'var(--label)',
+  fontSize: 13,
+  fontWeight: 600,
+  letterSpacing: '0.22em',
+  textTransform: 'uppercase',
+  color: 'var(--dim)',
+};
 
-function ProjectCard({ image, title, description, link, categories, onZoom, deployed }) {
-  return (
-    <motion.div
-      {...stagger(0)}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.3 }}
-      className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-slate-800/60 border border-black/5 dark:border-white/10 shadow-sm hover:shadow-2xl transition-shadow duration-500"
-    >
-      <div className="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-900">
-        <button
-          type="button"
-          className="block w-full h-full"
-          onClick={() => onZoom({ src: image, alt: title })}
-          aria-label={`View screenshot of ${title}`}
-        >
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 cursor-zoom-in"
-          />
-        </button>
-      </div>
+const META = {
+  fontFamily: 'var(--label)',
+  fontSize: 11,
+  fontWeight: 600,
+  letterSpacing: '0.22em',
+  textTransform: 'uppercase',
+  color: 'var(--faint)',
+};
 
-      <div className="flex flex-col gap-3 p-5 flex-1">
-        <div className="flex flex-wrap gap-1.5">
-          {categories.map((cat, i) => (
-            <span
-              key={i}
-              className="text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md"
-              style={{ backgroundColor: getCategoryColor(cat) }}
-            >
-              {cat}
-            </span>
-          ))}
-        </div>
+const GITHUB_PATH =
+  'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.84 0-.63.22-1.15.59-1.55-.06-.15-.26-.75.06-1.56 0 0 .6-.19 1.97.74a5.5 5.5 0 0 1 1.5-.2c.51 0 1.02.07 1.5.2 1.37-.93 1.97-.74 1.97-.74.32.81.12 1.41.06 1.56.37.4.59.92.59 1.55 0 1.97-1.14 2.64-2.92 2.84.3.26.56.76.56 1.54 0 1.11-.01 2.02-.01 2.3 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z';
 
-        <h3 className="font-bold text-base text-slate-900 dark:text-white leading-snug">{title}</h3>
-
-        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-3 flex-1">
-          {description}
-        </p>
-
-        <div className="flex flex-row items-center gap-3 w-full">
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 self-start inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#24292e] hover:bg-[#1b1f23] dark:bg-[#30363d] dark:hover:bg-[#3d444d] text-white text-xs font-bold tracking-wide transition-colors duration-200"
-            >
-              <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-              </svg>
-              View GitHub Repo →
-            </a>
-          )}
-          {deployed && (
-            <a
-              href={deployed}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 self-start px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold tracking-wide transition-colors duration-200"
-            >
-              View Website →
-            </a>
-          )}
-        </div>
-        </div>
-    </motion.div>
-  );
-}
-
-// ─── PortfolioPage ────────────────────────────────────────────────────────────
+// Precomputed once: search haystack and resolved image variants per project.
+const INDEXED = projects.map((p) => ({
+  ...p,
+  thumb: thumbSrc(p.image),
+  full: fullSrc(p.image),
+  haystack: `${p.title} ${p.description} ${p.categories.join(' ')}`.toLowerCase(),
+  tags: p.categories.map((c) => ({ name: c, color: getCategoryColor(c) })),
+}));
 
 export default function PortfolioPage() {
-  const [zoomImage, setZoomImage] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
+  const [zoom, setZoom] = useState(null);
+  const reveal = useReveal();
 
-  const displayedProjects = useMemo(() => {
-    let filtered = projects;
-
-    if (searchTerm) {
-      const q = searchTerm.toLowerCase();
-      filtered = filtered.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.categories.some((c) => c.toLowerCase().includes(q))
-      );
-    }
-
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter((p) =>
-        p.categories.some((c) => c.toLowerCase() === selectedCategory.toLowerCase())
-      );
-    }
-
-    return filtered;
-  }, [searchTerm, selectedCategory]);
+  const shown = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const cat = category.toLowerCase();
+    return INDEXED.filter(
+      (p) =>
+        (!q || p.haystack.includes(q)) &&
+        (category === 'All' || p.categories.some((c) => c.toLowerCase() === cat))
+    );
+  }, [query, category]);
 
   return (
-    <>
-      <div className="w-full min-h-screen flex flex-col dark:bg-slate-950 bg-slate-50 pt-28 pb-24 px-6">
-        <div className="max-w-6xl mx-auto w-full flex flex-col gap-10">
-
-          <motion.div {...fadeUp}>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 dark:text-slate-500 mb-3">
-              My Work
-            </p>
-            <h1 className="font-display font-black text-slate-900 dark:text-white leading-none" style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', letterSpacing: '-0.03em' }}>
-              Projects
-            </h1>
-          </motion.div>
-
-          {/* Filters */}
-          <motion.div
-            {...stagger(1)}
-            className="flex flex-col sm:flex-row gap-3 items-center justify-center"
-          >
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              aria-label="Search projects"
-              className="w-full max-w-xs px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
-            />
-
-            <div className="flex gap-2 flex-wrap justify-center">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-all duration-200 ${
-                    selectedCategory === cat
-                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30'
-                      : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-indigo-400'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Grid */}
-          <AnimatePresence mode="wait">
-            {displayedProjects.length > 0 ? (
-              <motion.div
-                key="grid"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {displayedProjects.map((project, i) => (
-                  <ProjectCard key={i} {...project} onZoom={setZoomImage} />
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div
-                key="empty"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center py-24 text-slate-400 dark:text-slate-600"
-              >
-                <p className="text-4xl mb-3">🔍</p>
-                <p className="font-semibold">No projects match your search.</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+    <section
+      data-screen-label="Projects"
+      style={{ minHeight: '100vh', padding: '130px 24px 100px', background: 'var(--bg)' }}
+    >
+      <div style={{ maxWidth: 1180, margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
+          <span style={EYEBROW}>My work</span>
+          <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
+          <span style={META}>{projects.length} shipped</span>
         </div>
+
+        <h1
+          style={{
+            margin: 0,
+            fontFamily: 'var(--display)',
+            fontWeight: 900,
+            fontSize: 'clamp(3.4rem, 11vw, 9rem)',
+            lineHeight: 0.86,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Projects
+        </h1>
+
+        {/* Filter bar */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 16,
+            justifyContent: 'space-between',
+            marginTop: 48,
+            padding: '20px 0',
+            borderTop: '1px solid var(--line)',
+            borderBottom: '1px solid var(--line)',
+          }}
+        >
+          <input
+            type="text"
+            className="kj-search"
+            placeholder="Search projects…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search projects"
+            style={{
+              width: 260,
+              maxWidth: '100%',
+              padding: '11px 14px',
+              borderRadius: 10,
+              border: '1px solid var(--line)',
+              background: 'var(--card)',
+              color: 'var(--fg)',
+              fontSize: 14,
+              outline: 'none',
+            }}
+          />
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {CATEGORIES.map((name) => {
+              const on = category === name;
+              return (
+                <button
+                  key={name}
+                  onClick={() => setCategory(name)}
+                  aria-pressed={on}
+                  className="kj-chip"
+                  style={{
+                    padding: '9px 15px',
+                    borderRadius: 999,
+                    border: `1px solid ${on ? 'var(--red)' : 'var(--line)'}`,
+                    background: on ? 'var(--red)' : 'transparent',
+                    color: on ? '#ffffff' : 'var(--mut)',
+                    fontFamily: 'var(--label)',
+                    fontSize: 12,
+                    fontWeight: 700,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    whiteSpace: 'nowrap',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {shown.length > 0 ? (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: 28,
+              marginTop: 40,
+            }}
+          >
+            {shown.map((p, i) => (
+              <div
+                key={p.title}
+                data-reveal
+                ref={reveal}
+                className="kj-pcard"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  border: '1px solid var(--line)',
+                  borderRadius: 18,
+                  overflow: 'hidden',
+                  background: 'var(--card)',
+                }}
+              >
+                <button
+                  onClick={() => setZoom({ src: p.full, alt: p.title })}
+                  aria-label={`View screenshot of ${p.title}`}
+                  style={{
+                    position: 'relative',
+                    display: 'block',
+                    width: '100%',
+                    aspectRatio: '16 / 10',
+                    padding: 0,
+                    border: 0,
+                    overflow: 'hidden',
+                    background: 'var(--bg)',
+                    cursor: 'zoom-in',
+                  }}
+                >
+                  <img
+                    className="kj-pcard-img"
+                    src={p.thumb}
+                    alt={p.title}
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="500"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'top',
+                      transition: 'transform .6s cubic-bezier(0.16,1,0.3,1)',
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: 12,
+                      left: 12,
+                      fontFamily: 'var(--label)',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: '0.2em',
+                      color: '#fff',
+                      background: 'rgba(0,0,0,0.55)',
+                      padding: '4px 8px',
+                      borderRadius: 999,
+                    }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </button>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14, padding: '22px 22px 24px', flex: 1 }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px' }}>
+                    {p.tags.map((t) => (
+                      <span
+                        key={t.name}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          fontFamily: 'var(--label)',
+                          fontSize: 10,
+                          fontWeight: 700,
+                          letterSpacing: '0.18em',
+                          textTransform: 'uppercase',
+                          color: 'var(--dim)',
+                        }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            display: 'block',
+                            width: 6,
+                            height: 6,
+                            borderRadius: '50%',
+                            background: t.color,
+                            flexShrink: 0,
+                          }}
+                        />
+                        {t.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h3
+                    style={{
+                      margin: 0,
+                      fontFamily: 'var(--display)',
+                      fontWeight: 800,
+                      fontSize: 23,
+                      lineHeight: 1.15,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    {p.title}
+                  </h3>
+
+                  <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--mut)', textWrap: 'pretty', flex: 1 }}>
+                    {p.description}
+                  </p>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 4 }}>
+                    {p.link && (
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="kj-ghost"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          padding: '10px 16px',
+                          borderRadius: 999,
+                          border: '1px solid var(--line)',
+                          fontFamily: 'var(--label)',
+                          fontSize: 11,
+                          fontWeight: 700,
+                          letterSpacing: '0.14em',
+                          textTransform: 'uppercase',
+                          color: 'var(--fg)',
+                        }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                          <path d={GITHUB_PATH} />
+                        </svg>
+                        Repo →
+                      </a>
+                    )}
+                    {p.deployed && (
+                      <a
+                        href={p.deployed}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="kj-live"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          padding: '10px 16px',
+                          borderRadius: 999,
+                          background: 'var(--red)',
+                          color: '#fff',
+                          fontFamily: 'var(--label)',
+                          fontSize: 11,
+                          fontWeight: 700,
+                          letterSpacing: '0.14em',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        Live site →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ padding: '120px 0', textAlign: 'center' }}>
+            <div
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 900,
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                letterSpacing: '-0.02em',
+                color: 'var(--faint)',
+              }}
+            >
+              Nothing here
+            </div>
+            <div style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em', marginTop: 14 }}>
+              No projects match that filter
+            </div>
+          </div>
+        )}
       </div>
 
-      {zoomImage && (
-        <ImageZoom src={zoomImage.src} alt={zoomImage.alt} onClose={() => setZoomImage(null)} />
-      )}
-    </>
+      {zoom && <ImageZoom src={zoom.src} alt={zoom.alt} onClose={() => setZoom(null)} />}
+    </section>
   );
 }

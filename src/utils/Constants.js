@@ -38,85 +38,96 @@ export const CATEGORY_COLORS = {
 };
 
 export function getCategoryColor(cat) {
-  return CATEGORY_COLORS[cat.toLowerCase()] ?? '#64748b';
+  return CATEGORY_COLORS[cat.toLowerCase()] ?? 'var(--dim)';
 }
 
-// ─── Skill Levels ─────────────────────────────────────────────────────────────
+// ─── Image variants ───────────────────────────────────────────────────────────
+// `npm run images` writes display-sized derivatives beside the originals:
+//   /images/thumb/… card-sized, pre-cropped to the CSS aspect ratio
+//   /images/full/…  zoom-overlay sized (max 1800px wide)
+//   /images/icon/…  64px square
+// Sources stay untouched so the derivatives can always be regenerated.
 
-export const SKILL_LEVELS = {
-  'Competition Level': {
-    bg: 'bg-red-500/20 dark:bg-red-400/20',
-    text: 'text-red-700 dark:text-red-300',
-    border: 'border-red-400/40',
-  },
-  Intermediate: {
-    bg: 'bg-amber-500/20 dark:bg-amber-400/20',
-    text: 'text-amber-700 dark:text-amber-300',
-    border: 'border-amber-400/40',
-  },
-  Beginner: {
-    bg: 'bg-emerald-500/20 dark:bg-emerald-400/20',
-    text: 'text-emerald-700 dark:text-emerald-300',
-    border: 'border-emerald-400/40',
-  },
-};
+const RASTER = /\.(webp|png|jpe?g)$/i;
 
-export function getSkillLevel(label) {
-  if (label.includes('Competition Level') || label.includes('Comp. Level'))
-    return SKILL_LEVELS['Competition Level'];
-  if (label.includes('Intermediate')) return SKILL_LEVELS['Intermediate'];
-  return SKILL_LEVELS['Beginner'];
+export function imageVariant(src, kind) {
+  if (!RASTER.test(src)) return src; // SVGs have no derivative
+  return src.replace('/images/', `/images/${kind}/`).replace(RASTER, '.webp');
 }
+
+export const thumbSrc = (src) => imageVariant(src, 'thumb');
+export const fullSrc  = (src) => imageVariant(src, 'full');
+export const iconSrc  = (src) => imageVariant(src, 'icon');
 
 // ─── Static Data ──────────────────────────────────────────────────────────────
 
 export const stats = [
-  { value: '10+', label: 'National Competitions Won' },
-  { value: '15+', label: 'Projects Completed' },
-  { value: '5+', label: 'Years of Programming' },
+  { value: '10+', label: 'National wins' },
+  { value: '15+', label: 'Projects shipped' },
+  { value: '5+',  label: 'Years coding' },
+];
+
+export const facts = [
+  { label: 'Based in',      value: 'Solo, Indonesia' },
+  { label: 'Speaks',        value: 'Indonesian · English · Chinese' },
+  { label: 'Outside code',  value: 'Rock climbing · Gaming · Photography' },
+  { label: 'Why I started', value: 'Colorful code looked cool. Then it got serious.' },
+];
+
+export const timeline = [
+  { year: '2014', color: 'var(--faint)', text: 'Cousin showed me Minecraft. Computers became home.' },
+  { year: '2017', color: 'var(--faint)', text: 'Discovered Roblox Studio. Built games in Lua — one reached ~1,000 players.' },
+  { year: '2021', color: 'var(--dim)',   text: 'Junior high: Python, SQL, HTML. YouTube tutorials. The foundation.' },
+  { year: '2023', color: 'var(--dim)',   text: 'School C++ class → self-studied docs → selected for OSN Informatika.' },
+  { year: '2024', color: 'var(--mut)',   text: 'Algorithms, data structures, competitive programming. Went deep.' },
+  { year: '2025', color: 'var(--red-l)', text: 'HTML/CSS/JS → accidentally joined a React course → never looked back.' },
 ];
 
 export const skills = [
-  { lang: 'C++',        icon: '/images/c.webp',        pct: 82, label: 'Competition Level · Algorithms / CP' },
-  { lang: 'Python',     icon: '/images/python.webp',    pct: 72, label: 'Competition Level · Automation / Scripts' },
-  { lang: 'JavaScript', icon: '/images/javascript.webp', pct: 52, label: 'Intermediate · Frontend / Web' },
-  { lang: 'ReactJS',    icon: '/images/ReactJS.webp',   pct: 52, label: 'Intermediate · Components / SPA' },
-  { lang: 'SQL',        icon: '/images/sql.webp',        pct: 22, label: 'Beginner · CRUD Queries' },
+  { lang: 'C++',        icon: '/images/c.webp',          pct: 82, level: 'Competition Level', detail: 'Algorithms / CP',      color: 'var(--red)' },
+  { lang: 'Python',     icon: '/images/python.webp',     pct: 72, level: 'Competition Level', detail: 'Automation / Scripts', color: 'var(--red)' },
+  { lang: 'JavaScript', icon: '/images/javascript.webp', pct: 52, level: 'Intermediate',      detail: 'Frontend / Web',       color: '#FCD34D' },
+  { lang: 'ReactJS',    icon: '/images/ReactJS.webp',    pct: 52, level: 'Intermediate',      detail: 'Components / SPA',     color: '#FCD34D' },
+  { lang: 'SQL',        icon: '/images/sql.webp',        pct: 22, level: 'Beginner',          detail: 'CRUD Queries',         color: '#6EE7B7' },
 ];
 
 export const certificates = [
-  { image: '/images/certificates/image0.webp',    title: 'Battle of Technology PingFEST UNS 2025',                                    description: '2nd Place' },
-  { image: '/images/certificates/image2.webp',    title: 'Competitive Programming IAA UKDW Yogyakarta 2025',                          description: '2nd Place' },
-  { image: '/images/certificates/image1.webp',    title: 'OSN Informatika Surakarta 2025',                                            description: 'Finalist' },
-  { image: '/images/certificates/logicodix.webp', title: 'Logicodix Programming & Coding Competition UNESA 2025',                     description: '2nd Place' },
-  { image: '/images/certificates/image3.webp',    title: 'Informatics Rally Games and Logic (IRGL) PCU 2025',                         description: '3rd Place' },
-  { image: '/images/certificates/image4.webp',    title: 'Final OMNAS 13 Matematika 2024',                                           description: 'Silver Medalist' },
-  { image: '/images/certificates/image5.webp',    title: 'Final OMNAS 13 English 2024',                                              description: 'Silver Medalist' },
-  { image: '/images/certificates/ilpc.jpeg', title: 'Semifinal ILPC Ubaya 2026', description: 'Semifinalist'},
-  { image: '/images/certificates/npc.webp', title: 'Final Schematics National Programming Contest - Junior - ITS 2026', description: 'Finalist'},
-  { image: '/images/certificates/findit.webp', title: 'Informatics Competition Find IT UGM 2026', description: 'Participant'},
-  { image: '/images/certificates/image6.webp',    title: 'National Junior Highschool Math Competition - Practo Math Academy 2024',    description: '2nd Place' },
-  { image: '/images/certificates/image7.webp',    title: 'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024',          description: 'Top 10' },
-  { image: '/images/certificates/image8.webp',    title: 'Intro to Software Engineering Course - RevoU 2025',                        description: 'Completed' },
-  { image: '/images/certificates/image9.webp',    title: 'Cybersecurity Workshop: "Breaking the Code" - PSB Academy 2025',           description: 'Completed' },
-  { image: '/images/certificates/osis.jpeg',    title: 'Tutor Sebaya 2024-2025',           description: 'Mentor' },
-  { image: '/images/certificates/uic.jpeg',    title: 'Ursulin Investment Club 2024-2025',           description: 'Member' },
+  { image: '/images/certificates/image0.webp',    title: 'Battle of Technology PingFEST UNS 2025',                                 description: '2nd Place' },
+  { image: '/images/certificates/image2.webp',    title: 'Competitive Programming IAA UKDW Yogyakarta 2025',                       description: '2nd Place' },
+  { image: '/images/certificates/image1.webp',    title: 'OSN Informatika Surakarta 2025',                                         description: 'Finalist' },
+  { image: '/images/certificates/logicodix.webp', title: 'Logicodix Programming & Coding Competition UNESA 2025',                  description: '2nd Place' },
+  { image: '/images/certificates/image3.webp',    title: 'Informatics Rally Games and Logic (IRGL) PCU 2025',                      description: '3rd Place' },
+  { image: '/images/certificates/image4.webp',    title: 'Final OMNAS 13 Matematika 2024',                                         description: 'Silver Medalist' },
+  { image: '/images/certificates/image5.webp',    title: 'Final OMNAS 13 English 2024',                                            description: 'Silver Medalist' },
+  { image: '/images/certificates/ilpc.jpeg',      title: 'Semifinal ILPC Ubaya 2026',                                              description: 'Semifinalist' },
+  { image: '/images/certificates/npc.webp',       title: 'Final Schematics National Programming Contest - Junior - ITS 2026',      description: 'Finalist' },
+  { image: '/images/certificates/findit.webp',    title: 'Informatics Competition Find IT UGM 2026',                               description: 'Participant' },
+  { image: '/images/certificates/image6.webp',    title: 'National Junior Highschool Math Competition - Practo Math Academy 2024', description: '2nd Place' },
+  { image: '/images/certificates/image7.webp',    title: 'Entrepreneurship Business Challenge & Competition 6.0 UKWMS 2024',       description: 'Top 10' },
+  { image: '/images/certificates/image8.webp',    title: 'Intro to Software Engineering Course - RevoU 2025',                      description: 'Completed' },
+  { image: '/images/certificates/image9.webp',    title: 'Cybersecurity Workshop: "Breaking the Code" - PSB Academy 2025',         description: 'Completed' },
+  { image: '/images/certificates/osis.jpeg',      title: 'Tutor Sebaya 2024-2025',                                                 description: 'Mentor' },
+  { image: '/images/certificates/uic.jpeg',       title: 'Ursulin Investment Club 2024-2025',                                      description: 'Member' },
 ];
+
+// Award tier decides the badge colour shown under each certificate title.
+export function getBadgeColor(description) {
+  if (/2nd|silver/i.test(description)) return 'var(--fg)';
+  if (/3rd/i.test(description)) return '#FCD34D';
+  if (/finalist/i.test(description)) return 'var(--red-l)';
+  return 'var(--dim)';
+}
 
 export const contactLinks = [
-  { icon: '/images/instagram.webp', label: 'Instagram', href: 'https://www.instagram.com/kenneth_kiel/#' },
-  { icon: '/images/whatsapp.webp',   label: 'WhatsApp',  href: 'https://wa.me/6282261592211' },
-  { icon: '/images/github.svg',     label: 'GitHub',    href: 'https://github.com/elitcx' },
+  { icon: '/images/instagram.webp', label: 'Instagram', handle: '@kenneth_kiel',     href: 'https://www.instagram.com/kenneth_kiel/', flip: 'none' },
+  { icon: '/images/whatsapp.webp',  label: 'WhatsApp',  handle: '+62 822-6159-2211', href: 'https://wa.me/6282261592211',             flip: 'none' },
+  { icon: '/images/github.svg',     label: 'GitHub',    handle: 'github.com/elitcx', href: 'https://github.com/elitcx',               flip: 'var(--iconflip)' },
 ];
 
-export const CATEGORIES = ['All', 'C++', 'Python', 'Website', 'React','Full-Stack', 'Mobile'];
+export const CATEGORIES = ['All', 'C++', 'Python', 'Website', 'React', 'Full-Stack', 'Mobile'];
 
 export const PAGE_TITLES = {
   1: 'Kenneth · Portfolio',
   2: 'Kenneth · Projects',
   3: 'Kenneth · Contact',
 };
-
-export const TYPEWRITER_WORDS = [
-  'Kenneth.',
-];

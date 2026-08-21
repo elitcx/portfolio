@@ -5,9 +5,39 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kenneth · Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Kenneth Jehezkiel Marvel Wijaya — competitive programmer and student developer from Surakarta, Indonesia."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kenneth · Portfolio" />
+    <meta
+      property="og:description"
+      content="Competitive programmer and student developer from Surakarta, Indonesia."
+    />
+    <meta property="og:image" content="/images/thumb/banner.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0C0B0B" />
+    <!-- Resolve the theme before first paint; React's effect runs too late and
+         a saved light theme would otherwise flash the dark token set. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark =
+            saved === 'dark' ||
+            (saved !== 'light' &&
+              (window.matchMedia
+                ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                : true));
+          document.documentElement.setAttribute('data-pt', dark ? 'dark' : 'light');
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) { /* tokens default to dark */ }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Semi+Condensed:wght@600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Semi+Condensed:wght@500;600;700;800;900&display=swap" />
   </head>
   <body>
     <div id="root"></div>
