@@ -295,7 +295,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
               letterSpacing: 0,
               fontKerning: 'normal',
               fontFeatureSettings: "'kern' 1",
-              fontSize: 'clamp(3.6rem, 25.5vw, 21rem)',
+              fontSize: 'clamp(3.2rem, 20.2vw, 21rem)',
               color: 'var(--fg)',
               marginLeft: '-0.018em',
               whiteSpace: 'nowrap',

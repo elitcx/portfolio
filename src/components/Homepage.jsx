@@ -58,7 +58,7 @@ const ROW = {
 
 function SectionHeader({ num, label, meta }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 48 }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 48 }}>
       <span
         style={{
           display: 'flex',
@@ -291,7 +291,7 @@ export default function HomePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
               gap: 72,
               alignItems: 'start',
             }}
@@ -380,7 +380,7 @@ export default function HomePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(190px, 100%), 1fr))',
               columnGap: 28,
               rowGap: 8,
               marginTop: 24,
@@ -400,7 +400,7 @@ export default function HomePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(180px, 100%), 1fr))',
               columnGap: 28,
               rowGap: 8,
               marginTop: 24,
@@ -430,7 +430,7 @@ export default function HomePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(112px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(112px, 100%), 1fr))',
               columnGap: 28,
               rowGap: 8,
               marginTop: 24,
@@ -487,31 +487,34 @@ export default function HomePage() {
                     {s.lang}
                   </span>
                   <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{s.detail}</span>
-                  <span style={{ flex: 1, minWidth: 20 }} />
-                  <span
-                    style={{
-                      fontFamily: 'var(--label)',
-                      fontSize: 11,
-                      fontWeight: 700,
-                      letterSpacing: '0.18em',
-                      textTransform: 'uppercase',
-                      color: s.color,
-                    }}
-                  >
-                    {s.level}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--display)',
-                      fontWeight: 800,
-                      fontSize: 18,
-                      color: 'var(--mut)',
-                      fontVariantNumeric: 'tabular-nums',
-                      width: 34,
-                      textAlign: 'right',
-                    }}
-                  >
-                    {s.pct}
+                  {/* Level and score travel together so a narrow row wraps them
+                      as one unit instead of splitting them across two lines. */}
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
+                    <span
+                      style={{
+                        fontFamily: 'var(--label)',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        color: s.color,
+                      }}
+                    >
+                      {s.level}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: 'var(--display)',
+                        fontWeight: 800,
+                        fontSize: 18,
+                        color: 'var(--mut)',
+                        fontVariantNumeric: 'tabular-nums',
+                        width: 34,
+                        textAlign: 'right',
+                      }}
+                    >
+                      {s.pct}
+                    </span>
                   </span>
                 </div>
                 <div style={{ height: 3, width: '100%', background: 'var(--line2)', marginTop: 18, overflow: 'hidden' }}>
@@ -530,7 +533,7 @@ export default function HomePage() {
           <SectionHeader num="03" label="Achievements" meta={`${certificates.length} credentials`} />
           <h2 style={HEADING}>Certifications &amp; Awards</h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 24 }}>
             {certificates.map((c, i) => (
               <button
                 key={c.title}
