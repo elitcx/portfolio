@@ -181,3 +181,31 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* The expand toggle is the one control in the achievements section that must be
+   noticed; it carries a solid fill and lifts slightly on hover. */
+.kj-more {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.kj-more:hover {
+  transform: translateY(-2px);
+  opacity: 0.88;
+}
+
+.kj-more:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* CV download: outlined at rest, inverted on hover. Sits in the About section,
+   where a reader who has just finished the bio is ready to take something away. */
+.kj-cv:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.kj-cv:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}

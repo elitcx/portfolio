@@ -8,7 +8,7 @@ import PortfolioPage from './components/Portfoliopage.jsx';
 import ContactPage   from './components/Contactpage.jsx';
 import Footer        from './components/Footer.jsx';
 
-import { PAGE_TITLES } from './utils/Constants.js';
+import { SITE_URL, pageById, pageFromPath } from './utils/Constants.js';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -20,7 +20,28 @@ export default function App() {
     return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? true;
   });
 
-  const [page, setPage] = useState(1);
+  // Each view is a real URL rather than a bit of component state, so /projects
+  // and /contact can be linked to, shared, and indexed separately. History is
+  // driven by hand instead of a router: three static routes did not justify the
+  // dependency, and the build stamps a matching HTML shell for each one.
+  const [page, setPage] = useState(() =>
+    typeof window === 'undefined' ? 1 : pageFromPath(window.location.pathname).id,
+  );
+
+  const changePage = useCallback((id) => {
+    const next = pageById(id);
+    if (window.location.pathname !== next.path) {
+      window.history.pushState({ page: next.id }, '', next.path);
+    }
+    setPage(next.id);
+  }, []);
+
+  // Back/forward has to move the view too, or the URL and the page disagree.
+  useEffect(() => {
+    const onPop = () => setPage(pageFromPath(window.location.pathname).id);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   const toggleDarkMode = useCallback((value) => {
     setDarkMode(value);
@@ -31,10 +52,26 @@ export default function App() {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
-  // Scroll to top and update tab title on page change
+  // Scroll to top and re-point the per-page metadata. The static shells already
+  // carry the right tags on first load; this keeps them correct after a
+  // client-side navigation, which is what a crawler re-rendering the SPA and
+  // anything reading the live DOM will see.
   useEffect(() => {
+    const meta = pageById(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = PAGE_TITLES[page] ?? 'Kenneth · Portfolio';
+    document.title = meta.title;
+
+    const set = (selector, attr, value) => {
+      const el = document.head.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    set('meta[name="description"]', 'content', meta.description);
+    set('link[rel="canonical"]', 'href', SITE_URL + meta.path);
+    set('meta[property="og:url"]', 'content', SITE_URL + meta.path);
+    set('meta[property="og:title"]', 'content', meta.title);
+    set('meta[property="og:description"]', 'content', meta.description);
+    set('meta[name="twitter:title"]', 'content', meta.title);
+    set('meta[name="twitter:description"]', 'content', meta.description);
   }, [page]);
 
   // Drive the design tokens off <html data-pt="dark|light">
@@ -77,7 +114,7 @@ export default function App() {
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
         page={page}
-        changePage={setPage}
+        changePage={changePage}
       />
 
       <main id="main-content" style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '100%' }}>

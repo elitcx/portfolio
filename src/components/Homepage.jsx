@@ -5,9 +5,14 @@ import { useReveal, usePrefersReducedMotion } from '../hooks/UseReveal.js';
 import {
   facts,
   timeline,
-  skills,
+  skillGroups,
   stats,
   certificates,
+  CERT_PREVIEW_COUNT,
+  CV,
+  CODING_SINCE,
+  TIMELINE_START,
+  currentYear,
   computeAge,
   BIRTH_DATE,
   getBadgeColor,
@@ -197,13 +202,14 @@ function ProfilePhoto({ reduced }) {
   const photo = thumbSrc('/images/banner.webp');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 440, width: '100%', justifySelf: 'end' }}>
-      <div data-reveal ref={reveal}>
+    <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 512, width: '100%', justifySelf: 'end', height: '100%' }}>
+      <div data-reveal ref={reveal} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div
           ref={tiltRef}
           style={{
             position: 'relative',
-            aspectRatio: '1 / 1',
+            flex: 1,
+            minHeight: 320,
             overflow: 'hidden',
             borderRadius: 20,
             background: '#121111',
@@ -280,6 +286,7 @@ export default function HomePage() {
   const reduced = usePrefersReducedMotion();
   const reveal = useReveal();
   const [zoom, setZoom] = useState(null);
+  const [showAllCerts, setShowAllCerts] = useState(false);
 
   return (
     <>
@@ -293,7 +300,10 @@ export default function HomePage() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
               gap: 72,
-              alignItems: 'start',
+              // Stretch, not start: the bio is the taller column and its height
+              // moves with the viewport (the heading is a vw clamp), so no fixed
+              // portrait size can track it. The photo fills whatever the bio sets.
+              alignItems: 'stretch',
             }}
           >
             <div>
@@ -367,9 +377,46 @@ export default function HomePage() {
                     textWrap: 'pretty',
                   }}
                 >
-                  I build things people feel grateful exist — starting with problems I hit every day.
+                  I build for the people around me — my school, my community, and the problems I hit every day.
                 </span>
               </div>
+
+              {/* Placed at the end of the bio: a reader who has just finished the
+                  introduction is the one most likely to want to take it away. */}
+              <a
+                data-reveal
+                ref={reveal}
+                href={CV.href}
+                download={CV.filename}
+                className="kj-cv"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  marginTop: 36,
+                  padding: '15px 28px',
+                  borderRadius: 999,
+                  border: '1px solid var(--fg)',
+                  background: 'transparent',
+                  color: 'var(--fg)',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--label)',
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  alignSelf: 'flex-start',
+                  width: 'fit-content',
+                  transition: 'background .25s ease, color .25s ease',
+                }}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
+                  <path d="M12 2.25a.75.75 0 0 1 .75.75v11.19l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Z" />
+                  <path d="M3.75 15a.75.75 0 0 1 .75.75v3a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75v-3a.75.75 0 0 1 1.5 0v3a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18.75v-3a.75.75 0 0 1 .75-.75Z" />
+                </svg>
+                {CV.label}
+                <span style={{ color: 'var(--dim)', fontWeight: 600, letterSpacing: '0.12em' }}>{CV.meta}</span>
+              </a>
             </div>
 
             <ProfilePhoto reduced={reduced} />
@@ -396,7 +443,7 @@ export default function HomePage() {
           </div>
 
           {/* By the numbers */}
-          <GroupLabel title="By the numbers" meta="2021 — 2025" />
+          <GroupLabel title="By the numbers" meta={`${CODING_SINCE} — ${currentYear()}`} />
           <div
             style={{
               display: 'grid',
@@ -426,7 +473,7 @@ export default function HomePage() {
           </div>
 
           {/* How it started */}
-          <GroupLabel title="How it started" meta="2014 — 2025" />
+          <GroupLabel title="How it started" meta={`${TIMELINE_START} — ${currentYear()}`} />
           <div
             style={{
               display: 'grid',
@@ -461,11 +508,14 @@ export default function HomePage() {
       {/* 02 · Skills ------------------------------------------------------ */}
       <section data-screen-label="Skills" style={{ ...SECTION, background: 'var(--bg)' }}>
         <div style={SHELL}>
-          <SectionHeader num="02" label="Technical skills" meta={`${skills.length} languages`} />
+          <SectionHeader num="02" label="Technical skills" />
           <h2 style={HEADING}>What I Work With</h2>
 
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {skills.map((s) => (
+          {skillGroups.map((g) => (
+          <div key={g.group}>
+          <GroupLabel title={g.group} meta={g.meta} />
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: 24 }}>
+            {g.items.map((s) => (
               <div
                 key={s.lang}
                 data-reveal
@@ -489,32 +539,20 @@ export default function HomePage() {
                   <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{s.detail}</span>
                   {/* Level and score travel together so a narrow row wraps them
                       as one unit instead of splitting them across two lines. */}
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
-                    <span
-                      style={{
-                        fontFamily: 'var(--label)',
-                        fontSize: 11,
-                        fontWeight: 700,
-                        letterSpacing: '0.18em',
-                        textTransform: 'uppercase',
-                        color: s.color,
-                      }}
-                    >
-                      {s.level}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--display)',
-                        fontWeight: 800,
-                        fontSize: 18,
-                        color: 'var(--mut)',
-                        fontVariantNumeric: 'tabular-nums',
-                        width: 34,
-                        textAlign: 'right',
-                      }}
-                    >
-                      {s.pct}
-                    </span>
+                  {/* The bar carries the proportion; printing the same number beside
+                      it just invites the reader to argue with a self-rated score. */}
+                  <span
+                    style={{
+                      marginLeft: 'auto',
+                      fontFamily: 'var(--label)',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: s.color,
+                    }}
+                  >
+                    {s.level}
                   </span>
                 </div>
                 <div style={{ height: 3, width: '100%', background: 'var(--line2)', marginTop: 18, overflow: 'hidden' }}>
@@ -524,6 +562,8 @@ export default function HomePage() {
             ))}
             <div style={{ borderTop: '1px solid var(--line)' }} />
           </div>
+          </div>
+          ))}
         </div>
       </section>
 
@@ -534,13 +574,16 @@ export default function HomePage() {
           <h2 style={HEADING}>Certifications &amp; Awards</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 24 }}>
-            {certificates.map((c, i) => (
+            {(showAllCerts ? certificates : certificates.slice(0, CERT_PREVIEW_COUNT)).map((c, i) => (
+              // The expanded batch mounts on an explicit click, often already past the
+              // scroll position that would trigger the observer — so those cards are
+              // revealed outright instead of waiting for a further scroll.
               <button
                 key={c.title}
                 data-reveal
-                ref={reveal}
+                ref={i < CERT_PREVIEW_COUNT ? reveal : undefined}
                 onClick={() => setZoom({ src: fullSrc(c.image), alt: c.title })}
-                className="kj-card"
+                className={i < CERT_PREVIEW_COUNT ? 'kj-card' : 'kj-card is-revealed'}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -621,6 +664,50 @@ export default function HomePage() {
               </button>
             ))}
           </div>
+
+          {certificates.length > CERT_PREVIEW_COUNT && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+              <button
+                type="button"
+                onClick={() => setShowAllCerts((v) => !v)}
+                aria-expanded={showAllCerts}
+                className="kj-more"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  padding: '16px 32px',
+                  border: '1px solid var(--fg)',
+                  borderRadius: 999,
+                  // Solid inverted fill: --fg/--bg swap between themes, so this reads as
+                  // the loudest element in the section without spending the accent colour.
+                  background: 'var(--fg)',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--label)',
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: '0.22em',
+                  textTransform: 'uppercase',
+                  color: 'var(--bg)',
+                }}
+              >
+                {showAllCerts
+                  ? 'Show fewer'
+                  : `Show all ${certificates.length}`}
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: 'block',
+                    transition: 'transform .3s ease',
+                    transform: showAllCerts ? 'rotate(180deg)' : 'none',
+                    lineHeight: 1,
+                  }}
+                >
+                  ↓
+                </span>
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
