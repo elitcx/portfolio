@@ -232,7 +232,10 @@ Two settings are load-bearing and easy to undo by accident:
   `/anything.html` to `/anything`, which breaks Google Search Console's
   HTML-file verification — the verifier requests the exact `.html` path and
   requires a 200, not a redirect. Nothing here needs it, since routes are
-  directories that Vercel already serves without an extension.
+  directories that Vercel already serves without an extension. The one thing it
+  did do for us — stopping `/projects/index.html` from answering as a duplicate
+  of `/projects` — is replaced by the explicit `index.html` redirects, which are
+  narrow enough not to touch the verification file.
 - **`public/404.html` must stay a real 404.** Serving the SPA shell for unknown
   URLs would make Google index soft-404s.
 
