@@ -1,6 +1,8 @@
 import React from 'react';
 import ThemeSlider from './ThemeSlider.jsx';
 
+import { pageById } from '../utils/Constants.js';
+
 const NAV_ITEMS = [
   {
     page: 1,
@@ -60,13 +62,22 @@ export default function NavigationBar({ darkMode, toggleDarkMode, page, changePa
       {NAV_ITEMS.map(({ page: p, label, icon }) => {
         const active = page === p;
         return (
-          <button
+          <a
             key={p}
-            onClick={() => changePage(p)}
+            href={pageById(p).path}
+            onClick={(e) => {
+              // Plain left-click navigates in place; modifier-clicks and middle
+              // clicks fall through to the browser so "open in new tab" still
+              // works, and the bare href stays crawlable either way.
+              if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+              e.preventDefault();
+              changePage(p);
+            }}
             aria-label={label}
             aria-current={active ? 'page' : undefined}
             style={{
               display: 'flex',
+              textDecoration: 'none',
               alignItems: 'center',
               gap: 8,
               padding: '9px 16px',
@@ -85,9 +96,14 @@ export default function NavigationBar({ darkMode, toggleDarkMode, page, changePa
           >
             {icon}
             <span className="hidden sm:block">{label}</span>
-          </button>
+          </a>
         );
       })}
+
+      <span
+        aria-hidden="true"
+        style={{ display: 'block', width: 1, height: 22, background: 'var(--line)', margin: '0 8px' }}
+      />
 
       <span
         aria-hidden="true"

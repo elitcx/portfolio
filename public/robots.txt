@@ -1,0 +1,11 @@
+# https://kennethjmw.vercel.app/robots.txt
+# Everything here is meant to be found. Nothing is disallowed on purpose.
+
+User-agent: *
+Allow: /
+
+# Vercel serves preview deployments (portfolio-git-*.vercel.app) from this same
+# file, but marks them noindex with an X-Robots-Tag header of its own, so the
+# blanket Allow above cannot get a preview build indexed in place of production.
+
+Sitemap: https://kennethjmw.vercel.app/sitemap.xml

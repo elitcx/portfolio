@@ -1,6 +1,6 @@
 import React from 'react';
 import { useReveal } from '../hooks/UseReveal.js';
-import { contactLinks, iconSrc } from '../utils/Constants.js';
+import { contactLinks, iconSrc, CV } from '../utils/Constants.js';
 
 export default function ContactPage() {
   const reveal = useReveal();
@@ -69,8 +69,37 @@ export default function ContactPage() {
             textWrap: 'pretty',
           }}
         >
-          Have a project in mind or just want to say hello? I'm always open to new opportunities and conversations.
+          I'm currently looking for university scholarship opportunities. If you're on an admissions team, hiring, or just want to talk about code, email is the fastest way to reach me.
         </p>
+
+        <a
+          data-reveal
+          ref={reveal}
+          href={CV.href}
+          download={CV.filename}
+          className="kj-more"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 12,
+            marginTop: 34,
+            padding: '16px 32px',
+            border: '1px solid var(--fg)',
+            borderRadius: 999,
+            background: 'var(--fg)',
+            color: 'var(--bg)',
+            textDecoration: 'none',
+            fontFamily: 'var(--label)',
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            alignSelf: 'flex-start',
+          }}
+        >
+          {CV.label}
+          <span aria-hidden="true" style={{ opacity: 0.7 }}>↓</span>
+        </a>
 
         <div
           style={{
@@ -118,7 +147,9 @@ export default function ContactPage() {
                     fontSize: 11,
                     fontWeight: 600,
                     letterSpacing: '0.16em',
-                    textTransform: 'uppercase',
+                    // Every handle is a label except the email, which is a literal
+                    // address: uppercasing it makes a real string look mistyped.
+                    textTransform: c.href.startsWith('mailto:') ? 'none' : 'uppercase',
                     color: 'var(--dim)',
                   }}
                 >

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { usePrefersReducedMotion } from '../hooks/UseReveal.js';
+import { currentYear } from '../utils/Constants.js';
 
 const GRID = 28;
 const INFLUENCE = 210;
@@ -83,7 +84,12 @@ function HeroCanvas({ isDark, reduced }) {
       const dark = isDarkRef.current;
       const baseA = dark ? 0.17 : 0.3;
       const baseRGB = dark ? '255,255,255' : '15,23,42';
-      const ringBoost = dark ? 0.85 : 0.6;
+      // The ring accent has to move with the background, not just its alpha.
+      // Cyan-400 glows against the near-black hero but sits lighter than the
+      // light hero's #F7F6F4, so there it washes out no matter how opaque it
+      // gets. Light mode drops to cyan-600, which reads darker than the surface.
+      const ringRGB = dark ? '34,211,238' : '8,145,178';
+      const ringBoost = dark ? 0.85 : 0.72;
       const hasMouse = mouse.x > -100;
 
       if (!reduced) {
@@ -145,7 +151,7 @@ function HeroCanvas({ isDark, reduced }) {
         const ring = (i + 0.5) / BUCKETS;
         const alpha = baseA + ring * ringBoost;
         const size = 1 + ring * 1.7;
-        const rgb = ring > 0.22 ? '34,211,238' : baseRGB;
+        const rgb = ring > 0.22 ? ringRGB : baseRGB;
 
         ctx.fillStyle = `rgba(${rgb},${alpha.toFixed(3)})`;
         ctx.beginPath();
@@ -265,7 +271,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
           ...META,
         }}
       >
-        <span>Portfolio · 2025</span>
+        <span>Portfolio · {currentYear()}</span>
         <span>Surakarta, ID</span>
       </div>
 
@@ -330,6 +336,41 @@ export default function Hero({ onScroll, theme = 'dark' }) {
             Competitive Programmer · Surakarta
           </span>
         </div>
+
+      </div>
+
+      {/* Fourth corner of the meta frame: Portfolio/Surakarta pin the top two,
+          Scroll pins bottom-right, this pins bottom-left. Two proof points, one from
+          each half of the work: the peak competition result and the shipping record.
+          Same META type as the top row, so it reads as structure rather than a
+          hero-metric strip; only the values lift to --fg. Separation is done with
+          space instead of a rule, and the row wraps to stacked on narrow screens. */}
+      <div
+        className="kj-cred"
+        style={{
+          position: 'absolute',
+          zIndex: 2,
+          bottom: 34,
+          left: 24,
+          display: 'flex',
+          alignItems: 'baseline',
+          columnGap: 32,
+          rowGap: 8,
+          flexWrap: 'wrap',
+          maxWidth: 'min(62%, 520px)',
+          ...META,
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>1st Place</span>
+          <span aria-hidden="true">·</span>
+          <span>OSN-K Informatika 2026</span>
+        </span>
+
+        <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>10+</span>
+          <span>Projects shipped</span>
+        </span>
       </div>
 
       <button

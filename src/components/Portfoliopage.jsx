@@ -263,6 +263,24 @@ export default function PortfolioPage() {
                     {p.title}
                   </h3>
 
+                  {/* Build period: without it every project reads as undated, and a
+                      visitor cannot tell current work from something long parked. */}
+                  {p.period && (
+                    <span
+                      style={{
+                        fontFamily: 'var(--label)',
+                        fontSize: 10,
+                        fontWeight: 700,
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        color: 'var(--dim)',
+                        marginTop: -4,
+                      }}
+                    >
+                      {p.period} · Solo
+                    </span>
+                  )}
+
                   <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--mut)', textWrap: 'pretty', flex: 1 }}>
                     {p.description}
                   </p>

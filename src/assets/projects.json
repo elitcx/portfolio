@@ -1,76 +1,130 @@
 [
-    {
-    "title": "StudyMate",
-    "description": "A smart learning platform for students, teachers, and administrators at SMA Regina Pacis Surakarta to keep track of exams, materials, quizzes, and grades.",
-    "link": "https://github.com/elitcx/StudyMate",
-    "categories" : ["React Native", "Full-Stack","Firebase","iOS","Android","Mobile"],
-    "image": "/images/studymate.webp"
-    },
-    {
+  {
     "title": "Personal Dashboard",
-    "description": "A smart AI-Powered personal dashboard with Google Calendar, Gemini API, and weather integration to track and manage schedule, health, sleep, habits, gym progress, finance, and more.",
+    "period": "May – Jun 2026",
+    "description": "Full-stack Next.js dashboard with account authentication, a Prisma-backed database, and Gemini-generated summaries. Tracks schedule, sleep, habits, gym progress, and finances, and syncs with Google Calendar. Installable as a PWA. Built solo.",
     "link": "https://github.com/elitcx/dashboard",
     "deployed": "https://elitcx123.vercel.app",
-    "categories" : ["NextJS","React","HTML","CSS","Website","API Integration","AI","Full-Stack"],
+    "categories": [
+      "NextJS",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "API Integration",
+      "AI",
+      "Website",
+      "Full-Stack"
+    ],
     "image": "/images/dashboard.webp"
-    },
-    {
+  },
+  {
+    "title": "U-Tech Capture Station",
+    "period": "Aug 2026",
+    "description": "Interactive capture station built for a U-Tech event. A procedural 3D rotary telephone sits over a full-bleed wordmark; picking up the handset plays a recorded message, then the page turns into a live camera and microphone booth with a waveform visualiser that writes each take straight to disk.",
+    "link": "https://github.com/elitcx/utech-phone",
+    "deployed": "https://utech-phone.vercel.app/",
+    "categories": [
+      "JavaScript",
+      "WebGL",
+      "3D",
+      "Web APIs",
+      "Website"
+    ],
+    "image": "/images/utechphone.webp"
+  },
+  {
+    "title": "StudyMate",
+    "period": "Apr – Jun 2026",
+    "description": "Cross-platform learning app for students, teachers, and admins at SMA Regina Pacis Surakarta, covering exams, materials, quizzes, and grades behind role-based access. React Native and Expo on Firebase. Built solo, demoed to a teacher and a small group of students.",
+    "link": "https://github.com/elitcx/StudyMate",
+    "categories": [
+      "React Native",
+      "Full-Stack",
+      "Firebase",
+      "iOS",
+      "Android",
+      "Mobile"
+    ],
+    "image": "/images/studymate.webp"
+  },
+  {
     "title": "UTech Community Website",
-    "description": "Community website for UTech, a community that for students of SMA-SMP Regina Pacis to explore and develop their potential in modern technology.",
+    "period": "May – Jun 2026",
+    "description": "Community site for U-Tech, the technology community for SMP and SMA Regina Pacis students exploring modern tech. React with client-side routing, built solo.",
     "link": "https://github.com/elitcx/utech-website",
     "deployed": "https://ursulinetechnology.vercel.app/",
-    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Website"
+    ],
     "image": "/images/utech.webp"
-    },
-    {
+  },
+  {
+    "title": "Traffic Maze Solver",
+    "period": "Aug 2025 – Apr 2026",
+    "description": "Dijkstra implementation in C++ that finds the least congested route across a simulated 2D traffic grid, weighting each cell by traffic density rather than raw distance.",
+    "link": "https://github.com/elitcx/Traffic-Maze-Solver",
+    "categories": [
+      "C++",
+      "DSA"
+    ],
+    "image": "/images/traffic.jpeg"
+  },
+  {
     "title": "One Choice Endless Paths",
-    "description": "An interactive narrative that places you in the role of a young person faced with a seemingly simple act of kindness: helping an elderly person find a seat.",
+    "period": "Mar 2026",
+    "description": "Branching narrative that hands the reader one small act of kindness, giving up a seat to an elderly stranger, then follows where each choice leads. React and Framer Motion, built in two days.",
     "link": "https://github.com/elitcx/onechoiceendlesspaths",
     "deployed": "https://onechoiceep.vercel.app",
-    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Website"
+    ],
     "image": "/images/onechoiceep.png"
-    },
-    {
+  },
+  {
+    "title": "Tokopedia Webscraper",
+    "period": "Jun 2025",
+    "description": "Selenium and BeautifulSoup scraper that walks Tokopedia search results across multiple pages, pulling name, price, image, link, and units sold from each listing and writing the set to a spreadsheet with pandas.",
+    "link": "https://github.com/elitcx/Tokopedia-Webscraper",
+    "categories": [
+      "Python",
+      "BeautifulSoup",
+      "Pandas",
+      "Selenium"
+    ],
+    "image": "/images/webscraper.webp"
+  },
+  {
     "title": "Push Up and Pull Up Challenge App",
-    "description": "A tracker app for a year long pushup/pullup challenge where the user must do 1 pushup for everyday of the year and 1 pullup everyday for every week of the year",
+    "period": "Jan – May 2026",
+    "description": "Year-long challenge tracker: one push-up for every day of the year, one pull-up for every week of it. React and Tailwind.",
     "link": "https://github.com/elitcx/fitness-challenge",
     "deployed": "https://elitcxchallenge.vercel.app",
-    "categories" : ["HTML","CSS","JavaScript","React","Website"],
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Tailwind",
+      "Website"
+    ],
     "image": "/images/challenge.webp"
-    },
-    {
-    "title": "Tokopedia Webscraper",
-    "description": "A simple webscraper program to automatically search for a specific item and list all results in a spreadsheet",
-    "link": "https://github.com/elitcx/Tokopedia-Webscraper",
-    "categories" : ["Python", "BeautifulSoup","Pandas","Selenium"],
-    "image": "/images/webscraper.webp"
-    },
-    {
-    "title": "Simple Chatbot",
-    "description": "A simple chatbot that chooses responses based on a response list and uses a message probability system to figure out what the user typed",
-    "link": "https://github.com/elitcx/Simple-Chatbot",
-    "categories" : ["Python"],
-    "image": "/images/chatbot.webp"
-    },
-    {
+  },
+  {
     "title": "Finance Tracker",
-    "description": "A Finance Tracker program that runs in console that saves data locally based on input date. Provides options to Input, Delete, Edit past logs and shows balance and deposits",
+    "period": "Nov 2025",
+    "description": "Console finance tracker in Python. Appends dated income and expense entries with their reasons to a local file and carries a running balance across sessions, with input validation on every field.",
     "link": "https://github.com/elitcx/Finance-Tracker",
-    "categories" : ["Python"],
+    "categories": [
+      "Python"
+    ],
     "image": "/images/financetrackercode.webp"
-    },
-    {
-    "title": "To Do List",
-    "description": "A simple To Do List app to input tasks by date, shows task status, delete tasks, clear all tasks, and filter tasks by name",
-    "link": "https://elitcx.github.io/",
-    "categories" : ["HTML","CSS","JavaScript","Website"],
-    "image": "/images/todolist.webp"
-    },
-    {
-    "title": "Traffic Maze Solver",
-    "description": "A Dijkstra Algorithm Implementation in C++ to simulate finding the fastest/least dense route in high traffic using a simulated 2D Grid as map.",
-    "link": "https://github.com/elitcx/Traffic-Maze-Solver",
-    "categories" : ["C++", "DSA"],
-    "image": "/images/traffic.jpeg"
-    }
+  }
 ]

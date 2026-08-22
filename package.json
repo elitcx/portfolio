@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-build.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "images": "node scripts/generate-images.mjs"
+    "images": "node scripts/generate-images.mjs",
+    "og": "node scripts/generate-og.mjs",
+    "seo": "node scripts/seo-build.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",
