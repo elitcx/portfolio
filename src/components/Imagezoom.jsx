@@ -71,12 +71,16 @@ export default function ImageZoom({ src, alt, onClose }) {
           border: '1px solid rgba(255,255,255,0.28)',
           background: 'rgba(255,255,255,0.06)',
           color: '#fff',
-          fontSize: 20,
-          lineHeight: 1,
           cursor: 'pointer',
+          padding: 0,
         }}
       >
-        ×
+        {/* Drawn rather than typed: the × glyph sits on a baseline, so it is not
+            centred in the button and any transform pivots around the wrong point. */}
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none"
+             stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+          <path d="M6 6 L18 18 M18 6 L6 18" />
+        </svg>
       </button>
     </div>
   );

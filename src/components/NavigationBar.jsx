@@ -105,11 +105,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode, page, changePa
         style={{ display: 'block', width: 1, height: 22, background: 'var(--line)', margin: '0 8px' }}
       />
 
-      <span
-        aria-hidden="true"
-        style={{ display: 'block', width: 1, height: 22, background: 'var(--line)', margin: '0 8px' }}
-      />
-
       <ThemeSlider darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </nav>
   );

@@ -195,7 +195,7 @@ export default function PortfolioPage() {
                       height: '100%',
                       objectFit: 'cover',
                       objectPosition: 'top',
-                      transition: 'transform .6s cubic-bezier(0.16,1,0.3,1)',
+                      // Filter and transition handled in App.css, see .kj-pcard-img.
                     }}
                   />
                   <span
