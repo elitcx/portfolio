@@ -211,4 +211,31 @@ Deployed automatically on [Vercel](https://vercel.com/). Every push to `main` tr
 
 ---
 
+## 🔍 SEO
+
+`npm run build` runs `scripts/seo-build.mjs` after Vite. Because the app is a
+client-rendered SPA, that step writes one real HTML document per route
+(`dist/index.html`, `dist/projects/index.html`, `dist/contact/index.html`), each
+with its own title, description and canonical, plus `sitemap.xml`. Crawlers and
+link unfurlers read the served HTML before any script runs, so without it every
+URL would ship identical metadata.
+
+Route text and the site origin live in `PAGES` and `SITE_URL` in
+`src/utils/Constants.js` — the app reads the same table at runtime, so the two
+cannot drift. **Changing domain is a one-line edit to `SITE_URL`**: the build
+rewrites every absolute URL in the head, including `og:image` and the JSON-LD
+`@id`s, then run `npm run og` to redraw the share card.
+
+Two settings are load-bearing and easy to undo by accident:
+
+- **`cleanUrls` is deliberately absent from `vercel.json`.** It 308-redirects
+  `/anything.html` to `/anything`, which breaks Google Search Console's
+  HTML-file verification — the verifier requests the exact `.html` path and
+  requires a 200, not a redirect. Nothing here needs it, since routes are
+  directories that Vercel already serves without an extension.
+- **`public/404.html` must stay a real 404.** Serving the SPA shell for unknown
+  URLs would make Google index soft-404s.
+
+---
+
 *Made with 💙 by [Kenneth Jehezkiel Marvel Wijaya](https://github.com/elitcx)*
