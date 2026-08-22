@@ -376,6 +376,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
       <button
         onClick={onScroll}
         aria-label="Scroll to about"
+        className="kj-scroll"
         style={{
           position: 'absolute',
           zIndex: 2,

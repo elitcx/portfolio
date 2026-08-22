@@ -407,7 +407,6 @@ export default function HomePage() {
                   textTransform: 'uppercase',
                   alignSelf: 'flex-start',
                   width: 'fit-content',
-                  transition: 'background .25s ease, color .25s ease',
                 }}
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
@@ -612,8 +611,8 @@ export default function HomePage() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'grayscale(0.55) contrast(1.05)',
-                      transition: 'filter .4s ease, transform .6s cubic-bezier(0.16,1,0.3,1)',
+                      // Rest/hover filter and its transition live in App.css so the
+                      // hover rule can actually win; inline would outrank it.
                     }}
                   />
                   <span

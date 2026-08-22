@@ -82,6 +82,10 @@
   border-color: var(--red);
   transform: translateY(-4px);
 }
+.kj-card-img {
+  filter: grayscale(0.35) contrast(1.05);
+  transition: filter 0.55s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .kj-card:hover .kj-card-img {
   filter: grayscale(0) contrast(1.05);
   transform: scale(1.04);
@@ -94,6 +98,9 @@
   border-color: var(--red);
   transform: translateY(-5px);
 }
+.kj-pcard-img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .kj-pcard:hover .kj-pcard-img {
   transform: scale(1.05);
 }
@@ -103,24 +110,41 @@
   transition: all 0.25s ease;
 }
 .kj-ghost:hover {
-  border-color: var(--fg);
-  background: var(--hov);
-  color: var(--fg);
+  border-color: var(--fg) !important;
+  background-color: var(--hov) !important;
+  color: var(--fg) !important;
+  transform: translateY(-1px);
 }
 
 .kj-live {
   transition: all 0.25s ease;
 }
 .kj-live:hover {
-  background: #B91C1C;
-  color: #fff;
+  background-color: #991B1B !important;
+  color: #fff !important;
+  transform: translateY(-1px);
 }
 
 .kj-close {
-  transition: background 0.25s ease;
+  transform-origin: 50% 50%;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .kj-close:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  /* The cross is drawn symmetrically about the centre of a square button, so this
+     pivots exactly on the crossing point. A 90deg turn lands the X back on itself;
+     the spin is what reads, not the end state. */
+  transform: rotate(90deg) scale(1.08);
+}
+
+.kj-close:active {
+  transform: scale(0.94);
+}
+.kj-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .kj-chip {
@@ -200,12 +224,88 @@
 
 /* CV download: outlined at rest, inverted on hover. Sits in the About section,
    where a reader who has just finished the bio is ready to take something away. */
+.kj-cv {
+  transition: background-color .25s ease, color .25s ease,
+              transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .kj-cv:hover {
-  background: var(--fg);
-  color: var(--bg);
+  background-color: var(--fg) !important;
+  color: var(--bg) !important;
+  transform: translateY(-2px);
 }
 
 .kj-cv:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 3px;
+}
+
+/* ── Hover feedback ───────────────────────────────────────────────────────────
+   Every clickable thing should say so before it is clicked. The nav pills, the
+   filter chips and the theme toggle all set colour/background inline from React
+   state, and an inline declaration outranks any selector, so those rules need
+   !important to land. The rest change properties nothing sets inline. */
+
+/* Nav: inactive pills fill softly, the active red pill just lifts a little. */
+.kj-nav a:not([aria-current='page']):hover,
+.kj-nav a:not([aria-current='page']):focus-visible {
+  background-color: var(--line) !important;
+  color: var(--fg) !important;
+}
+
+.kj-nav a[aria-current='page']:hover {
+  filter: brightness(1.12);
+}
+
+/* Theme toggle: no inline hover state at all before this. */
+.kj-nav button:hover {
+  filter: brightness(1.08);
+  transform: scale(1.07);
+}
+
+.kj-nav button:active {
+  transform: scale(0.97);
+}
+
+.kj-nav a,
+.kj-nav button {
+  transition: background-color .25s ease, color .25s ease, filter .25s ease,
+              transform .3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Project filter chips: unselected chips take the accent outline on hover so the
+   hover state previews what selecting them will do. */
+.kj-chip {
+  transition: background .22s ease, color .22s ease, border-color .22s ease,
+              transform .22s ease;
+}
+
+.kj-chip:not([aria-pressed='true']):hover {
+  border-color: var(--red) !important;
+  color: var(--fg) !important;
+}
+
+.kj-chip:hover {
+  transform: translateY(-1px);
+}
+
+.kj-chip:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Hero scroll cue: brightens and nudges down, in the direction it is pointing. */
+.kj-scroll {
+  transition: color .25s ease, transform .25s ease;
+}
+
+.kj-scroll:hover {
+  color: var(--fg);
+  transform: translateY(3px);
+}
+
+.kj-scroll:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+  border-radius: 6px;
 }
