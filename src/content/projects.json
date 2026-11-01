@@ -3,11 +3,11 @@
     "title": "Personal Dashboard",
     "period": {
       "en": "May – Jun 2026",
-      "id": ""
+      "id": "Mei – Jun 2026"
     },
     "description": {
       "en": "Full-stack Next.js dashboard with account authentication, a Prisma-backed database, and Gemini-generated summaries. Tracks schedule, sleep, habits, gym progress, and finances, and syncs with Google Calendar. Installable as a PWA. Built solo.",
-      "id": ""
+      "id": "Dashboard full-stack berbasis Next.js dengan autentikasi akun, database Prisma, dan ringkasan dari Gemini. Melacak jadwal, tidur, kebiasaan, progres gym, dan keuangan, serta tersinkron dengan Google Calendar. Bisa dipasang sebagai PWA. Dibuat sendiri."
     },
     "link": "https://github.com/elitcx/dashboard",
     "deployed": "https://elitcx123.vercel.app",
@@ -27,11 +27,11 @@
     "title": "U-Tech Capture Station",
     "period": {
       "en": "Aug 2026",
-      "id": ""
+      "id": "Agu 2026"
     },
     "description": {
       "en": "Interactive capture station built for a U-Tech event. A procedural 3D rotary telephone sits over a full-bleed wordmark; picking up the handset plays a recorded message, then the page turns into a live camera and microphone booth with a waveform visualiser that writes each take straight to disk.",
-      "id": ""
+      "id": "Stasiun rekam interaktif untuk acara U-Tech. Telepon putar 3D prosedural berada di atas wordmark selebar layar; saat gagang diangkat, pesan rekaman diputar, lalu halaman berubah menjadi bilik kamera dan mikrofon langsung dengan visualisasi gelombang suara yang menyimpan setiap rekaman langsung ke disk."
     },
     "link": "https://github.com/elitcx/utech-phone",
     "deployed": "https://utech-phone.vercel.app/",
@@ -48,11 +48,11 @@
     "title": "StudyMate",
     "period": {
       "en": "Apr – Jun 2026",
-      "id": ""
+      "id": "Apr – Jun 2026"
     },
     "description": {
       "en": "Cross-platform learning app for students, teachers, and admins at SMA Regina Pacis Surakarta, covering exams, materials, quizzes, and grades behind role-based access. React Native and Expo on Firebase. Built solo, demoed to a teacher and a small group of students.",
-      "id": ""
+      "id": "Aplikasi belajar lintas platform untuk siswa, guru, dan admin di SMA Regina Pacis Surakarta, mencakup ujian, materi, kuis, dan nilai dengan akses berbasis peran. React Native dan Expo di atas Firebase. Dibuat sendiri, didemokan kepada seorang guru dan sekelompok kecil siswa."
     },
     "link": "https://github.com/elitcx/StudyMate",
     "categories": [
@@ -69,11 +69,11 @@
     "title": "UTech Community Website",
     "period": {
       "en": "May – Jun 2026",
-      "id": ""
+      "id": "Mei – Jun 2026"
     },
     "description": {
       "en": "Community site for U-Tech, the technology community for SMP and SMA Regina Pacis students exploring modern tech. React with client-side routing, built solo.",
-      "id": ""
+      "id": "Situs komunitas untuk U-Tech, komunitas teknologi bagi siswa SMP dan SMA Regina Pacis yang menjelajahi teknologi modern. React dengan client-side routing, dibuat sendiri."
     },
     "link": "https://github.com/elitcx/utech-website",
     "deployed": "https://ursulinetechnology.vercel.app/",
@@ -90,11 +90,11 @@
     "title": "Traffic Maze Solver",
     "period": {
       "en": "Aug 2025 – Apr 2026",
-      "id": ""
+      "id": "Agu 2025 – Apr 2026"
     },
     "description": {
       "en": "Dijkstra implementation in C++ that finds the least congested route across a simulated 2D traffic grid, weighting each cell by traffic density rather than raw distance.",
-      "id": ""
+      "id": "Implementasi Dijkstra dalam C++ yang mencari rute paling tidak padat pada grid lalu lintas 2D simulasi, dengan bobot setiap sel berdasarkan kepadatan lalu lintas, bukan jarak."
     },
     "link": "https://github.com/elitcx/Traffic-Maze-Solver",
     "categories": [
@@ -107,11 +107,11 @@
     "title": "One Choice Endless Paths",
     "period": {
       "en": "Mar 2026",
-      "id": ""
+      "id": "Mar 2026"
     },
     "description": {
       "en": "Branching narrative that hands the reader one small act of kindness, giving up a seat to an elderly stranger, then follows where each choice leads. React and Framer Motion, built in two days.",
-      "id": ""
+      "id": "Cerita bercabang yang memberi pembaca satu tindakan kecil penuh kebaikan, yaitu menyerahkan kursi kepada orang tua yang tak dikenal, lalu mengikuti ke mana setiap pilihan membawa. React dan Framer Motion, dibuat dalam dua hari."
     },
     "link": "https://github.com/elitcx/onechoiceendlesspaths",
     "deployed": "https://onechoiceep.vercel.app",
@@ -128,11 +128,11 @@
     "title": "Tokopedia Webscraper",
     "period": {
       "en": "Jun 2025",
-      "id": ""
+      "id": "Jun 2025"
     },
     "description": {
       "en": "Selenium and BeautifulSoup scraper that walks Tokopedia search results across multiple pages, pulling name, price, image, link, and units sold from each listing and writing the set to a spreadsheet with pandas.",
-      "id": ""
+      "id": "Scraper Selenium dan BeautifulSoup yang menelusuri hasil pencarian Tokopedia di banyak halaman, mengambil nama, harga, gambar, tautan, dan jumlah terjual dari setiap produk, lalu menyimpannya ke spreadsheet dengan pandas."
     },
     "link": "https://github.com/elitcx/Tokopedia-Webscraper",
     "categories": [
@@ -147,11 +147,11 @@
     "title": "Push Up and Pull Up Challenge App",
     "period": {
       "en": "Jan – May 2026",
-      "id": ""
+      "id": "Jan – Mei 2026"
     },
     "description": {
       "en": "Year-long challenge tracker: one push-up for every day of the year, one pull-up for every week of it. React and Tailwind.",
-      "id": ""
+      "id": "Pelacak tantangan setahun penuh: satu push-up untuk setiap hari dalam setahun, satu pull-up untuk setiap minggunya. React dan Tailwind."
     },
     "link": "https://github.com/elitcx/fitness-challenge",
     "deployed": "https://elitcxchallenge.vercel.app",
@@ -169,11 +169,11 @@
     "title": "Finance Tracker",
     "period": {
       "en": "Nov 2025",
-      "id": ""
+      "id": "Nov 2025"
     },
     "description": {
       "en": "Console finance tracker in Python. Appends dated income and expense entries with their reasons to a local file and carries a running balance across sessions, with input validation on every field.",
-      "id": ""
+      "id": "Pencatat keuangan konsol dalam Python. Menambahkan pemasukan dan pengeluaran bertanggal beserta alasannya ke file lokal dan menyimpan saldo berjalan antar sesi, dengan validasi input di setiap kolom."
     },
     "link": "https://github.com/elitcx/Finance-Tracker",
     "categories": [

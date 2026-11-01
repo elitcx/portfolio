@@ -4,8 +4,9 @@ import ImageZoom from './Imagezoom.jsx';
 import { projects } from '../content/index.js';
 import { useReveal } from '../hooks/UseReveal.js';
 import { useLang } from '../i18n/lang.js';
+import { indexProjects } from '../lib/projects.js';
 import { plainText } from '../lib/richText.js';
-import { CATEGORIES, getCategoryColor, thumbSrc, fullSrc } from '../utils/Constants.js';
+import { CATEGORIES } from '../utils/Constants.js';
 
 const EYEBROW = {
   fontFamily: 'var(--label)',
@@ -28,33 +29,24 @@ const META = {
 const GITHUB_PATH =
   'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.84 0-.63.22-1.15.59-1.55-.06-.15-.26-.75.06-1.56 0 0 .6-.19 1.97.74a5.5 5.5 0 0 1 1.5-.2c.51 0 1.02.07 1.5.2 1.37-.93 1.97-.74 1.97-.74.32.81.12 1.41.06 1.56.37.4.59.92.59 1.55 0 1.97-1.14 2.64-2.92 2.84.3.26.56.76.56 1.54 0 1.11-.01 2.02-.01 2.3 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z';
 
-// Precomputed once: search haystack and resolved image variants per project.
-const INDEXED = projects.map((p) => ({
-  ...p,
-  period: p.period.en,
-  description: p.description.en,
-  thumb: thumbSrc(p.image),
-  full: fullSrc(p.image),
-  haystack: `${p.title} ${p.description.en} ${p.categories.join(' ')}`.toLowerCase(),
-  tags: p.categories.map((c) => ({ name: c, color: getCategoryColor(c) })),
-}));
-
 export default function PortfolioPage() {
-  const { s } = useLang();
+  const { lang, s } = useLang();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [zoom, setZoom] = useState(null);
   const reveal = useReveal();
 
+  const indexed = useMemo(() => indexProjects(projects, lang), [lang]);
+
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase();
     const cat = category.toLowerCase();
-    return INDEXED.filter(
+    return indexed.filter(
       (p) =>
         (!q || p.haystack.includes(q)) &&
         (category === 'All' || p.categories.some((c) => c.toLowerCase() === cat))
     );
-  }, [query, category]);
+  }, [indexed, query, category]);
 
   return (
     <section

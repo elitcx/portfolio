@@ -1,4 +1,5 @@
 import React from 'react';
+import LangToggle from './LangToggle.jsx';
 import ThemeSlider from './ThemeSlider.jsx';
 
 import { useLang } from '../i18n/lang.js';
@@ -109,6 +110,7 @@ export default function NavigationBar({ darkMode, toggleDarkMode, page, changePa
         style={{ display: 'block', width: 1, height: 22, background: 'var(--line)', margin: '0 8px' }}
       />
 
+      <LangToggle />
       <ThemeSlider darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </nav>
   );

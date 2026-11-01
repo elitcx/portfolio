@@ -3,288 +3,288 @@
   "text": {
     "app.skip": {
       "en": "Skip to content",
-      "id": ""
+      "id": "Langsung ke konten"
     },
     "nav.home": {
       "en": "Home",
-      "id": ""
+      "id": "Beranda"
     },
     "nav.projects": {
       "en": "Projects",
-      "id": ""
+      "id": "Proyek"
     },
     "nav.contact": {
       "en": "Contact",
-      "id": ""
+      "id": "Kontak"
     },
     "nav.label": {
       "en": "Main navigation",
-      "id": ""
+      "id": "Navigasi utama"
     },
     "nav.theme": {
       "en": "Toggle colour theme",
-      "id": ""
+      "id": "Ganti tema warna"
     },
     "nav.language": {
       "en": "Language",
-      "id": ""
+      "id": "Bahasa"
     },
     "hero.name": {
       "en": "KENNETH",
-      "id": ""
+      "id": "KENNETH"
     },
     "hero.portfolio": {
       "en": "Portfolio",
-      "id": ""
+      "id": "Portofolio"
     },
     "hero.location": {
       "en": "Surakarta, ID",
-      "id": ""
+      "id": "Surakarta, ID"
     },
     "hero.role": {
       "en": "Competitive Programmer · Surakarta",
-      "id": ""
+      "id": "Programmer Kompetitif · Surakarta"
     },
     "hero.srHeading": {
       "en": "Kenneth Jehezkiel M.W. — Competitive Programmer from Surakarta",
-      "id": ""
+      "id": "Kenneth Jehezkiel M.W. — Programmer Kompetitif dari Surakarta"
     },
     "hero.cred1Value": {
       "en": "1st Place",
-      "id": ""
+      "id": "Juara 1"
     },
     "hero.cred1Label": {
       "en": "OSN-K Informatika 2026",
-      "id": ""
+      "id": "OSN-K Informatika 2026"
     },
     "hero.cred2Value": {
       "en": "10+",
-      "id": ""
+      "id": "10+"
     },
     "hero.cred2Label": {
       "en": "Projects shipped",
-      "id": ""
+      "id": "Proyek dirilis"
     },
     "hero.scroll": {
       "en": "Scroll",
-      "id": ""
+      "id": "Gulir"
     },
     "hero.scrollAria": {
       "en": "Scroll to about",
-      "id": ""
+      "id": "Gulir ke bagian tentang saya"
     },
     "about.label": {
       "en": "About Me",
-      "id": ""
+      "id": "Tentang Saya"
     },
     "about.heading": {
       "en": "Hi, I'm Kenneth\nJehezkiel M.W.",
-      "id": ""
+      "id": "Halo, saya Kenneth\nJehezkiel M.W."
     },
     "about.bio1": {
       "en": "I'm a **{age}-year-old student at SMA Regina Pacis Surakarta**, passionate about **Software Engineering and Development**. I love turning ideas into real, working applications and exploring how code can solve everyday problems.",
-      "id": ""
+      "id": "Saya **siswa SMA Regina Pacis Surakarta berusia {age} tahun** yang menekuni **Software Engineering dan pengembangan aplikasi**. Saya senang mengubah ide menjadi aplikasi nyata yang benar-benar berjalan, dan mencari tahu bagaimana kode bisa menyelesaikan masalah sehari-hari."
     },
     "about.bio2": {
       "en": "Whether crafting clean frontends or tackling competitive programming, **I'm always eager to learn, build, and grow.**",
-      "id": ""
+      "id": "Baik saat merancang frontend yang rapi maupun mengerjakan soal pemrograman kompetitif, **saya selalu ingin belajar, membangun, dan berkembang.**"
     },
     "about.drivesLabel": {
       "en": "What drives me",
-      "id": ""
+      "id": "Yang mendorong saya"
     },
     "about.drives": {
       "en": "I build for the people around me — my school, my community, and the problems I hit every day.",
-      "id": ""
+      "id": "Saya membangun untuk orang-orang di sekitar saya: sekolah, komunitas, dan masalah yang saya temui setiap hari."
     },
     "about.photoAlt": {
       "en": "Kenneth's profile photo",
-      "id": ""
+      "id": "Foto profil Kenneth"
     },
     "about.photoPlace": {
       "en": "Solo, Indonesia",
-      "id": ""
+      "id": "Solo, Indonesia"
     },
     "about.photoYear": {
       "en": "2025",
-      "id": ""
+      "id": "2025"
     },
     "about.factsTitle": {
       "en": "Fast facts",
-      "id": ""
+      "id": "Sekilas"
     },
     "about.factsMeta": {
       "en": "Off the clock",
-      "id": ""
+      "id": "Di luar coding"
     },
     "about.numbersTitle": {
       "en": "By the numbers",
-      "id": ""
+      "id": "Dalam angka"
     },
     "about.timelineTitle": {
       "en": "How it started",
-      "id": ""
+      "id": "Awal mula"
     },
     "skills.label": {
       "en": "Technical skills",
-      "id": ""
+      "id": "Keahlian teknis"
     },
     "skills.heading": {
       "en": "What I Work With",
-      "id": ""
+      "id": "Yang Saya Gunakan"
     },
     "certs.label": {
       "en": "Achievements",
-      "id": ""
+      "id": "Prestasi"
     },
     "certs.meta": {
       "en": "{count} credentials",
-      "id": ""
+      "id": "{count} sertifikat"
     },
     "certs.heading": {
       "en": "Certifications & Awards",
-      "id": ""
+      "id": "Sertifikat & Penghargaan"
     },
     "certs.showAll": {
       "en": "Show all {count}",
-      "id": ""
+      "id": "Tampilkan semua {count}"
     },
     "certs.showFewer": {
       "en": "Show fewer",
-      "id": ""
+      "id": "Tampilkan lebih sedikit"
     },
     "cv.label": {
       "en": "Download CV",
-      "id": ""
+      "id": "Unduh CV"
     },
     "cv.meta": {
       "en": "PDF · 2 pages",
-      "id": ""
+      "id": "PDF · 2 halaman"
     },
     "projects.eyebrow": {
       "en": "My work",
-      "id": ""
+      "id": "Karya saya"
     },
     "projects.heading": {
       "en": "Projects",
-      "id": ""
+      "id": "Proyek"
     },
     "projects.shipped": {
       "en": "{count} shipped",
-      "id": ""
+      "id": "{count} dirilis"
     },
     "projects.current": {
       "en": "Currently building",
-      "id": ""
+      "id": "Sedang dikerjakan"
     },
     "projects.search": {
       "en": "Search projects…",
-      "id": ""
+      "id": "Cari proyek…"
     },
     "projects.searchAria": {
       "en": "Search projects",
-      "id": ""
+      "id": "Cari proyek"
     },
     "projects.filterAll": {
       "en": "All",
-      "id": ""
+      "id": "Semua"
     },
     "projects.solo": {
       "en": "Solo",
-      "id": ""
+      "id": "Mandiri"
     },
     "projects.repo": {
       "en": "Repo →",
-      "id": ""
+      "id": "Repo →"
     },
     "projects.live": {
       "en": "Live site →",
-      "id": ""
+      "id": "Situs live →"
     },
     "projects.viewShot": {
       "en": "View screenshot",
-      "id": ""
+      "id": "Lihat tangkapan layar"
     },
     "projects.emptyTitle": {
       "en": "Nothing here",
-      "id": ""
+      "id": "Tidak ada hasil"
     },
     "projects.emptyBody": {
       "en": "No projects match that filter",
-      "id": ""
+      "id": "Tidak ada proyek yang cocok dengan filter itu"
     },
     "contact.eyebrow": {
       "en": "Get in touch",
-      "id": ""
+      "id": "Hubungi saya"
     },
     "contact.location": {
       "en": "Surakarta, ID",
-      "id": ""
+      "id": "Surakarta, ID"
     },
     "contact.heading": {
       "en": "Let's Connect",
-      "id": ""
+      "id": "Mari Terhubung"
     },
     "contact.body": {
       "en": "I'm currently looking for university scholarship opportunities. If you're on an admissions team, hiring, or just want to talk about code, email is the fastest way to reach me.",
-      "id": ""
+      "id": "Saat ini saya sedang mencari peluang beasiswa universitas. Jika Anda dari tim penerimaan, sedang merekrut, atau hanya ingin berdiskusi soal kode, email adalah cara tercepat untuk menghubungi saya."
     },
     "footer.name": {
       "en": "Kenneth Jehezkiel Marvel Wijaya",
-      "id": ""
+      "id": "Kenneth Jehezkiel Marvel Wijaya"
     },
     "footer.tagline": {
       "en": "Personal Portfolio",
-      "id": ""
+      "id": "Portofolio Pribadi"
     },
     "zoom.label": {
       "en": "Zoomed view",
-      "id": ""
+      "id": "Tampilan diperbesar"
     },
     "zoom.close": {
       "en": "Close",
-      "id": ""
+      "id": "Tutup"
     }
   },
   "stats": [
     {
       "value": {
         "en": "1st",
-        "id": ""
+        "id": "Juara 1"
       },
       "label": {
         "en": "OSN-K Informatika 2026",
-        "id": ""
+        "id": "OSN-K Informatika 2026"
       }
     },
     {
       "value": {
         "en": "10+",
-        "id": ""
+        "id": "10+"
       },
       "label": {
         "en": "National competition placements",
-        "id": ""
+        "id": "Peringkat kompetisi nasional"
       }
     },
     {
       "value": {
         "en": "10+",
-        "id": ""
+        "id": "10+"
       },
       "label": {
         "en": "Projects shipped",
-        "id": ""
+        "id": "Proyek dirilis"
       }
     },
     {
       "value": {
         "en": "{years}+",
-        "id": ""
+        "id": "{years}+"
       },
       "label": {
         "en": "Years coding",
-        "id": ""
+        "id": "Tahun coding"
       }
     }
   ],
@@ -292,51 +292,51 @@
     {
       "label": {
         "en": "Looking for",
-        "id": ""
+        "id": "Sedang mencari"
       },
       "value": {
         "en": "University scholarships",
-        "id": ""
+        "id": "Beasiswa universitas"
       }
     },
     {
       "label": {
         "en": "Based in",
-        "id": ""
+        "id": "Berdomisili di"
       },
       "value": {
         "en": "Solo, Indonesia",
-        "id": ""
+        "id": "Solo, Indonesia"
       }
     },
     {
       "label": {
         "en": "Speaks",
-        "id": ""
+        "id": "Bahasa"
       },
       "value": {
         "en": "Indonesian · English · Chinese",
-        "id": ""
+        "id": "Indonesia · Inggris · Mandarin"
       }
     },
     {
       "label": {
         "en": "Outside code",
-        "id": ""
+        "id": "Di luar coding"
       },
       "value": {
         "en": "Rock climbing · Gaming · Photography",
-        "id": ""
+        "id": "Panjat tebing · Gim · Fotografi"
       }
     },
     {
       "label": {
         "en": "Why I started",
-        "id": ""
+        "id": "Alasan mulai"
       },
       "value": {
         "en": "Colorful code looked cool. Then it got serious.",
-        "id": ""
+        "id": "Kode warna-warni terlihat keren. Lalu jadi serius."
       }
     }
   ],
@@ -346,7 +346,7 @@
       "color": "var(--faint)",
       "text": {
         "en": "Cousin showed me Minecraft. Computers became home.",
-        "id": ""
+        "id": "Sepupu memperkenalkan Minecraft. Komputer pun jadi rumah kedua."
       }
     },
     {
@@ -354,7 +354,7 @@
       "color": "var(--faint)",
       "text": {
         "en": "Discovered Roblox Studio. Built games in Lua — one reached ~1,000 players.",
-        "id": ""
+        "id": "Menemukan Roblox Studio. Membuat game dengan Lua, salah satunya mencapai ~1.000 pemain."
       }
     },
     {
@@ -362,7 +362,7 @@
       "color": "var(--dim)",
       "text": {
         "en": "Junior high: Python, SQL, HTML. YouTube tutorials. The foundation.",
-        "id": ""
+        "id": "SMP: Python, SQL, HTML. Tutorial YouTube. Fondasinya di sini."
       }
     },
     {
@@ -370,7 +370,7 @@
       "color": "var(--dim)",
       "text": {
         "en": "School C++ class → self-studied docs → selected for OSN Informatika.",
-        "id": ""
+        "id": "Kelas C++ di sekolah → belajar sendiri dari dokumentasi → terpilih untuk OSN Informatika."
       }
     },
     {
@@ -378,7 +378,7 @@
       "color": "var(--mut)",
       "text": {
         "en": "Algorithms, data structures, competitive programming. Went deep.",
-        "id": ""
+        "id": "Algoritma, struktur data, pemrograman kompetitif. Mendalami semuanya."
       }
     },
     {
@@ -386,7 +386,7 @@
       "color": "var(--mut)",
       "text": {
         "en": "HTML/CSS/JS → accidentally joined a React course → never looked back.",
-        "id": ""
+        "id": "HTML/CSS/JS → tak sengaja ikut kursus React → tak pernah menoleh lagi."
       }
     },
     {
@@ -394,7 +394,7 @@
       "color": "var(--red-l)",
       "text": {
         "en": "1st at OSNK Informatika. Samsung Solve for Tomorrow semifinals. More projects, more volunteering.",
-        "id": ""
+        "id": "Juara 1 OSNK Informatika. Semifinal Samsung Solve for Tomorrow. Lebih banyak proyek, lebih banyak kegiatan relawan."
       }
     }
   ],
@@ -402,11 +402,11 @@
     {
       "group": {
         "en": "Languages",
-        "id": ""
+        "id": "Bahasa"
       },
       "meta": {
         "en": "{count} languages",
-        "id": ""
+        "id": "{count} bahasa"
       },
       "items": [
         {
@@ -415,11 +415,11 @@
           "pct": 82,
           "level": {
             "en": "Competition Level",
-            "id": ""
+            "id": "Tingkat Kompetisi"
           },
           "detail": {
             "en": "Algorithms / CP",
-            "id": ""
+            "id": "Algoritma / CP"
           },
           "color": "var(--red)"
         },
@@ -429,11 +429,11 @@
           "pct": 72,
           "level": {
             "en": "Competition Level",
-            "id": ""
+            "id": "Tingkat Kompetisi"
           },
           "detail": {
             "en": "Automation / Scripts",
-            "id": ""
+            "id": "Otomatisasi / Skrip"
           },
           "color": "var(--red)"
         },
@@ -443,11 +443,11 @@
           "pct": 52,
           "level": {
             "en": "Intermediate",
-            "id": ""
+            "id": "Menengah"
           },
           "detail": {
             "en": "Frontend / Web",
-            "id": ""
+            "id": "Frontend / Web"
           },
           "color": "#FCD34D"
         },
@@ -457,11 +457,11 @@
           "pct": 35,
           "level": {
             "en": "Learning",
-            "id": ""
+            "id": "Sedang Belajar"
           },
           "detail": {
             "en": "Typed React",
-            "id": ""
+            "id": "React Bertipe"
           },
           "color": "#6EE7B7"
         },
@@ -471,11 +471,11 @@
           "pct": 22,
           "level": {
             "en": "Beginner",
-            "id": ""
+            "id": "Pemula"
           },
           "detail": {
             "en": "CRUD Queries",
-            "id": ""
+            "id": "Query CRUD"
           },
           "color": "#6EE7B7"
         }
@@ -484,11 +484,11 @@
     {
       "group": {
         "en": "Frameworks & tools",
-        "id": ""
+        "id": "Framework & alat"
       },
       "meta": {
         "en": "{count} tools",
-        "id": ""
+        "id": "{count} alat"
       },
       "items": [
         {
@@ -497,11 +497,11 @@
           "pct": 52,
           "level": {
             "en": "Intermediate",
-            "id": ""
+            "id": "Menengah"
           },
           "detail": {
             "en": "Components / SPA",
-            "id": ""
+            "id": "Komponen / SPA"
           },
           "color": "#FCD34D"
         },
@@ -511,11 +511,11 @@
           "pct": 42,
           "level": {
             "en": "Intermediate",
-            "id": ""
+            "id": "Menengah"
           },
           "detail": {
             "en": "Expo / Mobile apps",
-            "id": ""
+            "id": "Expo / Aplikasi mobile"
           },
           "color": "#FCD34D"
         },
@@ -525,11 +525,11 @@
           "pct": 58,
           "level": {
             "en": "Intermediate",
-            "id": ""
+            "id": "Menengah"
           },
           "detail": {
             "en": "Utility-first styling",
-            "id": ""
+            "id": "Styling utility-first"
           },
           "color": "#FCD34D"
         }
