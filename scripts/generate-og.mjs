@@ -11,9 +11,12 @@
 import sharp from 'sharp';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { readFileSync } from 'node:fs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SRC = path.join(root, 'public/images/banner.webp');
+// Whatever banner the site currently shows, which the dashboard can change.
+const { banner } = JSON.parse(readFileSync(path.join(root, 'src/content/site.json'), 'utf8'));
+const SRC = path.join(root, 'public', banner);
 const OUT = path.join(root, 'public/images/og-card.jpg');
 
 const W = 1200;

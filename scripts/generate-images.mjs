@@ -9,7 +9,11 @@
  * Card variants are pre-cropped to the exact aspect ratio the CSS uses, so the
  * browser does no scaling work at all. Zoom variants stay uncropped.
  *
- * Run with: npm run images
+ * The build runs this too, so a picture added from the dashboard gets its
+ * derivatives without a manual step. A derivative that already exists is
+ * skipped: uploaded filenames contain a content hash, so it cannot be stale.
+ *
+ * Run with: npm run images (which passes --force and regenerates everything)
  */
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -18,6 +22,7 @@ import sharp from 'sharp';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'public', 'images');
+const FORCE = process.argv.includes('--force');
 
 // Derivative kinds, keyed by the output directory under public/images/.
 const CARD_QUALITY = 76;
@@ -42,6 +47,11 @@ const projects = JSON.parse(
 // A project still in progress may not have a picture yet.
 const PROJECT_IMAGES = projects.filter((p) => p.image).map((p) => path.basename(p.image));
 
+const site = JSON.parse(
+  await fs.readFile(path.join(ROOT, 'src', 'content', 'site.json'), 'utf8')
+);
+const BANNER_IMAGE = path.basename(site.banner);
+
 const ICON_IMAGES = [
   'c.webp', 'python.webp', 'javascript.webp', 'ReactJS.webp', 'sql.webp',
   'instagram.webp', 'whatsapp.webp',
@@ -53,9 +63,19 @@ function outPath(kind, relative) {
   return path.join(SRC, kind, parsed.dir, `${parsed.name}.webp`);
 }
 
+async function exists(file) {
+  try {
+    await fs.access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function emit(kind, relative, resize, quality) {
   const from = path.join(SRC, relative);
   const to = outPath(kind, relative);
+  if (!FORCE && await exists(to)) return null;
   await fs.mkdir(path.dirname(to), { recursive: true });
 
   const info = await sharp(from)
@@ -84,7 +104,7 @@ async function main() {
     jobs.push(['full', name, FULL, FULL_QUALITY]);
   }
 
-  jobs.push(['thumb', 'banner.webp', BANNER, 82]);
+  jobs.push(['thumb', BANNER_IMAGE, BANNER, 82]);
 
   for (const name of ICON_IMAGES) {
     jobs.push(['icon', name, ICON, 88]);
@@ -92,13 +112,21 @@ async function main() {
 
   let before = 0;
   let after = 0;
+  let made = 0;
   for (const [kind, rel, resize, quality] of jobs) {
     const r = await emit(kind, rel, resize, quality);
+    if (!r) continue;
+    made += 1;
     if (kind !== 'full') { before += r.before; after += r.after; }
     console.log(
       `${r.to.padEnd(42)} ${String(r.w).padStart(5)}x${String(r.h).padEnd(5)} ` +
       `${String(Math.round(r.before / 1024)).padStart(5)}K -> ${String(Math.round(r.after / 1024)).padStart(5)}K`
     );
+  }
+
+  if (!made) {
+    console.log(`Image variants up to date (${jobs.length} checked)`);
+    return;
   }
 
   console.log(

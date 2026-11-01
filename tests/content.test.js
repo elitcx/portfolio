@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 import { TEXT_KEYS } from '../src/content/textKeys.js';
@@ -28,4 +28,16 @@ test('certificate tiers follow the badge colours the regexes used to pick', () =
   assert.equal(byResult['3rd Place'], 'bronze');
   assert.equal(byResult.Finalist, 'other');
   assert.equal(byResult.Participant, 'other');
+});
+
+test('every picture the content names exists in public/', () => {
+  const site = read('site');
+  const paths = [
+    site.banner,
+    ...read('projects').map((p) => p.image),
+    ...read('certificates').map((c) => c.image),
+  ];
+  for (const path of paths) {
+    assert.ok(existsSync(new URL(`../public${path}`, import.meta.url)), path);
+  }
 });
