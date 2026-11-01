@@ -46,7 +46,7 @@ export function listsFor(sectionId, edited) {
           titleOf: (item) => shown(item.group),
         },
         ...edited.site.skillGroups.map((group, i) => ({
-          key: `skills-${i}`, label: shown(group.group), file: 'site', path: ['skillGroups', i, 'items'], schema: 'skill', ...editable,
+          key: `skills-${group.__id}`, label: shown(group.group), file: 'site', path: ['skillGroups', i, 'items'], schema: 'skill', ...editable,
           titleOf: (item) => item.lang || 'New skill',
         })),
       ];

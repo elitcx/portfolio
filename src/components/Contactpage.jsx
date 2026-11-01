@@ -1,4 +1,5 @@
 import React from 'react';
+import RichText from './RichText.jsx';
 import { useReveal } from '../hooks/UseReveal.js';
 import { site } from '../content/index.js';
 import { useLang } from '../i18n/lang.js';
@@ -72,7 +73,7 @@ export default function ContactPage() {
             textWrap: 'pretty',
           }}
         >
-          {s('contact.body')}
+          <RichText value={s('contact.body')} />
         </p>
 
         <a

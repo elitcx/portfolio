@@ -89,3 +89,12 @@ test('splitProjects separates ongoing work and keeps the order', () => {
 test('splitProjects handles every project being ongoing', () => {
   assert.deepEqual(splitProjects([{ title: 'a', current: true }]).shipped, []);
 });
+
+test('search ignores formatting markers in descriptions', () => {
+  const [p] = indexProjects(
+    [{ title: 'T', period: { en: 'x' }, description: { en: 'a **bold** word' }, categories: [] }],
+    'en',
+  );
+  assert.ok(p.haystack.includes('a bold word'));
+  assert.equal(p.description, 'a **bold** word');
+});

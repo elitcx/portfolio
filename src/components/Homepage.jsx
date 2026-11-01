@@ -373,7 +373,7 @@ export default function HomePage() {
                     textWrap: 'pretty',
                   }}
                 >
-                  {s('about.drives')}
+                  <RichText value={s('about.drives')} />
                 </span>
               </div>
 
@@ -493,7 +493,7 @@ export default function HomePage() {
                 >
                   {t.year}
                 </span>
-                <span style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--mut)', textWrap: 'pretty' }}>{l(t.text)}</span>
+                <span style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--mut)', textWrap: 'pretty' }}><RichText value={l(t.text)} /></span>
               </div>
             ))}
           </div>

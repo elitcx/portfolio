@@ -115,3 +115,19 @@ test('inherited property names do not count as known fields', () => {
   assert.ok(badProject({ constructor: 'x' }));
   assert.ok(validateFile('projects', [{ ...project, ...JSON.parse('{"__proto__":{"x":1}}') }]).length > 0);
 });
+
+test('list fields must be present, because the public pages read them directly', () => {
+  assert.ok(badProject({ categories: undefined }));
+  const site = read('site');
+  const { items, ...noItems } = site.skillGroups[0];
+  assert.ok(items);
+  assert.ok(validateFile('site', { ...site, skillGroups: [noItems] }).length > 0);
+});
+
+test('a picture must be in the folder the image build reads for that kind', () => {
+  assert.ok(badProject({ image: '/images/certificates/a.webp' }));
+  const site = read('site');
+  assert.ok(validateFile('site', { ...site, banner: '/images/certificates/a.webp' }).length > 0);
+  const cert = { image: '/images/a.webp', title: 'C', result: { en: 'x' }, tier: 'gold' };
+  assert.ok(validateFile('certificates', [cert]).length > 0);
+});

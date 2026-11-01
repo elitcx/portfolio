@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { validateFile } from '../lib/contentSchema.js';
 import { ApiError, AuthExpired, Conflict, ValidationFailed, apiRequest } from './api.js';
-import { changedFiles, usedUploads } from './editing.js';
+import { changedFiles, usedUploads, withIds, withoutIds } from './editing.js';
 import { MAX_UPLOAD_BYTES, blobToBase64, shrinkPicture } from './image.js';
 import Login from './Login.jsx';
 import Shell from './Shell.jsx';
@@ -30,7 +30,7 @@ const DEPLOY_TEXT = {
 
 function Editor({ initial, onLoggedOut, onReload, setExpired, expired }) {
   const [base, setBase] = useState(initial);
-  const [edited, setEdited] = useState(() => pick(initial));
+  const [edited, setEdited] = useState(() => withIds(pick(initial)));
   const [uploads, setUploads] = useState([]);
   const [previews, setPreviews] = useState({});
   const [saving, setSaving] = useState(false);
@@ -39,8 +39,9 @@ function Editor({ initial, onLoggedOut, onReload, setExpired, expired }) {
   const [confirmReload, setConfirmReload] = useState(false);
   const [deploy, setDeploy] = useState(null);
 
-  const changed = useMemo(() => changedFiles(base, edited), [base, edited]);
-  const toUpload = useMemo(() => usedUploads(uploads, edited), [uploads, edited]);
+  const clean = useMemo(() => withoutIds(edited), [edited]);
+  const changed = useMemo(() => changedFiles(base, clean), [base, clean]);
+  const toUpload = useMemo(() => usedUploads(uploads, clean), [uploads, clean]);
   const dirty = changed.length > 0 || toUpload.length > 0;
 
   useEffect(() => {
@@ -105,7 +106,7 @@ function Editor({ initial, onLoggedOut, onReload, setExpired, expired }) {
   }, [deploySha]);
 
   const save = async () => {
-    const local = changed.flatMap((name) => validateFile(name, edited[name]));
+    const local = changed.flatMap((name) => validateFile(name, clean[name]));
     if (local.length) {
       setErrors(local);
       return;
@@ -115,12 +116,12 @@ function Editor({ initial, onLoggedOut, onReload, setExpired, expired }) {
     setErrors([]);
     setConflict(false);
     try {
-      const files = Object.fromEntries(changed.map((name) => [name, edited[name]]));
+      const files = Object.fromEntries(changed.map((name) => [name, clean[name]]));
       const { sha } = await call('/api/save', {
         method: 'POST',
         body: { baseSha: base.sha, files, uploads: toUpload },
       });
-      setBase({ ...edited, sha });
+      setBase({ ...clean, sha });
       setUploads([]);
       setDeploy({ sha, state: 'pending' });
     } catch (failure) {
@@ -244,7 +245,18 @@ export default function AdminApp() {
     );
   }
 
-  if (needsLogin) return <Login onLoggedIn={load} />;
+  // Clearing this first means a load that fails after a good password shows its
+  // reason, rather than the login form again as if the password were wrong.
+  if (needsLogin) {
+    return (
+      <Login
+        onLoggedIn={() => {
+          setNeedsLogin(false);
+          load();
+        }}
+      />
+    );
+  }
 
   return (
     <div className="ad-login">

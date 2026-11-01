@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TEXT_KEYS } from '../content/textKeys.js';
+import { RICH_TEXT_KEYS, TEXT_KEYS } from '../content/textKeys.js';
 import { LocalizedField } from './fields.jsx';
 
 const GROUPS = {
@@ -20,10 +20,11 @@ export default function PageText({ text, onChange, call }) {
           {TEXT_KEYS.filter((key) => prefixOf(key) === prefix).map((key) => (
             <LocalizedField
               key={key}
-              long
+              long={RICH_TEXT_KEYS.includes(key)}
+              rich={RICH_TEXT_KEYS.includes(key)}
               field={{ label: key.split('.')[1] }}
               value={text[key]}
-              onChange={(value) => onChange({ ...text, [key]: value })}
+              update={(change) => onChange((current) => ({ ...current, [key]: change(current[key]) }))}
               call={call}
             />
           ))}

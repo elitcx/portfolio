@@ -4,7 +4,10 @@
 import { TEXT_KEYS } from '../content/textKeys.js';
 import { ALLOWED_TOKENS, findTokens } from './richText.js';
 
-export const IMAGE_PATH = /^\/images\/(certificates\/)?[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/;
+// The image build reads project and banner pictures from the root of
+// public/images and certificates from their own folder, so each must be there.
+const ROOT_IMAGE = /^\/images\/[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/;
+const CERT_IMAGE = /^\/images\/certificates\/[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/;
 
 const MAX_TEXT = 5000;
 
@@ -52,16 +55,16 @@ export const SCHEMAS = {
     title: { type: 'text', label: 'Title', required: true },
     description: { type: 'locLong', label: 'Description', required: true },
     period: { type: 'loc', label: 'Period', required: true },
-    categories: { type: 'tags', label: 'Categories' },
+    categories: { type: 'tags', label: 'Categories', required: true },
     link: { type: 'link', label: 'Repo link', required: whileBuilding },
     deployed: { type: 'link', label: 'Live link' },
-    image: { type: 'image', label: 'Picture', required: whileBuilding, upload: 'project' },
+    image: { type: 'image', label: 'Picture', required: whileBuilding, upload: 'project', pattern: ROOT_IMAGE },
   },
   certificate: {
     title: { type: 'text', label: 'Title', required: true },
     result: { type: 'loc', label: 'Result', required: true },
     tier: { type: 'select', label: 'Badge colour', required: true, options: TIER_OPTIONS },
-    image: { type: 'image', label: 'Picture', required: true, upload: 'certificate' },
+    image: { type: 'image', label: 'Picture', required: true, upload: 'certificate', pattern: CERT_IMAGE },
   },
   stat: {
     value: { type: 'loc', label: 'Value', required: true },
@@ -79,7 +82,7 @@ export const SCHEMAS = {
   skillGroup: {
     group: { type: 'loc', label: 'Group name', required: true },
     meta: { type: 'loc', label: 'Count label', required: true },
-    items: { type: 'list', label: 'Skills', of: 'skill' },
+    items: { type: 'list', label: 'Skills', of: 'skill', required: true },
   },
   skill: {
     lang: { type: 'text', label: 'Name', required: true },
@@ -161,7 +164,7 @@ function checkField(field, value, item, name) {
         ? []
         : [`${name} must start with https://${field.mailto ? ' or mailto:' : ''}`];
     case 'image':
-      return typeof value === 'string' && IMAGE_PATH.test(value) ? [] : [`${name} is not a valid picture path`];
+      return typeof value === 'string' && field.pattern.test(value) ? [] : [`${name} is not a valid picture path`];
     case 'select':
       return field.options.some((option) => option.value === value) ? [] : [`${name} has an unknown choice`];
     case 'fixed':
@@ -211,7 +214,7 @@ function checkSite(site) {
   if (unknown.length) return [`Site content has an unknown section: ${unknown[0]}`];
 
   const errors = [];
-  if (typeof site.banner !== 'string' || !IMAGE_PATH.test(site.banner)) errors.push('Banner is not a valid picture path');
+  if (typeof site.banner !== 'string' || !ROOT_IMAGE.test(site.banner)) errors.push('Banner is not a valid picture path');
 
   if (!isPlainObject(site.text)) {
     errors.push('Page text is not valid');

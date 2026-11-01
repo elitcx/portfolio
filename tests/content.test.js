@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
-import { TEXT_KEYS } from '../src/content/textKeys.js';
+import { RICH_TEXT_KEYS, TEXT_KEYS } from '../src/content/textKeys.js';
 
 const read = (name) =>
   JSON.parse(readFileSync(new URL(`../src/content/${name}.json`, import.meta.url), 'utf8'));
@@ -40,4 +40,9 @@ test('every picture the content names exists in public/', () => {
   for (const path of paths) {
     assert.ok(existsSync(new URL(`../public${path}`, import.meta.url)), path);
   }
+});
+
+test('text marked as formatted is real page text', () => {
+  assert.ok(RICH_TEXT_KEYS.length > 0);
+  for (const key of RICH_TEXT_KEYS) assert.ok(TEXT_KEYS.includes(key), key);
 });

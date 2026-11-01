@@ -1,4 +1,5 @@
 import { localize } from './localize.js';
+import { plainText } from './richText.js';
 import { fullSrc, getCategoryColor, thumbSrc } from '../utils/Constants.js';
 
 export function splitProjects(indexed) {
@@ -19,7 +20,7 @@ export function indexProjects(projects, lang) {
       period: localize(p.period, lang),
       thumb: p.image ? thumbSrc(p.image) : null,
       full: p.image ? fullSrc(p.image) : null,
-      haystack: `${p.title} ${description} ${p.categories.join(' ')}`.toLowerCase(),
+      haystack: `${p.title} ${plainText(description)} ${p.categories.join(' ')}`.toLowerCase(),
       tags: p.categories.map((c) => ({ name: c, color: getCategoryColor(c) })),
     };
   });

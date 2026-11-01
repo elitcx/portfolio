@@ -151,3 +151,14 @@ test('endpoints reject a request with no session', async () => {
   await save({ method: 'POST', headers: { origin: SITE }, body: { baseSha: SHA('a'), files: { projects } } }, res);
   assert.equal(res.code, 401);
 });
+
+test('a rejected GitHub token says so, without being mistaken for a login problem', async () => {
+  globalThis.fetch = async () => ({ ok: false, status: 401, json: async () => ({}), text: async () => '' });
+  const original = console.error;
+  console.error = () => {};
+  const res = await call(save, { baseSha: SHA('a'), files: { projects } });
+  console.error = original;
+  assert.equal(res.code, 502);
+  assert.match(res.body.error, /GitHub token/);
+  assert.equal(JSON.stringify(res.body).includes('tok"'), false);
+});

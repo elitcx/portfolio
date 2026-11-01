@@ -63,3 +63,6 @@ export const TEXT_KEYS = [
   'zoom.label',
   'zoom.close',
 ];
+
+// Prose rendered through RichText, so **bold**, line breaks and live values work.
+export const RICH_TEXT_KEYS = ['about.heading', 'about.bio1', 'about.bio2', 'about.drives', 'contact.body'];

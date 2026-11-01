@@ -1,13 +1,13 @@
 import React, { useId, useState } from 'react';
 
-import { normalizeLink } from './editing.js';
+import { draftInto, normalizeLink, tokenMismatch } from './editing.js';
 
 const FORMAT_HINT = '**bold**, new line for a break, {age} {years} {count} for live values.';
 
 const NAMES = { en: 'EN', id: 'ID' };
 const OTHER = { en: 'id', id: 'en' };
 
-function LocalizedBox({ field, value, lang, long, hint, onChange, call }) {
+function LocalizedBox({ field, value, lang, long, hint, update, call }) {
   const id = useId();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(null);
@@ -21,7 +21,7 @@ function LocalizedBox({ field, value, lang, long, hint, onChange, call }) {
     setMessage(null);
     try {
       const result = await call('/api/translate', { method: 'POST', body: { text: source, to: lang } });
-      onChange({ ...value, [lang]: result.text });
+      update((current) => draftInto(current, lang, result.text));
       if (result.warning) setMessage({ warning: result.warning });
     } catch (failure) {
       setMessage({ error: failure.message });
@@ -47,7 +47,10 @@ function LocalizedBox({ field, value, lang, long, hint, onChange, call }) {
         className={long ? 'ad-input ad-area' : 'ad-input'}
         lang={lang}
         value={text}
-        onChange={(e) => onChange({ ...value, [lang]: e.target.value })}
+        onChange={(e) => {
+          const { value: typed } = e.target;
+          update((current) => ({ ...current, [lang]: typed }));
+        }}
         placeholder={source ? `${NAMES[OTHER[lang]]} shows until this is filled` : undefined}
       />
       {hint && <span className="ad-hint">{FORMAT_HINT}</span>}
@@ -57,11 +60,20 @@ function LocalizedBox({ field, value, lang, long, hint, onChange, call }) {
   );
 }
 
-export function LocalizedField({ field, value, onChange, call, long }) {
+// `update` takes a function of the current value, so a draft that returns late
+// cannot overwrite what was typed in the meantime.
+export function LocalizedField({ field, value, update, call, long, rich }) {
   return (
-    <div className="ad-two">
-      <LocalizedBox field={field} value={value} lang="en" long={long} hint={long} onChange={onChange} call={call} />
-      <LocalizedBox field={field} value={value} lang="id" long={long} onChange={onChange} call={call} />
+    <div className="ad-field">
+      <div className="ad-two">
+        <LocalizedBox field={field} value={value} lang="en" long={long} hint={rich} update={update} call={call} />
+        <LocalizedBox field={field} value={value} lang="id" long={long} update={update} call={call} />
+      </div>
+      {tokenMismatch(value) && (
+        <span className="ad-warn" role="status">
+          English and Indonesian use different live values such as {'{age}'}. Check both.
+        </span>
+      )}
     </div>
   );
 }

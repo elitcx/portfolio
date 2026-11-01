@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import { SCHEMAS } from '../lib/contentSchema.js';
-import { blankItem, getIn, move, setIn } from './editing.js';
+import { blankItem, getIn, moveItem, newId, updateItem, updateList } from './editing.js';
 import FilesEditor from './FilesEditor.jsx';
 import ItemForm from './ItemForm.jsx';
 import PageText from './PageText.jsx';
 import { SECTIONS, listsFor } from './sections.js';
 
-function ItemLists({ lists, edited, selected, onSelect, onReplace }) {
+function ItemLists({ lists, edited, selected, onSelect, onChange }) {
   return (
     <div className="ad-lists">
       {lists.map((list) => {
@@ -20,28 +20,24 @@ function ItemLists({ lists, edited, selected, onSelect, onReplace }) {
                 type="button"
                 className="ad-new"
                 onClick={() => {
-                  onReplace(list, [blankItem(SCHEMAS[list.schema]), ...items]);
-                  onSelect({ listKey: list.key, index: 0 });
+                  const fresh = { ...blankItem(SCHEMAS[list.schema]), __id: newId() };
+                  onChange(list.key, (current) => [fresh, ...current]);
+                  onSelect({ listKey: list.key, id: fresh.__id });
                 }}
               >
                 + New
               </button>
             )}
-            {items.map((item, index) => {
-              const on = selected?.listKey === list.key && selected.index === index;
-              const shift = (delta) => {
-                const next = move(items, index, delta);
-                if (next === items) return;
-                onReplace(list, next);
-                if (on) onSelect({ listKey: list.key, index: index + delta });
-              };
+            {items.map((item) => {
+              const on = selected?.listKey === list.key && selected.id === item.__id;
+              const shift = (delta) => onChange(list.key, (current) => moveItem(current, item.__id, delta));
               return (
-                <div key={index} className={on ? 'ad-item is-on' : 'ad-item'}>
+                <div key={item.__id} className={on ? 'ad-item is-on' : 'ad-item'}>
                   <button
                     type="button"
                     className="ad-item-title"
                     aria-current={on ? 'true' : undefined}
-                    onClick={() => onSelect({ listKey: list.key, index })}
+                    onClick={() => onSelect({ listKey: list.key, id: item.__id })}
                   >
                     {item.current && <span className="ad-dot" role="img" aria-label="Currently building" />}
                     {list.titleOf(item)}
@@ -70,13 +66,10 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
   const lists = section.kind === 'lists' ? listsFor(sectionId, edited) : [];
   const activeList = lists.find((list) => list.key === selected?.listKey);
   const items = activeList ? getIn(edited[activeList.file], activeList.path) : null;
-  const item = items?.[selected.index];
+  const item = items?.find((candidate) => candidate.__id === selected.id);
 
-  const replaceList = (list, next) => {
-    setEdited((current) => ({
-      ...current,
-      [list.file]: list.path.length ? setIn(current[list.file], list.path, next) : next,
-    }));
+  const changeList = (listKey, change) => {
+    setEdited((current) => updateList(current, sectionId, listKey, change));
   };
 
   const openSection = (id) => {
@@ -108,19 +101,24 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
 
       {section.kind === 'lists' && (
         <>
-          <ItemLists lists={lists} edited={edited} selected={selected} onSelect={setSelected} onReplace={replaceList} />
+          <ItemLists lists={lists} edited={edited} selected={selected} onSelect={setSelected} onChange={changeList} />
           <main className="ad-main">
             {item ? (
               <>
                 <button type="button" className="ad-link ad-back" onClick={() => setSelected(null)}>← Back to list</button>
                 <ItemForm
-                  key={`${activeList.key}-${selected.index}`}
+                  key={item.__id}
                   schemaName={activeList.schema}
                   item={item}
                   canDelete={activeList.canDelete}
-                  onChange={(next) => replaceList(activeList, items.map((it, i) => (i === selected.index ? next : it)))}
+                  onChange={(change) => {
+                    const { key: listKey } = activeList;
+                    const { __id: id } = item;
+                    setEdited((current) => updateItem(current, sectionId, listKey, id, change));
+                  }}
                   onDelete={() => {
-                    replaceList(activeList, items.filter((_, i) => i !== selected.index));
+                    const { __id: id } = item;
+                    changeList(activeList.key, (current) => current.filter((it) => it.__id !== id));
                     setSelected(null);
                   }}
                   call={call}
@@ -139,7 +137,10 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
         <main className="ad-main ad-main-full">
           <PageText
             text={edited.site.text}
-            onChange={(text) => setEdited((current) => ({ ...current, site: { ...current.site, text } }))}
+            onChange={(change) => setEdited((current) => ({
+              ...current,
+              site: { ...current.site, text: change(current.site.text) },
+            }))}
             call={call}
           />
         </main>

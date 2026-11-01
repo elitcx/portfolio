@@ -16,12 +16,13 @@ export default function ItemForm({ schemaName, item, canDelete, onChange, onDele
   const [confirming, setConfirming] = useState(false);
 
   const fields = Object.entries(SCHEMAS[schemaName]).map(([key, field]) => {
-    const props = { key, field, value: item[key], onChange: (value) => onChange({ ...item, [key]: value }) };
+    const props = { key, field, value: item[key], onChange: (value) => onChange((it) => ({ ...it, [key]: value })) };
+    const update = (change) => onChange((it) => ({ ...it, [key]: change(it[key]) }));
 
     switch (field.type) {
       case 'text': return <TextField {...props} />;
-      case 'loc': return <LocalizedField {...props} call={call} />;
-      case 'locLong': return <LocalizedField {...props} call={call} long />;
+      case 'loc': return <LocalizedField key={key} field={field} value={item[key]} update={update} call={call} />;
+      case 'locLong': return <LocalizedField key={key} field={field} value={item[key]} update={update} call={call} long rich />;
       case 'link': return <LinkField {...props} />;
       case 'number': return <NumberField {...props} />;
       case 'select': return <SelectField {...props} />;
@@ -36,9 +37,9 @@ export default function ItemForm({ schemaName, item, canDelete, onChange, onDele
             previewOf={previewOf}
             onPick={async (file) => {
               const path = await uploadPicture(field.upload, item.title, file);
-              onChange({ ...item, [key]: path });
+              onChange((it) => ({ ...it, [key]: path }));
             }}
-            onClear={() => onChange({ ...item, [key]: '' })}
+            onClear={() => onChange((it) => ({ ...it, [key]: '' }))}
           />
         );
       // `fixed` and `list` fields are kept as they are, not edited in this form.

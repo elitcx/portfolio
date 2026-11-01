@@ -31,6 +31,11 @@ export const failureDelay = (count) => Math.min(500 * 2 ** count, 5000);
 // The cause goes to the Vercel logs. The browser only ever gets a generic line.
 export function sendFailure(res, error) {
   console.error(error);
+  // 502, not 401: a 401 would make the dashboard ask for the admin password.
+  if (error.status === 401 || error.status === 403) {
+    res.status(502).json({ error: 'The GitHub token was rejected or has expired. Update it in Vercel. Your edits are still here' });
+    return;
+  }
   res.status(500).json({ error: 'Something went wrong on the server. Your edits are still here' });
 }
 

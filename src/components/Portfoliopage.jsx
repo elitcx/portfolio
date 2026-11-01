@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import ImageZoom from './Imagezoom.jsx';
+import RichText from './RichText.jsx';
 import { projects } from '../content/index.js';
 import { useReveal } from '../hooks/UseReveal.js';
 import { useLang } from '../i18n/lang.js';
@@ -145,7 +146,7 @@ function CurrentProjectCard({ p, onZoom }) {
         </h2>
 
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: 'var(--mut)', textWrap: 'pretty' }}>
-          {p.description}
+          <RichText value={p.description} />
         </p>
 
         {p.period && (
@@ -422,7 +423,7 @@ export default function PortfolioPage() {
                   )}
 
                   <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--mut)', textWrap: 'pretty', flex: 1 }}>
-                    {p.description}
+                    <RichText value={p.description} />
                   </p>
 
                   <ProjectLinks p={p} />
