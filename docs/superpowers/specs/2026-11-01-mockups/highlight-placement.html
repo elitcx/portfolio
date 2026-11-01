@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Semi+Condensed:wght@600;700;800;900&display=swap">
+<style>
+  .kj { background:#0C0B0B; color:#EDECEA; font-family:Barlow,system-ui,sans-serif; width:100%; padding:24px; text-align:left; box-sizing:border-box; }
+  .kj * { box-sizing:border-box; }
+  .kj-label { font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#6E6B68; }
+  .kj-now { display:inline-flex; align-items:center; gap:8px; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#F87171; }
+  .kj-dot { width:8px; height:8px; border-radius:50%; background:#DC2626; animation:kjp 1.8s ease-in-out infinite; flex-shrink:0; }
+  @keyframes kjp { 0%,100%{ box-shadow:0 0 0 0 rgba(220,38,38,.55);} 60%{ box-shadow:0 0 0 7px rgba(220,38,38,0);} }
+  @media (prefers-reduced-motion: reduce) { .kj-dot { animation:none; } }
+  .kj-h1 { font-family:'Barlow Semi Condensed',sans-serif; font-weight:900; line-height:.9; letter-spacing:-.02em; margin:0; }
+  .kj-title { font-family:'Barlow Semi Condensed',sans-serif; font-weight:800; font-size:28px; line-height:1.1; margin:0; letter-spacing:-.01em; }
+  .kj-p { margin:0; font-size:14px; line-height:1.6; color:#9B9894; }
+  .kj-pill { display:inline-block; padding:9px 14px; border-radius:999px; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; border:1px solid rgba(255,255,255,.1); color:#EDECEA; }
+  .kj-feature { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); border:1px solid rgba(220,38,38,.45); border-radius:18px; overflow:hidden; background:rgba(255,255,255,.04); }
+  .kj-feature img { width:100%; height:100%; min-height:200px; object-fit:cover; object-position:top; display:block; }
+  .kj-feature-body { padding:24px; display:flex; flex-direction:column; gap:12px; justify-content:center; }
+  .kj-filters { display:flex; flex-wrap:wrap; gap:8px; padding:14px 0; border-top:1px solid rgba(255,255,255,.1); border-bottom:1px solid rgba(255,255,255,.1); margin-top:22px; }
+  .kj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .kj-ghostcard { height:70px; border:1px solid rgba(255,255,255,.1); border-radius:12px; background:rgba(255,255,255,.04); }
+  .kj-hero { height:150px; border-radius:12px; background:#090808; background-image:radial-gradient(rgba(255,255,255,.17) 1px, transparent 1px); background-size:18px 18px; display:flex; flex-direction:column; justify-content:center; padding:0 22px; }
+  .kj-strip { display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; justify-content:space-between; padding:14px 18px; border-top:1px solid rgba(255,255,255,.1); border-bottom:1px solid rgba(255,255,255,.1); margin-top:14px; }
+  .kj-strip b { font-family:'Barlow Semi Condensed',sans-serif; font-weight:800; font-size:19px; }
+  .kj-tag { font-size:12px; color:#6E6B68; margin:10px 0 8px; }
+  .full-card .card-image { aspect-ratio:auto; display:block; }
+  @media (max-width:640px) { .kj-feature { grid-template-columns:1fr; } .kj-grid { grid-template-columns:1fr 1fr; } }
+</style>
+
+<h2>Where should your current project show up?</h2>
+<p class="subtitle">Your home page has no project section today, so "the top" could mean two places. Personal Dashboard is only a sample here.</p>
+
+<div class="cards" style="grid-template-columns:1fr">
+
+  <div class="card full-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="kj">
+      <div class="kj-tag">/projects</div>
+      <h1 class="kj-h1" style="font-size:52px;margin-bottom:20px">Projects</h1>
+      <div class="kj-feature">
+        <img src="/files/dashboard.webp" alt="">
+        <div class="kj-feature-body">
+          <span class="kj-now"><span class="kj-dot"></span>Currently building</span>
+          <h3 class="kj-title">Personal Dashboard</h3>
+          <p class="kj-p">Full-stack Next.js dashboard with accounts, a Prisma database and Gemini summaries.</p>
+          <span class="kj-label">Started May 2026 · Solo</span>
+          <div><span class="kj-pill">Repo →</span></div>
+        </div>
+      </div>
+      <div class="kj-filters"><span class="kj-pill">All</span><span class="kj-pill">React</span><span class="kj-pill">Python</span></div>
+      <div class="kj-grid"><div class="kj-ghostcard"></div><div class="kj-ghostcard"></div><div class="kj-ghostcard"></div></div>
+    </div></div>
+    <div class="card-body">
+      <h3>A. Top of the Projects page</h3>
+      <p>A large card above the filters. Only people who open Projects see it.</p>
+    </div>
+  </div>
+
+  <div class="card full-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="kj">
+      <div class="kj-tag">/ (home)</div>
+      <div class="kj-hero">
+        <h1 class="kj-h1" style="font-size:40px">Kenneth Jehezkiel</h1>
+      </div>
+      <div class="kj-strip">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px">
+          <span class="kj-now"><span class="kj-dot"></span>Currently building</span>
+          <b>Personal Dashboard</b>
+        </div>
+        <span class="kj-pill">See project →</span>
+      </div>
+      <div class="kj-label" style="margin-top:22px">01 — About me</div>
+    </div></div>
+    <div class="card-body">
+      <h3>B. Slim strip under the home hero</h3>
+      <p>Every visitor sees it in the first scroll. It only gives the name, and the link goes to Projects.</p>
+    </div>
+  </div>
+
+  <div class="card full-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image"><div class="kj">
+      <div class="kj-tag">/ (home)</div>
+      <div class="kj-strip" style="margin-top:0">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px">
+          <span class="kj-now"><span class="kj-dot"></span>Currently building</span>
+          <b>Personal Dashboard</b>
+        </div>
+        <span class="kj-pill">See project →</span>
+      </div>
+      <div class="kj-tag" style="margin-top:22px">/projects</div>
+      <div class="kj-feature">
+        <img src="/files/dashboard.webp" alt="" style="min-height:150px">
+        <div class="kj-feature-body">
+          <span class="kj-now"><span class="kj-dot"></span>Currently building</span>
+          <h3 class="kj-title">Personal Dashboard</h3>
+          <p class="kj-p">Full-stack Next.js dashboard with accounts, a Prisma database and Gemini summaries.</p>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-body">
+      <h3>C. Both</h3>
+      <p>The strip on home leads to the large card on Projects. One switch in the dashboard controls both.</p>
+    </div>
+  </div>
+
+</div>
