@@ -14,7 +14,7 @@ export const clearedCookie = () => `${COOKIE_NAME}=; ${COOKIE_FLAGS}; Max-Age=0`
 // deployments hold no secrets, so they cannot log in at all.
 export function originAllowed(origin, vercelEnv) {
   if (origin === SITE_URL) return true;
-  return vercelEnv !== 'production' && vercelEnv !== 'preview'
+  return vercelEnv === 'development'
     && /^http:\/\/localhost:\d+$/.test(origin ?? '');
 }
 
