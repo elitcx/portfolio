@@ -1,8 +1,10 @@
 import React, { useMemo, useState } from 'react';
 
 import ImageZoom from './Imagezoom.jsx';
-import projects from '../assets/projects.json';
+import { projects } from '../content/index.js';
 import { useReveal } from '../hooks/UseReveal.js';
+import { useLang } from '../i18n/lang.js';
+import { plainText } from '../lib/richText.js';
 import { CATEGORIES, getCategoryColor, thumbSrc, fullSrc } from '../utils/Constants.js';
 
 const EYEBROW = {
@@ -29,13 +31,16 @@ const GITHUB_PATH =
 // Precomputed once: search haystack and resolved image variants per project.
 const INDEXED = projects.map((p) => ({
   ...p,
+  period: p.period.en,
+  description: p.description.en,
   thumb: thumbSrc(p.image),
   full: fullSrc(p.image),
-  haystack: `${p.title} ${p.description} ${p.categories.join(' ')}`.toLowerCase(),
+  haystack: `${p.title} ${p.description.en} ${p.categories.join(' ')}`.toLowerCase(),
   tags: p.categories.map((c) => ({ name: c, color: getCategoryColor(c) })),
 }));
 
 export default function PortfolioPage() {
+  const { s } = useLang();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [zoom, setZoom] = useState(null);
@@ -58,9 +63,9 @@ export default function PortfolioPage() {
     >
       <div style={{ maxWidth: 1180, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
-          <span style={EYEBROW}>My work</span>
+          <span style={EYEBROW}>{s('projects.eyebrow')}</span>
           <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
-          <span style={META}>{projects.length} shipped</span>
+          <span style={META}>{plainText(s('projects.shipped'), { count: projects.length })}</span>
         </div>
 
         <h1
@@ -73,7 +78,7 @@ export default function PortfolioPage() {
             letterSpacing: '-0.02em',
           }}
         >
-          Projects
+          {s('projects.heading')}
         </h1>
 
         {/* Filter bar */}
@@ -93,10 +98,10 @@ export default function PortfolioPage() {
           <input
             type="text"
             className="kj-search"
-            placeholder="Search projects…"
+            placeholder={s('projects.search')}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search projects"
+            aria-label={s('projects.searchAria')}
             style={{
               width: 260,
               maxWidth: '100%',
@@ -134,7 +139,7 @@ export default function PortfolioPage() {
                     cursor: 'pointer',
                   }}
                 >
-                  {name}
+                  {name === 'All' ? s('projects.filterAll') : name}
                 </button>
               );
             })}
@@ -167,7 +172,7 @@ export default function PortfolioPage() {
               >
                 <button
                   onClick={() => setZoom({ src: p.full, alt: p.title })}
-                  aria-label={`View screenshot of ${p.title}`}
+                  aria-label={`${s('projects.viewShot')}: ${p.title}`}
                   style={{
                     position: 'relative',
                     display: 'block',
@@ -277,7 +282,7 @@ export default function PortfolioPage() {
                         marginTop: -4,
                       }}
                     >
-                      {p.period} · Solo
+                      {p.period} · {s('projects.solo')}
                     </span>
                   )}
 
@@ -310,7 +315,7 @@ export default function PortfolioPage() {
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                           <path d={GITHUB_PATH} />
                         </svg>
-                        Repo →
+                        {s('projects.repo')}
                       </a>
                     )}
                     {p.deployed && (
@@ -334,7 +339,7 @@ export default function PortfolioPage() {
                           textTransform: 'uppercase',
                         }}
                       >
-                        Live site →
+                        {s('projects.live')}
                       </a>
                     )}
                   </div>
@@ -353,10 +358,10 @@ export default function PortfolioPage() {
                 color: 'var(--faint)',
               }}
             >
-              Nothing here
+              {s('projects.emptyTitle')}
             </div>
             <div style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em', marginTop: 14 }}>
-              No projects match that filter
+              {s('projects.emptyBody')}
             </div>
           </div>
         )}

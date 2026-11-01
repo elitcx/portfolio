@@ -37,7 +37,7 @@ const FULL = { width: 1800, withoutEnlargement: true };
 // Read from the same source the app renders, so adding a project can never
 // silently skip its derivatives (which would 404 in production).
 const projects = JSON.parse(
-  await fs.readFile(path.join(ROOT, 'src', 'assets', 'projects.json'), 'utf8')
+  await fs.readFile(path.join(ROOT, 'src', 'content', 'projects.json'), 'utf8')
 );
 const PROJECT_IMAGES = projects.map((p) => path.basename(p.image));
 

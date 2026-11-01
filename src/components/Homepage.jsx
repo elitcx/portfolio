@@ -2,19 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import ImageZoom from './Imagezoom.jsx';
 import { useReveal, usePrefersReducedMotion } from '../hooks/UseReveal.js';
+import RichText from './RichText.jsx';
+import { certificates, site } from '../content/index.js';
+import { useLang } from '../i18n/lang.js';
+import { plainText } from '../lib/richText.js';
 import {
-  facts,
-  timeline,
-  skillGroups,
-  stats,
-  certificates,
   CERT_PREVIEW_COUNT,
   CV,
   CODING_SINCE,
   TIMELINE_START,
   currentYear,
-  computeAge,
-  BIRTH_DATE,
   getBadgeColor,
   thumbSrc,
   fullSrc,
@@ -103,6 +100,7 @@ function GroupLabel({ title, meta }) {
 const REST_MASK = 'radial-gradient(circle 0px at 50% 50%,#000 42%,rgba(0,0,0,0.35) 72%,transparent 100%)';
 
 function ProfilePhoto({ reduced }) {
+  const { s } = useLang();
   const reveal = useReveal();
   const tiltRef = useRef(null);
   const revealRef = useRef(null);
@@ -219,7 +217,7 @@ function ProfilePhoto({ reduced }) {
         >
           <img
             src={photo}
-            alt="Kenneth's profile photo"
+            alt={s('about.photoAlt')}
             width="900"
             height="900"
             decoding="async"
@@ -272,8 +270,8 @@ function ProfilePhoto({ reduced }) {
             color: 'var(--dim)',
           }}
         >
-          <span>Solo, Indonesia</span>
-          <span style={{ color: 'var(--red-l)' }}>2025</span>
+          <span>{s('about.photoPlace')}</span>
+          <span style={{ color: 'var(--red-l)' }}>{s('about.photoYear')}</span>
         </div>
       </div>
     </div>
@@ -283,6 +281,7 @@ function ProfilePhoto({ reduced }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
+  const { l, s } = useLang();
   const reduced = usePrefersReducedMotion();
   const reveal = useReveal();
   const [zoom, setZoom] = useState(null);
@@ -293,7 +292,7 @@ export default function HomePage() {
       {/* 01 · About ------------------------------------------------------- */}
       <section id="about" data-screen-label="About" style={{ ...SECTION, background: 'var(--panel)' }}>
         <div style={SHELL}>
-          <SectionHeader num="01" label="About Me" />
+          <SectionHeader num="01" label={s('about.label')} />
 
           <div
             style={{
@@ -319,7 +318,7 @@ export default function HomePage() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                Hi, I'm Kenneth<br />Jehezkiel M.W.
+                <RichText value={s('about.heading')} />
               </h2>
 
               <p
@@ -334,9 +333,7 @@ export default function HomePage() {
                   textWrap: 'pretty',
                 }}
               >
-                I'm a <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>{computeAge(BIRTH_DATE)}-year-old student at SMA Regina Pacis Surakarta</strong>,
-                passionate about <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>Software Engineering and Development</strong>.
-                I love turning ideas into real, working applications and exploring how code can solve everyday problems.
+                <RichText value={s('about.bio1')} />
               </p>
 
               <p
@@ -351,8 +348,7 @@ export default function HomePage() {
                   textWrap: 'pretty',
                 }}
               >
-                Whether crafting clean frontends or tackling competitive programming,{' '}
-                <strong style={{ color: 'var(--fg)', fontWeight: 600 }}>I'm always eager to learn, build, and grow.</strong>
+                <RichText value={s('about.bio2')} />
               </p>
 
               <div
@@ -368,7 +364,7 @@ export default function HomePage() {
                   maxWidth: '48ch',
                 }}
               >
-                <span style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em' }}>What drives me</span>
+                <span style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em' }}>{s('about.drivesLabel')}</span>
                 <span
                   style={{
                     fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
@@ -377,7 +373,7 @@ export default function HomePage() {
                     textWrap: 'pretty',
                   }}
                 >
-                  I build for the people around me — my school, my community, and the problems I hit every day.
+                  {s('about.drives')}
                 </span>
               </div>
 
@@ -413,8 +409,8 @@ export default function HomePage() {
                   <path d="M12 2.25a.75.75 0 0 1 .75.75v11.19l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Z" />
                   <path d="M3.75 15a.75.75 0 0 1 .75.75v3a.75.75 0 0 0 .75.75h13.5a.75.75 0 0 0 .75-.75v-3a.75.75 0 0 1 1.5 0v3a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18.75v-3a.75.75 0 0 1 .75-.75Z" />
                 </svg>
-                {CV.label}
-                <span style={{ color: 'var(--dim)', fontWeight: 600, letterSpacing: '0.12em' }}>{CV.meta}</span>
+                {s('cv.label')}
+                <span style={{ color: 'var(--dim)', fontWeight: 600, letterSpacing: '0.12em' }}>{s('cv.meta')}</span>
               </a>
             </div>
 
@@ -422,7 +418,7 @@ export default function HomePage() {
           </div>
 
           {/* Fast facts */}
-          <GroupLabel title="Fast facts" meta="Off the clock" />
+          <GroupLabel title={s('about.factsTitle')} meta={s('about.factsMeta')} />
           <div
             style={{
               display: 'grid',
@@ -433,16 +429,16 @@ export default function HomePage() {
               borderTop: '1px solid var(--line)',
             }}
           >
-            {facts.map((f) => (
-              <div key={f.label} data-reveal ref={reveal} className="kj-row" style={ROW}>
-                <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{f.label}</span>
-                <span style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--mut)', textWrap: 'pretty' }}>{f.value}</span>
+            {site.facts.map((f, i) => (
+              <div key={i} data-reveal ref={reveal} className="kj-row" style={ROW}>
+                <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{l(f.label)}</span>
+                <span style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--mut)', textWrap: 'pretty' }}>{l(f.value)}</span>
               </div>
             ))}
           </div>
 
           {/* By the numbers */}
-          <GroupLabel title="By the numbers" meta={`${CODING_SINCE} — ${currentYear()}`} />
+          <GroupLabel title={s('about.numbersTitle')} meta={`${CODING_SINCE} — ${currentYear()}`} />
           <div
             style={{
               display: 'grid',
@@ -453,8 +449,8 @@ export default function HomePage() {
               borderTop: '1px solid var(--line)',
             }}
           >
-            {stats.map((s) => (
-              <div key={s.label} data-reveal ref={reveal} className="kj-row" style={{ padding: '26px 16px 30px', marginLeft: -16 }}>
+            {site.stats.map((stat, i) => (
+              <div key={i} data-reveal ref={reveal} className="kj-row" style={{ padding: '26px 16px 30px', marginLeft: -16 }}>
                 <div
                   style={{
                     fontFamily: 'var(--display)',
@@ -464,15 +460,15 @@ export default function HomePage() {
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  {s.value}
+                  <RichText value={l(stat.value)} />
                 </div>
-                <div style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em', marginTop: 10 }}>{s.label}</div>
+                <div style={{ ...EYEBROW, fontSize: 12, letterSpacing: '0.2em', marginTop: 10 }}>{l(stat.label)}</div>
               </div>
             ))}
           </div>
 
           {/* How it started */}
-          <GroupLabel title="How it started" meta={`${TIMELINE_START} — ${currentYear()}`} />
+          <GroupLabel title={s('about.timelineTitle')} meta={`${TIMELINE_START} — ${currentYear()}`} />
           <div
             style={{
               display: 'grid',
@@ -483,8 +479,8 @@ export default function HomePage() {
               borderTop: '1px solid var(--line)',
             }}
           >
-            {timeline.map((t) => (
-              <div key={t.year} data-reveal ref={reveal} className="kj-row" style={{ ...ROW, gap: 12, minHeight: 160 }}>
+            {site.timeline.map((t, i) => (
+              <div key={i} data-reveal ref={reveal} className="kj-row" style={{ ...ROW, gap: 12, minHeight: 160 }}>
                 <span
                   style={{
                     fontFamily: 'var(--display)',
@@ -497,7 +493,7 @@ export default function HomePage() {
                 >
                   {t.year}
                 </span>
-                <span style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--mut)', textWrap: 'pretty' }}>{t.text}</span>
+                <span style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--mut)', textWrap: 'pretty' }}>{l(t.text)}</span>
               </div>
             ))}
           </div>
@@ -507,35 +503,37 @@ export default function HomePage() {
       {/* 02 · Skills ------------------------------------------------------ */}
       <section data-screen-label="Skills" style={{ ...SECTION, background: 'var(--bg)' }}>
         <div style={SHELL}>
-          <SectionHeader num="02" label="Technical skills" />
-          <h2 style={HEADING}>What I Work With</h2>
+          <SectionHeader num="02" label={s('skills.label')} />
+          <h2 style={HEADING}>{s('skills.heading')}</h2>
 
-          {skillGroups.map((g) => (
-          <div key={g.group}>
-          <GroupLabel title={g.group} meta={g.meta} />
+          {site.skillGroups.map((g, gi) => (
+          <div key={gi}>
+          <GroupLabel title={l(g.group)} meta={plainText(l(g.meta), { count: g.items.length })} />
           <div style={{ display: 'flex', flexDirection: 'column', marginTop: 24 }}>
-            {g.items.map((s) => (
+            {g.items.map((skill, si) => (
               <div
-                key={s.lang}
+                key={si}
                 data-reveal
                 ref={reveal}
                 className="kj-row"
                 style={{ padding: '26px 16px 24px', marginLeft: -16, borderTop: '1px solid var(--line)' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-                  <img
-                    src={iconSrc(s.icon)}
-                    alt=""
-                    aria-hidden="true"
-                    width="22"
-                    height="22"
-                    decoding="async"
-                    style={{ width: 22, height: 22, flexShrink: 0, objectFit: 'contain' }}
-                  />
+                  {skill.icon && (
+                    <img
+                      src={iconSrc(skill.icon)}
+                      alt=""
+                      aria-hidden="true"
+                      width="22"
+                      height="22"
+                      decoding="async"
+                      style={{ width: 22, height: 22, flexShrink: 0, objectFit: 'contain' }}
+                    />
+                  )}
                   <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 22, letterSpacing: '0.01em', minWidth: 130 }}>
-                    {s.lang}
+                    {skill.lang}
                   </span>
-                  <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{s.detail}</span>
+                  <span style={{ ...EYEBROW, fontSize: 11, letterSpacing: '0.2em' }}>{l(skill.detail)}</span>
                   {/* Level and score travel together so a narrow row wraps them
                       as one unit instead of splitting them across two lines. */}
                   {/* The bar carries the proportion; printing the same number beside
@@ -548,14 +546,14 @@ export default function HomePage() {
                       fontWeight: 700,
                       letterSpacing: '0.18em',
                       textTransform: 'uppercase',
-                      color: s.color,
+                      color: skill.color,
                     }}
                   >
-                    {s.level}
+                    {l(skill.level)}
                   </span>
                 </div>
                 <div style={{ height: 3, width: '100%', background: 'var(--line2)', marginTop: 18, overflow: 'hidden' }}>
-                  <div className="kj-bar" style={{ height: '100%', width: `${s.pct}%`, background: s.color }} />
+                  <div className="kj-bar" style={{ height: '100%', width: `${skill.pct}%`, background: skill.color }} />
                 </div>
               </div>
             ))}
@@ -569,8 +567,8 @@ export default function HomePage() {
       {/* 03 · Certifications ---------------------------------------------- */}
       <section data-screen-label="Certifications" style={{ ...SECTION, background: 'var(--panel)' }}>
         <div style={SHELL}>
-          <SectionHeader num="03" label="Achievements" meta={`${certificates.length} credentials`} />
-          <h2 style={HEADING}>Certifications &amp; Awards</h2>
+          <SectionHeader num="03" label={s('certs.label')} meta={plainText(s('certs.meta'), { count: certificates.length })} />
+          <h2 style={HEADING}>{s('certs.heading')}</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 24 }}>
             {(showAllCerts ? certificates : certificates.slice(0, CERT_PREVIEW_COUNT)).map((c, i) => (
@@ -654,10 +652,10 @@ export default function HomePage() {
                       fontWeight: 700,
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',
-                      color: getBadgeColor(c.description),
+                      color: getBadgeColor(c.tier),
                     }}
                   >
-                    {c.description}
+                    {l(c.result)}
                   </span>
                 </span>
               </button>
@@ -691,8 +689,8 @@ export default function HomePage() {
                 }}
               >
                 {showAllCerts
-                  ? 'Show fewer'
-                  : `Show all ${certificates.length}`}
+                  ? s('certs.showFewer')
+                  : plainText(s('certs.showAll'), { count: certificates.length })}
                 <span
                   aria-hidden="true"
                   style={{

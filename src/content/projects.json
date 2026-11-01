@@ -1,0 +1,184 @@
+[
+  {
+    "title": "Personal Dashboard",
+    "period": {
+      "en": "May – Jun 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Full-stack Next.js dashboard with account authentication, a Prisma-backed database, and Gemini-generated summaries. Tracks schedule, sleep, habits, gym progress, and finances, and syncs with Google Calendar. Installable as a PWA. Built solo.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/dashboard",
+    "deployed": "https://elitcx123.vercel.app",
+    "categories": [
+      "NextJS",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "API Integration",
+      "AI",
+      "Website",
+      "Full-Stack"
+    ],
+    "image": "/images/dashboard.webp"
+  },
+  {
+    "title": "U-Tech Capture Station",
+    "period": {
+      "en": "Aug 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Interactive capture station built for a U-Tech event. A procedural 3D rotary telephone sits over a full-bleed wordmark; picking up the handset plays a recorded message, then the page turns into a live camera and microphone booth with a waveform visualiser that writes each take straight to disk.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/utech-phone",
+    "deployed": "https://utech-phone.vercel.app/",
+    "categories": [
+      "JavaScript",
+      "WebGL",
+      "3D",
+      "Web APIs",
+      "Website"
+    ],
+    "image": "/images/utechphone.webp"
+  },
+  {
+    "title": "StudyMate",
+    "period": {
+      "en": "Apr – Jun 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Cross-platform learning app for students, teachers, and admins at SMA Regina Pacis Surakarta, covering exams, materials, quizzes, and grades behind role-based access. React Native and Expo on Firebase. Built solo, demoed to a teacher and a small group of students.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/StudyMate",
+    "categories": [
+      "React Native",
+      "Full-Stack",
+      "Firebase",
+      "iOS",
+      "Android",
+      "Mobile"
+    ],
+    "image": "/images/studymate.webp"
+  },
+  {
+    "title": "UTech Community Website",
+    "period": {
+      "en": "May – Jun 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Community site for U-Tech, the technology community for SMP and SMA Regina Pacis students exploring modern tech. React with client-side routing, built solo.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/utech-website",
+    "deployed": "https://ursulinetechnology.vercel.app/",
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Website"
+    ],
+    "image": "/images/utech.webp"
+  },
+  {
+    "title": "Traffic Maze Solver",
+    "period": {
+      "en": "Aug 2025 – Apr 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Dijkstra implementation in C++ that finds the least congested route across a simulated 2D traffic grid, weighting each cell by traffic density rather than raw distance.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/Traffic-Maze-Solver",
+    "categories": [
+      "C++",
+      "DSA"
+    ],
+    "image": "/images/traffic.jpeg"
+  },
+  {
+    "title": "One Choice Endless Paths",
+    "period": {
+      "en": "Mar 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Branching narrative that hands the reader one small act of kindness, giving up a seat to an elderly stranger, then follows where each choice leads. React and Framer Motion, built in two days.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/onechoiceendlesspaths",
+    "deployed": "https://onechoiceep.vercel.app",
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Website"
+    ],
+    "image": "/images/onechoiceep.png"
+  },
+  {
+    "title": "Tokopedia Webscraper",
+    "period": {
+      "en": "Jun 2025",
+      "id": ""
+    },
+    "description": {
+      "en": "Selenium and BeautifulSoup scraper that walks Tokopedia search results across multiple pages, pulling name, price, image, link, and units sold from each listing and writing the set to a spreadsheet with pandas.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/Tokopedia-Webscraper",
+    "categories": [
+      "Python",
+      "BeautifulSoup",
+      "Pandas",
+      "Selenium"
+    ],
+    "image": "/images/webscraper.webp"
+  },
+  {
+    "title": "Push Up and Pull Up Challenge App",
+    "period": {
+      "en": "Jan – May 2026",
+      "id": ""
+    },
+    "description": {
+      "en": "Year-long challenge tracker: one push-up for every day of the year, one pull-up for every week of it. React and Tailwind.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/fitness-challenge",
+    "deployed": "https://elitcxchallenge.vercel.app",
+    "categories": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Tailwind",
+      "Website"
+    ],
+    "image": "/images/challenge.webp"
+  },
+  {
+    "title": "Finance Tracker",
+    "period": {
+      "en": "Nov 2025",
+      "id": ""
+    },
+    "description": {
+      "en": "Console finance tracker in Python. Appends dated income and expense entries with their reasons to a local file and carries a running balance across sessions, with input validation on every field.",
+      "id": ""
+    },
+    "link": "https://github.com/elitcx/Finance-Tracker",
+    "categories": [
+      "Python"
+    ],
+    "image": "/images/financetrackercode.webp"
+  }
+]

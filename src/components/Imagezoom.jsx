@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 
+import { useLang } from '../i18n/lang.js';
+
 export default function ImageZoom({ src, alt, onClose }) {
+  const { s } = useLang();
+
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handleKey);
@@ -25,7 +29,7 @@ export default function ImageZoom({ src, alt, onClose }) {
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`Zoomed view of ${alt}`}
+      aria-label={`${s('zoom.label')}: ${alt}`}
       style={{
         position: 'fixed',
         inset: 0,
@@ -56,7 +60,7 @@ export default function ImageZoom({ src, alt, onClose }) {
       <button
         autoFocus
         onClick={onClose}
-        aria-label="Close"
+        aria-label={s('zoom.close')}
         className="kj-close"
         style={{
           position: 'absolute',

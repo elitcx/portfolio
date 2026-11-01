@@ -9,8 +9,10 @@ import ContactPage   from './components/Contactpage.jsx';
 import Footer        from './components/Footer.jsx';
 
 import { SITE_URL, pageById, pageFromPath } from './utils/Constants.js';
+import { useLang } from './i18n/lang.js';
 
 export default function App() {
+  const { s } = useLang();
   const [darkMode, setDarkMode] = useState(() => {
     try {
       const saved = localStorage.getItem('theme');
@@ -107,7 +109,7 @@ export default function App() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-red-600 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-lg"
       >
-        Skip to content
+        {s('app.skip')}
       </a>
 
       <NavigationBar

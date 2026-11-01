@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { usePrefersReducedMotion } from '../hooks/UseReveal.js';
+import { useLang } from '../i18n/lang.js';
 import { currentYear } from '../utils/Constants.js';
 
 const GRID = 28;
@@ -231,6 +232,7 @@ const META = {
 };
 
 export default function Hero({ onScroll, theme = 'dark' }) {
+  const { s } = useLang();
   const reduced = usePrefersReducedMotion();
   const isDark = theme === 'dark';
 
@@ -271,8 +273,8 @@ export default function Hero({ onScroll, theme = 'dark' }) {
           ...META,
         }}
       >
-        <span>Portfolio · {currentYear()}</span>
-        <span>Surakarta, ID</span>
+        <span>{s('hero.portfolio')} · {currentYear()}</span>
+        <span>{s('hero.location')}</span>
       </div>
 
       <div
@@ -287,7 +289,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
         }}
       >
         <h1 style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
-          Kenneth Jehezkiel M.W. — Competitive Programmer from Surakarta
+          {s('hero.srHeading')}
         </h1>
 
         <div style={{ overflow: 'hidden', paddingBottom: '0.04em' }} aria-hidden="true">
@@ -307,7 +309,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
               whiteSpace: 'nowrap',
             }}
           >
-            KENNETH
+            {s('hero.name')}
           </div>
         </div>
 
@@ -333,7 +335,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
               color: 'var(--mut)',
             }}
           >
-            Competitive Programmer · Surakarta
+            {s('hero.role')}
           </span>
         </div>
 
@@ -362,20 +364,20 @@ export default function Hero({ onScroll, theme = 'dark' }) {
         }}
       >
         <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>1st Place</span>
+          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>{s('hero.cred1Value')}</span>
           <span aria-hidden="true">·</span>
-          <span>OSN-K Informatika 2026</span>
+          <span>{s('hero.cred1Label')}</span>
         </span>
 
         <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>10+</span>
-          <span>Projects shipped</span>
+          <span style={{ color: 'var(--fg)', fontWeight: 700 }}>{s('hero.cred2Value')}</span>
+          <span>{s('hero.cred2Label')}</span>
         </span>
       </div>
 
       <button
         onClick={onScroll}
-        aria-label="Scroll to about"
+        aria-label={s('hero.scrollAria')}
         className="kj-scroll"
         style={{
           position: 'absolute',
@@ -398,7 +400,7 @@ export default function Hero({ onScroll, theme = 'dark' }) {
           padding: 0,
         }}
       >
-        Scroll
+        {s('hero.scroll')}
         <span
           aria-hidden="true"
           style={{

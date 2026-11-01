@@ -1,12 +1,13 @@
 import React from 'react';
 import ThemeSlider from './ThemeSlider.jsx';
 
+import { useLang } from '../i18n/lang.js';
 import { pageById } from '../utils/Constants.js';
 
 const NAV_ITEMS = [
   {
     page: 1,
-    label: 'Home',
+    labelKey: 'nav.home',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
         <path d="M11.47 3.84a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.06l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 0 0 1.061 1.06l8.69-8.69Z" />
@@ -16,7 +17,7 @@ const NAV_ITEMS = [
   },
   {
     page: 2,
-    label: 'Projects',
+    labelKey: 'nav.projects',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
         <path fillRule="evenodd" d="M3 6a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3V6ZM3 15.75a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.25Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3v-2.25Z" clipRule="evenodd" />
@@ -25,7 +26,7 @@ const NAV_ITEMS = [
   },
   {
     page: 3,
-    label: 'Contact',
+    labelKey: 'nav.contact',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
         <path fillRule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clipRule="evenodd" />
@@ -35,6 +36,8 @@ const NAV_ITEMS = [
 ];
 
 export default function NavigationBar({ darkMode, toggleDarkMode, page, changePage }) {
+  const { s } = useLang();
+
   return (
     <nav
       className="kj-nav"
@@ -57,10 +60,11 @@ export default function NavigationBar({ darkMode, toggleDarkMode, page, changePa
         transform: 'translateX(-50%)',
       }}
       role="navigation"
-      aria-label="Main navigation"
+      aria-label={s('nav.label')}
     >
-      {NAV_ITEMS.map(({ page: p, label, icon }) => {
+      {NAV_ITEMS.map(({ page: p, labelKey, icon }) => {
         const active = page === p;
+        const label = s(labelKey);
         return (
           <a
             key={p}

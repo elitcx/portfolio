@@ -1,0 +1,576 @@
+{
+  "banner": "/images/banner.webp",
+  "text": {
+    "app.skip": {
+      "en": "Skip to content",
+      "id": ""
+    },
+    "nav.home": {
+      "en": "Home",
+      "id": ""
+    },
+    "nav.projects": {
+      "en": "Projects",
+      "id": ""
+    },
+    "nav.contact": {
+      "en": "Contact",
+      "id": ""
+    },
+    "nav.label": {
+      "en": "Main navigation",
+      "id": ""
+    },
+    "nav.theme": {
+      "en": "Toggle colour theme",
+      "id": ""
+    },
+    "nav.language": {
+      "en": "Language",
+      "id": ""
+    },
+    "hero.name": {
+      "en": "KENNETH",
+      "id": ""
+    },
+    "hero.portfolio": {
+      "en": "Portfolio",
+      "id": ""
+    },
+    "hero.location": {
+      "en": "Surakarta, ID",
+      "id": ""
+    },
+    "hero.role": {
+      "en": "Competitive Programmer · Surakarta",
+      "id": ""
+    },
+    "hero.srHeading": {
+      "en": "Kenneth Jehezkiel M.W. — Competitive Programmer from Surakarta",
+      "id": ""
+    },
+    "hero.cred1Value": {
+      "en": "1st Place",
+      "id": ""
+    },
+    "hero.cred1Label": {
+      "en": "OSN-K Informatika 2026",
+      "id": ""
+    },
+    "hero.cred2Value": {
+      "en": "10+",
+      "id": ""
+    },
+    "hero.cred2Label": {
+      "en": "Projects shipped",
+      "id": ""
+    },
+    "hero.scroll": {
+      "en": "Scroll",
+      "id": ""
+    },
+    "hero.scrollAria": {
+      "en": "Scroll to about",
+      "id": ""
+    },
+    "about.label": {
+      "en": "About Me",
+      "id": ""
+    },
+    "about.heading": {
+      "en": "Hi, I'm Kenneth\nJehezkiel M.W.",
+      "id": ""
+    },
+    "about.bio1": {
+      "en": "I'm a **{age}-year-old student at SMA Regina Pacis Surakarta**, passionate about **Software Engineering and Development**. I love turning ideas into real, working applications and exploring how code can solve everyday problems.",
+      "id": ""
+    },
+    "about.bio2": {
+      "en": "Whether crafting clean frontends or tackling competitive programming, **I'm always eager to learn, build, and grow.**",
+      "id": ""
+    },
+    "about.drivesLabel": {
+      "en": "What drives me",
+      "id": ""
+    },
+    "about.drives": {
+      "en": "I build for the people around me — my school, my community, and the problems I hit every day.",
+      "id": ""
+    },
+    "about.photoAlt": {
+      "en": "Kenneth's profile photo",
+      "id": ""
+    },
+    "about.photoPlace": {
+      "en": "Solo, Indonesia",
+      "id": ""
+    },
+    "about.photoYear": {
+      "en": "2025",
+      "id": ""
+    },
+    "about.factsTitle": {
+      "en": "Fast facts",
+      "id": ""
+    },
+    "about.factsMeta": {
+      "en": "Off the clock",
+      "id": ""
+    },
+    "about.numbersTitle": {
+      "en": "By the numbers",
+      "id": ""
+    },
+    "about.timelineTitle": {
+      "en": "How it started",
+      "id": ""
+    },
+    "skills.label": {
+      "en": "Technical skills",
+      "id": ""
+    },
+    "skills.heading": {
+      "en": "What I Work With",
+      "id": ""
+    },
+    "certs.label": {
+      "en": "Achievements",
+      "id": ""
+    },
+    "certs.meta": {
+      "en": "{count} credentials",
+      "id": ""
+    },
+    "certs.heading": {
+      "en": "Certifications & Awards",
+      "id": ""
+    },
+    "certs.showAll": {
+      "en": "Show all {count}",
+      "id": ""
+    },
+    "certs.showFewer": {
+      "en": "Show fewer",
+      "id": ""
+    },
+    "cv.label": {
+      "en": "Download CV",
+      "id": ""
+    },
+    "cv.meta": {
+      "en": "PDF · 2 pages",
+      "id": ""
+    },
+    "projects.eyebrow": {
+      "en": "My work",
+      "id": ""
+    },
+    "projects.heading": {
+      "en": "Projects",
+      "id": ""
+    },
+    "projects.shipped": {
+      "en": "{count} shipped",
+      "id": ""
+    },
+    "projects.current": {
+      "en": "Currently building",
+      "id": ""
+    },
+    "projects.search": {
+      "en": "Search projects…",
+      "id": ""
+    },
+    "projects.searchAria": {
+      "en": "Search projects",
+      "id": ""
+    },
+    "projects.filterAll": {
+      "en": "All",
+      "id": ""
+    },
+    "projects.solo": {
+      "en": "Solo",
+      "id": ""
+    },
+    "projects.repo": {
+      "en": "Repo →",
+      "id": ""
+    },
+    "projects.live": {
+      "en": "Live site →",
+      "id": ""
+    },
+    "projects.viewShot": {
+      "en": "View screenshot",
+      "id": ""
+    },
+    "projects.emptyTitle": {
+      "en": "Nothing here",
+      "id": ""
+    },
+    "projects.emptyBody": {
+      "en": "No projects match that filter",
+      "id": ""
+    },
+    "contact.eyebrow": {
+      "en": "Get in touch",
+      "id": ""
+    },
+    "contact.location": {
+      "en": "Surakarta, ID",
+      "id": ""
+    },
+    "contact.heading": {
+      "en": "Let's Connect",
+      "id": ""
+    },
+    "contact.body": {
+      "en": "I'm currently looking for university scholarship opportunities. If you're on an admissions team, hiring, or just want to talk about code, email is the fastest way to reach me.",
+      "id": ""
+    },
+    "footer.name": {
+      "en": "Kenneth Jehezkiel Marvel Wijaya",
+      "id": ""
+    },
+    "footer.tagline": {
+      "en": "Personal Portfolio",
+      "id": ""
+    },
+    "zoom.label": {
+      "en": "Zoomed view",
+      "id": ""
+    },
+    "zoom.close": {
+      "en": "Close",
+      "id": ""
+    }
+  },
+  "stats": [
+    {
+      "value": {
+        "en": "1st",
+        "id": ""
+      },
+      "label": {
+        "en": "OSN-K Informatika 2026",
+        "id": ""
+      }
+    },
+    {
+      "value": {
+        "en": "10+",
+        "id": ""
+      },
+      "label": {
+        "en": "National competition placements",
+        "id": ""
+      }
+    },
+    {
+      "value": {
+        "en": "10+",
+        "id": ""
+      },
+      "label": {
+        "en": "Projects shipped",
+        "id": ""
+      }
+    },
+    {
+      "value": {
+        "en": "{years}+",
+        "id": ""
+      },
+      "label": {
+        "en": "Years coding",
+        "id": ""
+      }
+    }
+  ],
+  "facts": [
+    {
+      "label": {
+        "en": "Looking for",
+        "id": ""
+      },
+      "value": {
+        "en": "University scholarships",
+        "id": ""
+      }
+    },
+    {
+      "label": {
+        "en": "Based in",
+        "id": ""
+      },
+      "value": {
+        "en": "Solo, Indonesia",
+        "id": ""
+      }
+    },
+    {
+      "label": {
+        "en": "Speaks",
+        "id": ""
+      },
+      "value": {
+        "en": "Indonesian · English · Chinese",
+        "id": ""
+      }
+    },
+    {
+      "label": {
+        "en": "Outside code",
+        "id": ""
+      },
+      "value": {
+        "en": "Rock climbing · Gaming · Photography",
+        "id": ""
+      }
+    },
+    {
+      "label": {
+        "en": "Why I started",
+        "id": ""
+      },
+      "value": {
+        "en": "Colorful code looked cool. Then it got serious.",
+        "id": ""
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2014",
+      "color": "var(--faint)",
+      "text": {
+        "en": "Cousin showed me Minecraft. Computers became home.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2017",
+      "color": "var(--faint)",
+      "text": {
+        "en": "Discovered Roblox Studio. Built games in Lua — one reached ~1,000 players.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2021",
+      "color": "var(--dim)",
+      "text": {
+        "en": "Junior high: Python, SQL, HTML. YouTube tutorials. The foundation.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2023",
+      "color": "var(--dim)",
+      "text": {
+        "en": "School C++ class → self-studied docs → selected for OSN Informatika.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2024",
+      "color": "var(--mut)",
+      "text": {
+        "en": "Algorithms, data structures, competitive programming. Went deep.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2025",
+      "color": "var(--mut)",
+      "text": {
+        "en": "HTML/CSS/JS → accidentally joined a React course → never looked back.",
+        "id": ""
+      }
+    },
+    {
+      "year": "2026",
+      "color": "var(--red-l)",
+      "text": {
+        "en": "1st at OSNK Informatika. Samsung Solve for Tomorrow semifinals. More projects, more volunteering.",
+        "id": ""
+      }
+    }
+  ],
+  "skillGroups": [
+    {
+      "group": {
+        "en": "Languages",
+        "id": ""
+      },
+      "meta": {
+        "en": "{count} languages",
+        "id": ""
+      },
+      "items": [
+        {
+          "lang": "C++",
+          "icon": "/images/c.webp",
+          "pct": 82,
+          "level": {
+            "en": "Competition Level",
+            "id": ""
+          },
+          "detail": {
+            "en": "Algorithms / CP",
+            "id": ""
+          },
+          "color": "var(--red)"
+        },
+        {
+          "lang": "Python",
+          "icon": "/images/python.webp",
+          "pct": 72,
+          "level": {
+            "en": "Competition Level",
+            "id": ""
+          },
+          "detail": {
+            "en": "Automation / Scripts",
+            "id": ""
+          },
+          "color": "var(--red)"
+        },
+        {
+          "lang": "JavaScript",
+          "icon": "/images/javascript.webp",
+          "pct": 52,
+          "level": {
+            "en": "Intermediate",
+            "id": ""
+          },
+          "detail": {
+            "en": "Frontend / Web",
+            "id": ""
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "TypeScript",
+          "icon": "/images/typescript.svg",
+          "pct": 35,
+          "level": {
+            "en": "Learning",
+            "id": ""
+          },
+          "detail": {
+            "en": "Typed React",
+            "id": ""
+          },
+          "color": "#6EE7B7"
+        },
+        {
+          "lang": "SQL",
+          "icon": "/images/sql.webp",
+          "pct": 22,
+          "level": {
+            "en": "Beginner",
+            "id": ""
+          },
+          "detail": {
+            "en": "CRUD Queries",
+            "id": ""
+          },
+          "color": "#6EE7B7"
+        }
+      ]
+    },
+    {
+      "group": {
+        "en": "Frameworks & tools",
+        "id": ""
+      },
+      "meta": {
+        "en": "{count} tools",
+        "id": ""
+      },
+      "items": [
+        {
+          "lang": "React",
+          "icon": "/images/ReactJS.webp",
+          "pct": 52,
+          "level": {
+            "en": "Intermediate",
+            "id": ""
+          },
+          "detail": {
+            "en": "Components / SPA",
+            "id": ""
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "React Native",
+          "icon": "/images/ReactJS.webp",
+          "pct": 42,
+          "level": {
+            "en": "Intermediate",
+            "id": ""
+          },
+          "detail": {
+            "en": "Expo / Mobile apps",
+            "id": ""
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "Tailwind CSS",
+          "icon": "/images/tailwind.svg",
+          "pct": 58,
+          "level": {
+            "en": "Intermediate",
+            "id": ""
+          },
+          "detail": {
+            "en": "Utility-first styling",
+            "id": ""
+          },
+          "color": "#FCD34D"
+        }
+      ]
+    }
+  ],
+  "contact": [
+    {
+      "icon": "/images/email.svg",
+      "label": "Email",
+      "handle": "kjmw2211@gmail.com",
+      "href": "mailto:kjmw2211@gmail.com",
+      "flip": "none"
+    },
+    {
+      "icon": "/images/linkedin.svg",
+      "label": "LinkedIn",
+      "handle": "Kenneth Jehezkiel M.W.",
+      "href": "https://www.linkedin.com/in/kenneth-jehezkiel-marvel-wijaya-4a3664248/",
+      "flip": "none"
+    },
+    {
+      "icon": "/images/github.svg",
+      "label": "GitHub",
+      "handle": "github.com/elitcx",
+      "href": "https://github.com/elitcx",
+      "flip": "var(--iconflip)"
+    },
+    {
+      "icon": "/images/whatsapp.webp",
+      "label": "WhatsApp",
+      "handle": "+62 822-6159-2211",
+      "href": "https://wa.me/6282261592211",
+      "flip": "none"
+    },
+    {
+      "icon": "/images/instagram.webp",
+      "label": "Instagram",
+      "handle": "@kenneth_kiel",
+      "href": "https://www.instagram.com/kenneth_kiel/",
+      "flip": "none"
+    }
+  ]
+}

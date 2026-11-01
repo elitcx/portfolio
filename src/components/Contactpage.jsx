@@ -1,8 +1,11 @@
 import React from 'react';
 import { useReveal } from '../hooks/UseReveal.js';
-import { contactLinks, iconSrc, CV } from '../utils/Constants.js';
+import { site } from '../content/index.js';
+import { useLang } from '../i18n/lang.js';
+import { iconSrc, CV } from '../utils/Constants.js';
 
 export default function ContactPage() {
+  const { s } = useLang();
   const reveal = useReveal();
 
   return (
@@ -29,7 +32,7 @@ export default function ContactPage() {
               color: 'var(--dim)',
             }}
           >
-            Get in touch
+            {s('contact.eyebrow')}
           </span>
           <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
           <span
@@ -42,7 +45,7 @@ export default function ContactPage() {
               color: 'var(--faint)',
             }}
           >
-            Surakarta, ID
+            {s('contact.location')}
           </span>
         </div>
 
@@ -56,7 +59,7 @@ export default function ContactPage() {
             letterSpacing: '-0.02em',
           }}
         >
-          Let's Connect
+          {s('contact.heading')}
         </h1>
 
         <p
@@ -69,7 +72,7 @@ export default function ContactPage() {
             textWrap: 'pretty',
           }}
         >
-          I'm currently looking for university scholarship opportunities. If you're on an admissions team, hiring, or just want to talk about code, email is the fastest way to reach me.
+          {s('contact.body')}
         </p>
 
         <a
@@ -97,7 +100,7 @@ export default function ContactPage() {
             alignSelf: 'flex-start',
           }}
         >
-          {CV.label}
+          {s('cv.label')}
           <span aria-hidden="true" style={{ opacity: 0.7 }}>↓</span>
         </a>
 
@@ -111,9 +114,9 @@ export default function ContactPage() {
             borderTop: '1px solid var(--line)',
           }}
         >
-          {contactLinks.map((c) => (
+          {site.contact.map((c, i) => (
             <a
-              key={c.label}
+              key={i}
               data-reveal
               ref={reveal}
               href={c.href}

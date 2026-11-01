@@ -1,0 +1,182 @@
+[
+  {
+    "image": "/images/certificates/osnk.png",
+    "title": "OSN Informatika (OSN-K) Kota Surakarta 2026",
+    "result": {
+      "en": "1st Place",
+      "id": ""
+    },
+    "tier": "gold"
+  },
+  {
+    "image": "/images/certificates/logicodix.webp",
+    "title": "Programming & Logic Competition - LOGICODIX UNESA 2025",
+    "result": {
+      "en": "2nd Place",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image2.webp",
+    "title": "Competitive Programming - IAA UKDW Yogyakarta 2025",
+    "result": {
+      "en": "2nd Place",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image0.webp",
+    "title": "Battle of Technology IT-Venture - PINGFEST UNS 2025",
+    "result": {
+      "en": "2nd Place",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image3.webp",
+    "title": "Informatics Rally Games and Logic (IRGL) - UK Petra 2025",
+    "result": {
+      "en": "3rd Place",
+      "id": ""
+    },
+    "tier": "bronze"
+  },
+  {
+    "image": "/images/certificates/image1.webp",
+    "title": "OSN Informatika (OSN-K) Kota Surakarta 2025",
+    "result": {
+      "en": "Finalist",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/npc.webp",
+    "title": "Schematics National Programming Contest Junior - ITS 2025",
+    "result": {
+      "en": "Finalist",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/ilpc.jpeg",
+    "title": "Informatics Logical and Programming Competition (ILPC) - Ubaya 2026",
+    "result": {
+      "en": "Semifinalist",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/findit.webp",
+    "title": "Informatics Competition - FIND IT! UGM 2026",
+    "result": {
+      "en": "Participant",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/webdesign.jpg",
+    "title": "Web Design Competition - TechSoft, Politeknik Negeri Indramayu 2026",
+    "result": {
+      "en": "Participant",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/image4.webp",
+    "title": "Final Nasional OMNAS 13 - Matematika 2024",
+    "result": {
+      "en": "Silver Medalist",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image5.webp",
+    "title": "Final Nasional OMNAS 13 - Bahasa Inggris 2024",
+    "result": {
+      "en": "Silver Medalist",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image6.webp",
+    "title": "National Junior High School Math Competition - Practo Math Academy 2023",
+    "result": {
+      "en": "Silver Medalist",
+      "id": ""
+    },
+    "tier": "silver"
+  },
+  {
+    "image": "/images/certificates/image7.webp",
+    "title": "Entrepreneurship Business Challenge & Competition 6.0 - UKWMS 2024",
+    "result": {
+      "en": "Top 10",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/nbpc.jpg",
+    "title": "National Business Plan Competition - Universitas Widyagama Malang 2025",
+    "result": {
+      "en": "Participant",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/image8.webp",
+    "title": "Intro to Software Engineering - RevoU Coding Camp 2025",
+    "result": {
+      "en": "Attended",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/image9.webp",
+    "title": "Cybersecurity Workshop \"Breaking the Code\" - PSB Academy Singapore 2025",
+    "result": {
+      "en": "Attended",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/osis.jpeg",
+    "title": "Tutor Sebaya - SMA Regina Pacis Surakarta 2024/2025",
+    "result": {
+      "en": "Mentor",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/volunteer.png",
+    "title": "Volunteer - Panti Asuhan Beth Shan, Relawan Bersamaa.Baktikuu 2026",
+    "result": {
+      "en": "Volunteer",
+      "id": ""
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/uic.jpeg",
+    "title": "Ursulin Investment Club - SMA Regina Pacis Surakarta 2025",
+    "result": {
+      "en": "Member",
+      "id": ""
+    },
+    "tier": "other"
+  }
+]

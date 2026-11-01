@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { useLang } from '../i18n/lang.js';
+import { currentYear } from '../utils/Constants.js';
+
 const LINE = {
   margin: 0,
   fontFamily: 'var(--label)',
@@ -10,6 +13,8 @@ const LINE = {
 };
 
 export default function Footer() {
+  const { s } = useLang();
+
   return (
     <footer
       style={{
@@ -23,9 +28,9 @@ export default function Footer() {
         background: 'var(--bg)',
       }}
     >
-      <p style={{ ...LINE, color: 'var(--dim)' }}>Kenneth Jehezkiel Marvel Wijaya</p>
+      <p style={{ ...LINE, color: 'var(--dim)' }}>{s('footer.name')}</p>
       <p style={{ ...LINE, color: 'var(--faint)' }}>
-        Personal Portfolio · © {new Date().getFullYear()}
+        {s('footer.tagline')} · © {currentYear()}
       </p>
     </footer>
   );
