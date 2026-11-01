@@ -105,6 +105,38 @@
   transform: scale(1.05);
 }
 
+/* Work in progress at the top of the Projects page. The outline and the dot are
+   the page's only accent, so the card reads as live rather than promoted. */
+.kj-current {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  border: 1px solid color-mix(in oklab, var(--red) 55%, transparent);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card);
+}
+.kj-current-text {
+  grid-template-columns: minmax(0, 1fr);
+}
+.kj-now-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--red);
+  animation: kj-now-pulse 1.8s ease-in-out infinite;
+}
+@keyframes kj-now-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--red) 55%, transparent); }
+  60% { box-shadow: 0 0 0 7px transparent; }
+}
+@media (max-width: 720px) {
+  .kj-current {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* Buttons + links */
 .kj-ghost {
   transition: all 0.25s ease;
@@ -203,6 +235,12 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kj-now-dot {
+    animation: none;
   }
 }
 

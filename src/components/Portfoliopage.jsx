@@ -4,7 +4,7 @@ import ImageZoom from './Imagezoom.jsx';
 import { projects } from '../content/index.js';
 import { useReveal } from '../hooks/UseReveal.js';
 import { useLang } from '../i18n/lang.js';
-import { indexProjects } from '../lib/projects.js';
+import { indexProjects, splitProjects } from '../lib/projects.js';
 import { plainText } from '../lib/richText.js';
 import { CATEGORIES } from '../utils/Constants.js';
 
@@ -29,6 +29,137 @@ const META = {
 const GITHUB_PATH =
   'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.84 0-.63.22-1.15.59-1.55-.06-.15-.26-.75.06-1.56 0 0 .6-.19 1.97.74a5.5 5.5 0 0 1 1.5-.2c.51 0 1.02.07 1.5.2 1.37-.93 1.97-.74 1.97-.74.32.81.12 1.41.06 1.56.37.4.59.92.59 1.55 0 1.97-1.14 2.64-2.92 2.84.3.26.56.76.56 1.54 0 1.11-.01 2.02-.01 2.3 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z';
 
+function ProjectLinks({ p }) {
+  const { s } = useLang();
+
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 4 }}>
+      {p.link && (
+        <a
+          href={p.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kj-ghost"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '10px 16px',
+            borderRadius: 999,
+            border: '1px solid var(--line)',
+            fontFamily: 'var(--label)',
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--fg)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d={GITHUB_PATH} />
+          </svg>
+          {s('projects.repo')}
+        </a>
+      )}
+      {p.deployed && (
+        <a
+          href={p.deployed}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kj-live"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '10px 16px',
+            borderRadius: 999,
+            background: 'var(--red)',
+            color: '#fff',
+            fontFamily: 'var(--label)',
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+          }}
+        >
+          {s('projects.live')}
+        </a>
+      )}
+    </div>
+  );
+}
+
+// Work in progress sits above the filters and ignores them: it is the first
+// thing the page should say, whatever the visitor is searching for.
+function CurrentProjectCard({ p, onZoom }) {
+  const { s } = useLang();
+
+  return (
+    <article className={p.thumb ? 'kj-current' : 'kj-current kj-current-text'}>
+      {p.thumb && (
+        <button
+          onClick={() => onZoom({ src: p.full, alt: p.title })}
+          aria-label={`${s('projects.viewShot')}: ${p.title}`}
+          style={{ position: 'relative', display: 'block', width: '100%', minHeight: 240, padding: 0, border: 0, overflow: 'hidden', background: 'var(--bg)', cursor: 'zoom-in' }}
+        >
+          <img
+            src={p.thumb}
+            alt={p.title}
+            decoding="async"
+            width="800"
+            height="500"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+          />
+        </button>
+      )}
+
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 14, padding: '28px 26px 30px' }}>
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 10,
+            fontFamily: 'var(--label)',
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--red-l)',
+          }}
+        >
+          <span className="kj-now-dot" aria-hidden="true" />
+          {s('projects.current')}
+        </span>
+
+        <h2
+          style={{
+            margin: 0,
+            fontFamily: 'var(--display)',
+            fontWeight: 800,
+            fontSize: 'clamp(1.7rem, 3vw, 2.4rem)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          {p.title}
+        </h2>
+
+        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: 'var(--mut)', textWrap: 'pretty' }}>
+          {p.description}
+        </p>
+
+        {p.period && (
+          <span style={{ ...META, color: 'var(--dim)', letterSpacing: '0.18em' }}>
+            {p.period} · {s('projects.solo')}
+          </span>
+        )}
+
+        <ProjectLinks p={p} />
+      </div>
+    </article>
+  );
+}
+
 export default function PortfolioPage() {
   const { lang, s } = useLang();
   const [query, setQuery] = useState('');
@@ -36,17 +167,21 @@ export default function PortfolioPage() {
   const [zoom, setZoom] = useState(null);
   const reveal = useReveal();
 
-  const indexed = useMemo(() => indexProjects(projects, lang), [lang]);
+  const { current, shipped } = useMemo(() => splitProjects(indexProjects(projects, lang)), [lang]);
 
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase();
     const cat = category.toLowerCase();
-    return indexed.filter(
+    return shipped.filter(
       (p) =>
         (!q || p.haystack.includes(q)) &&
         (category === 'All' || p.categories.some((c) => c.toLowerCase() === cat))
     );
-  }, [indexed, query, category]);
+  }, [shipped, query, category]);
+
+  // With no filter on, an empty grid means everything is still in progress, and
+  // "no projects match" would be a false statement.
+  const filtering = query.trim() !== '' || category !== 'All';
 
   return (
     <section
@@ -57,7 +192,7 @@ export default function PortfolioPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
           <span style={EYEBROW}>{s('projects.eyebrow')}</span>
           <span style={{ flex: 1, height: 1, background: 'var(--line)' }} />
-          <span style={META}>{plainText(s('projects.shipped'), { count: projects.length })}</span>
+          <span style={META}>{plainText(s('projects.shipped'), { count: shipped.length })}</span>
         </div>
 
         <h1
@@ -72,6 +207,14 @@ export default function PortfolioPage() {
         >
           {s('projects.heading')}
         </h1>
+
+        {current.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginTop: 40 }}>
+            {current.map((p) => (
+              <CurrentProjectCard key={p.title} p={p} onZoom={setZoom} />
+            ))}
+          </div>
+        )}
 
         {/* Filter bar */}
         <div
@@ -282,64 +425,12 @@ export default function PortfolioPage() {
                     {p.description}
                   </p>
 
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 4 }}>
-                    {p.link && (
-                      <a
-                        href={p.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="kj-ghost"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 8,
-                          padding: '10px 16px',
-                          borderRadius: 999,
-                          border: '1px solid var(--line)',
-                          fontFamily: 'var(--label)',
-                          fontSize: 11,
-                          fontWeight: 700,
-                          letterSpacing: '0.14em',
-                          textTransform: 'uppercase',
-                          color: 'var(--fg)',
-                        }}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                          <path d={GITHUB_PATH} />
-                        </svg>
-                        {s('projects.repo')}
-                      </a>
-                    )}
-                    {p.deployed && (
-                      <a
-                        href={p.deployed}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="kj-live"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 8,
-                          padding: '10px 16px',
-                          borderRadius: 999,
-                          background: 'var(--red)',
-                          color: '#fff',
-                          fontFamily: 'var(--label)',
-                          fontSize: 11,
-                          fontWeight: 700,
-                          letterSpacing: '0.14em',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        {s('projects.live')}
-                      </a>
-                    )}
-                  </div>
+                  <ProjectLinks p={p} />
                 </div>
               </div>
             ))}
           </div>
-        ) : (
+        ) : filtering && (
           <div style={{ padding: '120px 0', textAlign: 'center' }}>
             <div
               style={{

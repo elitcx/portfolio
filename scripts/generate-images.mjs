@@ -39,7 +39,8 @@ const FULL = { width: 1800, withoutEnlargement: true };
 const projects = JSON.parse(
   await fs.readFile(path.join(ROOT, 'src', 'content', 'projects.json'), 'utf8')
 );
-const PROJECT_IMAGES = projects.map((p) => path.basename(p.image));
+// A project still in progress may not have a picture yet.
+const PROJECT_IMAGES = projects.filter((p) => p.image).map((p) => path.basename(p.image));
 
 const ICON_IMAGES = [
   'c.webp', 'python.webp', 'javascript.webp', 'ReactJS.webp', 'sql.webp',

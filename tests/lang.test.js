@@ -4,7 +4,7 @@ import { test } from 'node:test';
 
 import { detectLang, readStoredLang } from '../src/i18n/detect.js';
 import { findTokens } from '../src/lib/richText.js';
-import { indexProjects } from '../src/lib/projects.js';
+import { indexProjects, splitProjects } from '../src/lib/projects.js';
 
 const read = (name) =>
   JSON.parse(readFileSync(new URL(`../src/content/${name}.json`, import.meta.url), 'utf8'));
@@ -77,4 +77,15 @@ test('all existing content has Indonesian with matching tokens', () => {
     assert.ok(field.id, `no Indonesian for: ${field.en}`);
     assert.deepEqual(findTokens(field.id), findTokens(field.en), field.en);
   }
+});
+
+test('splitProjects separates ongoing work and keeps the order', () => {
+  const list = [{ title: 'a' }, { title: 'b', current: true }, { title: 'c' }, { title: 'd', current: true }];
+  const { current, shipped } = splitProjects(list);
+  assert.deepEqual(current.map((p) => p.title), ['b', 'd']);
+  assert.deepEqual(shipped.map((p) => p.title), ['a', 'c']);
+});
+
+test('splitProjects handles every project being ongoing', () => {
+  assert.deepEqual(splitProjects([{ title: 'a', current: true }]).shipped, []);
 });

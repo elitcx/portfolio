@@ -1,6 +1,13 @@
 import { localize } from './localize.js';
 import { fullSrc, getCategoryColor, thumbSrc } from '../utils/Constants.js';
 
+export function splitProjects(indexed) {
+  return {
+    current: indexed.filter((p) => p.current === true),
+    shipped: indexed.filter((p) => p.current !== true),
+  };
+}
+
 // Search text and resolved image variants per project. Rebuilt per language,
 // because the search has to match the text the visitor is actually reading.
 export function indexProjects(projects, lang) {
