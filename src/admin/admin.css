@@ -1,0 +1,116 @@
+/* Admin only. Built on the site's design tokens from index.css. */
+
+.ad-brand {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.ad-label {
+  font-family: var(--label);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.ad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* 16px on purpose: anything smaller makes iOS zoom in when the field gets focus. */
+.ad-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--fg);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.ad-input:focus-visible,
+.ad-primary:focus-visible,
+.ad-secondary:focus-visible,
+.ad-link:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.ad-note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mut);
+}
+.ad-error {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--red-l);
+}
+
+.ad-primary,
+.ad-secondary {
+  min-height: 42px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--label);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ad-primary {
+  border: 0;
+  background: var(--red);
+  color: #fff;
+}
+.ad-primary:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.ad-secondary {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+}
+.ad-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mut);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Login ─────────────────────────────────────────────────── */
+
+.ad-login {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+}
+.ad-login-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: min(360px, 100%);
+}
