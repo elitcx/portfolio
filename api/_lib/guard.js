@@ -28,6 +28,12 @@ export function readCookie(header, name) {
 
 export const failureDelay = (count) => Math.min(500 * 2 ** count, 5000);
 
+// The cause goes to the Vercel logs. The browser only ever gets a generic line.
+export function sendFailure(res, error) {
+  console.error(error);
+  res.status(500).json({ error: 'Something went wrong on the server. Your edits are still here' });
+}
+
 // Shared by the endpoints that have no session to check: login and logout.
 export function guardPublic(req, res, { method }) {
   res.setHeader('Cache-Control', 'no-store');
