@@ -83,7 +83,7 @@
     },
     "about.bio1": {
       "en": "I'm a **{age}-year-old student at SMA Regina Pacis Surakarta**, passionate about **Software Engineering and Development**. I love turning ideas into real, working applications and exploring how code can solve everyday problems.",
-      "id": ""
+      "id": "Saya seorang **siswa berusia {age} tahun di SMA Regina Pacis Surakarta**, yang memiliki minat besar pada **Software Engineering and Development**. Saya suka mengubah ide menjadi aplikasi nyata yang berfungsi dan mengeksplorasi bagaimana kode dapat menyelesaikan masalah sehari-hari."
     },
     "about.bio2": {
       "en": "Whether crafting clean frontends or tackling competitive programming, **I'm always eager to learn, build, and grow.**",

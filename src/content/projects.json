@@ -173,7 +173,7 @@
     },
     "description": {
       "en": "Console finance tracker in Python. Appends dated income and expense entries with their reasons to a local file and carries a running balance across sessions, with input validation on every field.",
-      "id": ""
+      "id": "Pelacak keuangan berbasis konsol dalam Python. Menyimpan entri pemasukan dan pengeluaran bertanggal beserta keterangannya ke file lokal dan mempertahankan saldo berjalan antar sesi, dengan validasi input pada setiap field."
     },
     "link": "https://github.com/elitcx/Finance-Tracker",
     "categories": [
