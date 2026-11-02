@@ -152,29 +152,29 @@ function Editor({ initial, onLoggedOut, onReload, setExpired, expired }) {
         : 'Everything is saved';
 
   const footer = (
-    <footer className="ad-footer">
-      <div className="ad-messages">
+    <footer className="cp-footer">
+      <div className="cp-messages">
         {conflict && (
-          <div className="ad-error" role="alert">
+          <div className="cp-error" role="alert">
             The site changed somewhere else since you opened this page. Your edits are still here.{' '}
             {confirmReload ? (
               <>
-                <button type="button" className="ad-link" onClick={onReload}>Yes, discard my edits and reload</button>{' '}
-                <button type="button" className="ad-link" onClick={() => setConfirmReload(false)}>Cancel</button>
+                <button type="button" className="cp-link" onClick={onReload}>Yes, discard my edits and reload</button>{' '}
+                <button type="button" className="cp-link" onClick={() => setConfirmReload(false)}>Cancel</button>
               </>
             ) : (
-              <button type="button" className="ad-link" onClick={() => setConfirmReload(true)}>Reload latest</button>
+              <button type="button" className="cp-link" onClick={() => setConfirmReload(true)}>Reload latest</button>
             )}
           </div>
         )}
         {errors.length > 0 && (
-          <ul className="ad-errors" role="alert">
+          <ul className="cp-errors" role="alert">
             {errors.slice(0, 6).map((error) => <li key={error}>{error}</li>)}
             {errors.length > 6 && <li>and {errors.length - 6} more</li>}
           </ul>
         )}
       </div>
-      <button type="button" className="ad-primary" disabled={!dirty || saving} onClick={save}>
+      <button type="button" className="cp-primary" disabled={!dirty || saving} onClick={save}>
         {saving ? 'Saving…' : 'Save & publish'}
       </button>
     </footer>
@@ -259,10 +259,10 @@ export default function AdminApp() {
   }
 
   return (
-    <div className="ad-login">
+    <div className="cp-login">
       {error
-        ? <p className="ad-error" role="alert">{error} <button type="button" className="ad-link" onClick={load}>Try again</button></p>
-        : <p className="ad-note">Loading…</p>}
+        ? <p className="cp-error" role="alert">{error} <button type="button" className="cp-link" onClick={load}>Try again</button></p>
+        : <p className="cp-note">Loading…</p>}
     </div>
   );
 }

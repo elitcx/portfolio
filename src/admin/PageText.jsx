@@ -13,10 +13,10 @@ const prefixOf = (key) => key.split('.')[0];
 // Grouped by the first part of the key, which already names the page area.
 export default function PageText({ text, onChange, call }) {
   return (
-    <div className="ad-form ad-form-wide">
+    <div className="cp-form cp-form-wide">
       {Object.entries(GROUPS).map(([prefix, title]) => (
-        <section key={prefix} className="ad-group">
-          <h2 className="ad-group-title">{title}</h2>
+        <section key={prefix} className="cp-group">
+          <h2 className="cp-group-title">{title}</h2>
           {TEXT_KEYS.filter((key) => prefixOf(key) === prefix).map((key) => (
             <LocalizedField
               key={key}

@@ -25,14 +25,14 @@ export default function Login({ expired = false, onLoggedIn }) {
   };
 
   return (
-    <div className="ad-login">
-      <form className="ad-login-box" onSubmit={submit}>
-        <h1 className="ad-brand">Site admin</h1>
-        {expired && <p className="ad-note">Your session ended. Log in again. Your edits are still here.</p>}
-        <label className="ad-field">
-          <span className="ad-label">Password</span>
+    <div className="cp-login">
+      <form className="cp-login-box" onSubmit={submit}>
+        <h1 className="cp-brand">Site admin</h1>
+        {expired && <p className="cp-note">Your session ended. Log in again. Your edits are still here.</p>}
+        <label className="cp-field">
+          <span className="cp-label">Password</span>
           <input
-            className="ad-input"
+            className="cp-input"
             type="password"
             autoComplete="current-password"
             autoFocus
@@ -41,8 +41,8 @@ export default function Login({ expired = false, onLoggedIn }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        {error && <p className="ad-error" role="alert">{error}</p>}
-        <button className="ad-primary" type="submit" disabled={busy}>
+        {error && <p className="cp-error" role="alert">{error}</p>}
+        <button className="cp-primary" type="submit" disabled={busy}>
           {busy ? 'Checking…' : 'Log in'}
         </button>
       </form>

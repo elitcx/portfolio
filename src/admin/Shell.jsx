@@ -9,16 +9,16 @@ import { SECTIONS, listsFor } from './sections.js';
 
 function ItemLists({ lists, edited, selected, onSelect, onChange }) {
   return (
-    <div className="ad-lists">
+    <div className="cp-lists">
       {lists.map((list) => {
         const items = getIn(edited[list.file], list.path);
         return (
-          <div key={list.key} className="ad-list">
-            {lists.length > 1 && <h2 className="ad-group-title">{list.label}</h2>}
+          <div key={list.key} className="cp-list">
+            {lists.length > 1 && <h2 className="cp-group-title">{list.label}</h2>}
             {list.canAdd && (
               <button
                 type="button"
-                className="ad-new"
+                className="cp-new"
                 onClick={() => {
                   const fresh = { ...blankItem(SCHEMAS[list.schema]), __id: newId() };
                   onChange(list.key, (current) => [fresh, ...current]);
@@ -32,18 +32,18 @@ function ItemLists({ lists, edited, selected, onSelect, onChange }) {
               const on = selected?.listKey === list.key && selected.id === item.__id;
               const shift = (delta) => onChange(list.key, (current) => moveItem(current, item.__id, delta));
               return (
-                <div key={item.__id} className={on ? 'ad-item is-on' : 'ad-item'}>
+                <div key={item.__id} className={on ? 'cp-item is-on' : 'cp-item'}>
                   <button
                     type="button"
-                    className="ad-item-title"
+                    className="cp-item-title"
                     aria-current={on ? 'true' : undefined}
                     onClick={() => onSelect({ listKey: list.key, id: item.__id })}
                   >
-                    {item.current && <span className="ad-dot" role="img" aria-label="Currently building" />}
+                    {item.current && <span className="cp-dot" role="img" aria-label="Currently building" />}
                     {list.titleOf(item)}
                   </button>
                   {list.canMove && (
-                    <span className="ad-move">
+                    <span className="cp-move">
                       <button type="button" aria-label={`Move ${list.titleOf(item)} up`} onClick={() => shift(-1)}>↑</button>
                       <button type="button" aria-label={`Move ${list.titleOf(item)} down`} onClick={() => shift(1)}>↓</button>
                     </span>
@@ -78,14 +78,14 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
   };
 
   return (
-    <div className={item ? 'ad-shell has-item' : 'ad-shell'}>
-      <header className="ad-top">
-        <span className="ad-brand">Site admin</span>
-        <span className="ad-status" role="status">{status}</span>
-        <button type="button" className="ad-link" onClick={onLogout}>Log out</button>
+    <div className={item ? 'cp-shell has-item' : 'cp-shell'}>
+      <header className="cp-top">
+        <span className="cp-brand">Site admin</span>
+        <span className="cp-status" role="status">{status}</span>
+        <button type="button" className="cp-link" onClick={onLogout}>Log out</button>
       </header>
 
-      <nav className="ad-sections" aria-label="Sections">
+      <nav className="cp-sections" aria-label="Sections">
         {SECTIONS.map((s) => (
           <button
             key={s.id}
@@ -102,10 +102,10 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
       {section.kind === 'lists' && (
         <>
           <ItemLists lists={lists} edited={edited} selected={selected} onSelect={setSelected} onChange={changeList} />
-          <main className="ad-main">
+          <main className="cp-main">
             {item ? (
               <>
-                <button type="button" className="ad-link ad-back" onClick={() => setSelected(null)}>← Back to list</button>
+                <button type="button" className="cp-link cp-back" onClick={() => setSelected(null)}>← Back to list</button>
                 <ItemForm
                   key={item.__id}
                   schemaName={activeList.schema}
@@ -127,14 +127,14 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
                 />
               </>
             ) : (
-              <p className="ad-note ad-empty">Choose something from the list to edit it.</p>
+              <p className="cp-note cp-empty">Choose something from the list to edit it.</p>
             )}
           </main>
         </>
       )}
 
       {section.kind === 'text' && (
-        <main className="ad-main ad-main-full">
+        <main className="cp-main cp-main-full">
           <PageText
             text={edited.site.text}
             onChange={(change) => setEdited((current) => ({
@@ -147,7 +147,7 @@ export default function Shell({ edited, setEdited, status, onLogout, call, previ
       )}
 
       {section.kind === 'files' && (
-        <main className="ad-main ad-main-full">
+        <main className="cp-main cp-main-full">
           <FilesEditor
             banner={edited.site.banner}
             onBanner={(banner) => setEdited((current) => ({ ...current, site: { ...current.site, banner } }))}

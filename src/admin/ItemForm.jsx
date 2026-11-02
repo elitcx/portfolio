@@ -48,18 +48,18 @@ export default function ItemForm({ schemaName, item, canDelete, onChange, onDele
   });
 
   return (
-    <div className="ad-form">
+    <div className="cp-form">
       {fields}
       {canDelete && (
-        <div className="ad-delete">
+        <div className="cp-delete">
           {confirming ? (
             <>
-              <span className="ad-note">Delete this?</span>
-              <button type="button" className="ad-secondary" onClick={onDelete}>Yes, delete</button>
-              <button type="button" className="ad-link" onClick={() => setConfirming(false)}>Keep it</button>
+              <span className="cp-note">Delete this?</span>
+              <button type="button" className="cp-secondary" onClick={onDelete}>Yes, delete</button>
+              <button type="button" className="cp-link" onClick={() => setConfirming(false)}>Keep it</button>
             </>
           ) : (
-            <button type="button" className="ad-link" onClick={() => setConfirming(true)}>Delete</button>
+            <button type="button" className="cp-link" onClick={() => setConfirming(true)}>Delete</button>
           )}
         </div>
       )}

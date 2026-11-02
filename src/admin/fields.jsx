@@ -33,18 +33,18 @@ function LocalizedBox({ field, value, lang, long, hint, update, call }) {
   const Input = long ? 'textarea' : 'input';
 
   return (
-    <div className="ad-field">
-      <div className="ad-field-head">
-        <label className="ad-label" htmlFor={id}>{field.label} · {NAMES[lang]}</label>
+    <div className="cp-field">
+      <div className="cp-field-head">
+        <label className="cp-label" htmlFor={id}>{field.label} · {NAMES[lang]}</label>
         {canDraft && (
-          <button type="button" className="ad-draft" onClick={draft} disabled={busy}>
+          <button type="button" className="cp-draft" onClick={draft} disabled={busy}>
             {busy ? 'Drafting…' : `Draft from ${NAMES[OTHER[lang]]}`}
           </button>
         )}
       </div>
       <Input
         id={id}
-        className={long ? 'ad-input ad-area' : 'ad-input'}
+        className={long ? 'cp-input cp-area' : 'cp-input'}
         lang={lang}
         value={text}
         onChange={(e) => {
@@ -53,9 +53,9 @@ function LocalizedBox({ field, value, lang, long, hint, update, call }) {
         }}
         placeholder={source ? `${NAMES[OTHER[lang]]} shows until this is filled` : undefined}
       />
-      {hint && <span className="ad-hint">{FORMAT_HINT}</span>}
-      {message?.warning && <span className="ad-warn" role="status">{message.warning}</span>}
-      {message?.error && <span className="ad-error" role="alert">{message.error}</span>}
+      {hint && <span className="cp-hint">{FORMAT_HINT}</span>}
+      {message?.warning && <span className="cp-warn" role="status">{message.warning}</span>}
+      {message?.error && <span className="cp-error" role="alert">{message.error}</span>}
     </div>
   );
 }
@@ -64,13 +64,13 @@ function LocalizedBox({ field, value, lang, long, hint, update, call }) {
 // cannot overwrite what was typed in the meantime.
 export function LocalizedField({ field, value, update, call, long, rich }) {
   return (
-    <div className="ad-field">
-      <div className="ad-two">
+    <div className="cp-field">
+      <div className="cp-two">
         <LocalizedBox field={field} value={value} lang="en" long={long} hint={rich} update={update} call={call} />
         <LocalizedBox field={field} value={value} lang="id" long={long} update={update} call={call} />
       </div>
       {tokenMismatch(value) && (
-        <span className="ad-warn" role="status">
+        <span className="cp-warn" role="status">
           English and Indonesian use different live values such as {'{age}'}. Check both.
         </span>
       )}
@@ -80,19 +80,19 @@ export function LocalizedField({ field, value, update, call, long, rich }) {
 
 export function TextField({ field, value, onChange }) {
   return (
-    <label className="ad-field">
-      <span className="ad-label">{field.label}</span>
-      <input className="ad-input" value={value ?? ''} onChange={(e) => onChange(e.target.value)} />
+    <label className="cp-field">
+      <span className="cp-label">{field.label}</span>
+      <input className="cp-input" value={value ?? ''} onChange={(e) => onChange(e.target.value)} />
     </label>
   );
 }
 
 export function LinkField({ field, value, onChange }) {
   return (
-    <label className="ad-field">
-      <span className="ad-label">{field.label}</span>
+    <label className="cp-field">
+      <span className="cp-label">{field.label}</span>
       <input
-        className="ad-input"
+        className="cp-input"
         inputMode="url"
         autoCapitalize="none"
         autoCorrect="off"
@@ -106,10 +106,10 @@ export function LinkField({ field, value, onChange }) {
 
 export function NumberField({ field, value, onChange }) {
   return (
-    <label className="ad-field">
-      <span className="ad-label">{field.label}</span>
+    <label className="cp-field">
+      <span className="cp-label">{field.label}</span>
       <input
-        className="ad-input"
+        className="cp-input"
         type="number"
         min={field.min}
         max={field.max}
@@ -122,9 +122,9 @@ export function NumberField({ field, value, onChange }) {
 
 export function SelectField({ field, value, onChange }) {
   return (
-    <label className="ad-field">
-      <span className="ad-label">{field.label}</span>
-      <select className="ad-input" value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
+    <label className="cp-field">
+      <span className="cp-label">{field.label}</span>
+      <select className="cp-input" value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
         {field.options.map((option) => (
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
@@ -137,10 +137,10 @@ export function SelectField({ field, value, onChange }) {
 export function TagsField({ field, value, onChange }) {
   const [raw, setRaw] = useState((value ?? []).join(', '));
   return (
-    <label className="ad-field">
-      <span className="ad-label">{field.label} (separated by commas)</span>
+    <label className="cp-field">
+      <span className="cp-label">{field.label} (separated by commas)</span>
       <input
-        className="ad-input"
+        className="cp-input"
         value={raw}
         onChange={(e) => {
           setRaw(e.target.value);
@@ -153,10 +153,10 @@ export function TagsField({ field, value, onChange }) {
 
 export function SwitchField({ field, value, onChange }) {
   return (
-    <label className="ad-switch">
+    <label className="cp-switch">
       <span>
         {field.label}
-        <span className="ad-label ad-switch-note">Pins to the top of Projects</span>
+        <span className="cp-label cp-switch-note">Pins to the top of Projects</span>
       </span>
       <input type="checkbox" checked={value === true} onChange={(e) => onChange(e.target.checked)} />
     </label>
@@ -183,21 +183,21 @@ export function PictureField({ label, value, previewOf, onPick, onClear, accept 
   };
 
   return (
-    <div className="ad-field">
-      <span className="ad-label">{label}</span>
-      <div className="ad-picture">
+    <div className="cp-field">
+      <span className="cp-label">{label}</span>
+      <div className="cp-picture">
         {value
           ? <img src={previewOf(value)} alt="" />
-          : <span className="ad-picture-empty" aria-hidden="true" />}
-        <label className="ad-secondary ad-file">
+          : <span className="cp-picture-empty" aria-hidden="true" />}
+        <label className="cp-secondary cp-file">
           {busy ? 'Uploading…' : value ? 'Change picture' : 'Add picture'}
           <input type="file" accept={accept} onChange={pick} disabled={busy} />
         </label>
         {value && onClear && !busy && (
-          <button type="button" className="ad-link" onClick={onClear}>Remove</button>
+          <button type="button" className="cp-link" onClick={onClear}>Remove</button>
         )}
       </div>
-      {error && <span className="ad-error" role="alert">{error}</span>}
+      {error && <span className="cp-error" role="alert">{error}</span>}
     </div>
   );
 }

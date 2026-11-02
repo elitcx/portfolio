@@ -20,29 +20,29 @@ export default function FilesEditor({ banner, onBanner, previewOf, uploadPicture
   };
 
   return (
-    <div className="ad-form ad-form-wide">
+    <div className="cp-form cp-form-wide">
       <PictureField
         label="Banner picture"
         value={banner}
         previewOf={previewOf}
         onPick={async (file) => onBanner(await uploadPicture('banner', 'banner', file))}
       />
-      <p className="ad-hint">
+      <p className="cp-hint">
         The picture shown when your site is shared on LinkedIn or WhatsApp does not change with this.
         Update it from a computer with <code>npm run og</code>, then push.
       </p>
 
-      <div className="ad-field">
-        <span className="ad-label">CV (PDF, up to 3 MB)</span>
-        <div className="ad-picture">
-          <a className="ad-link" href={CV.href} target="_blank" rel="noopener noreferrer">Current CV</a>
-          <label className="ad-secondary ad-file">
+      <div className="cp-field">
+        <span className="cp-label">CV (PDF, up to 3 MB)</span>
+        <div className="cp-picture">
+          <a className="cp-link" href={CV.href} target="_blank" rel="noopener noreferrer">Current CV</a>
+          <label className="cp-secondary cp-file">
             {cvState?.busy ? 'Uploading…' : 'Replace CV'}
             <input type="file" accept="application/pdf" onChange={pickCv} disabled={cvState?.busy} />
           </label>
         </div>
-        {cvState?.done && <span className="ad-note" role="status">{cvState.done}</span>}
-        {cvState?.error && <span className="ad-error" role="alert">{cvState.error}</span>}
+        {cvState?.done && <span className="cp-note" role="status">{cvState.done}</span>}
+        {cvState?.error && <span className="cp-error" role="alert">{cvState.error}</span>}
       </div>
     </div>
   );
