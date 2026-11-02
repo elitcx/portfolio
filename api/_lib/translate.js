@@ -1,8 +1,9 @@
 import { findTokens } from '../../src/lib/richText.js';
 
-// An alias Google keeps pointed at a current Flash model. If drafts start
-// failing with a 404, name a current model from GET /v1beta/models instead.
-const MODEL = 'gemini-flash-latest';
+// A named model on purpose: the gemini-flash-latest alias hung on this key.
+// If drafts start failing with a 404, the error names the replacement.
+const MODEL = 'gemini-3.5-flash';
+const TIMEOUT_MS = 20_000;
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 const LANGUAGE = { en: 'English', id: 'Indonesian' };
@@ -35,9 +36,10 @@ export function tokensPreserved(source, output) {
   return sorted(source) === sorted(output) && boldCount(source) === boldCount(output);
 }
 
-export async function requestDraft(text, to, apiKey) {
+export async function requestDraft(text, to, apiKey, { timeoutMs = TIMEOUT_MS } = {}) {
   const response = await globalThis.fetch(ENDPOINT, {
     method: 'POST',
+    signal: AbortSignal.timeout(timeoutMs),
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
     body: JSON.stringify(buildTranslateRequest(text, to)),
   });

@@ -4,7 +4,7 @@ import { after, beforeEach, test } from 'node:test';
 import status from '../api/status.js';
 import translate from '../api/translate.js';
 import { signSession } from '../api/_lib/session.js';
-import { buildTranslateRequest, tokensPreserved } from '../api/_lib/translate.js';
+import { buildTranslateRequest, requestDraft, tokensPreserved } from '../api/_lib/translate.js';
 
 const SITE = 'https://kennethjmw.vercel.app';
 const realFetch = globalThis.fetch;
@@ -119,4 +119,11 @@ test('status rejects a malformed sha and reports the state', async () => {
   assert.deepEqual((await get('a'.repeat(40))).body, { state: 'success' });
   globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => ({ state: 'pending', total_count: 0 }) });
   assert.deepEqual((await get('a'.repeat(40))).body, { state: 'unknown' });
+});
+
+test('a Gemini call that hangs gives up instead of leaving the button stuck', async () => {
+  globalThis.fetch = (url, init) => new Promise((resolve, reject) => {
+    init.signal.addEventListener('abort', () => reject(init.signal.reason));
+  });
+  await assert.rejects(requestDraft('x', 'id', 'key', { timeoutMs: 20 }), /timeout|aborted/i);
 });
