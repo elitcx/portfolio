@@ -22,6 +22,29 @@
     "current": true
   },
   {
+    "title": "BRaiLLE OCR",
+    "description": {
+      "en": "OCR Application for BRaiLLE: DotCode's Samsung Solve For Tomorrow product. Features a guided camera system to ensure accessibility for blind users, scans real paper, documents, and worksheets in under 1 second with above 90% accuracy. Built on Google's ML Kit Text Recognition v2 and enhanced by Gemini and Tesseract OCR. Converts directly into braille along with a text-to-speech feature and syncs with the BraillePad. Deployed and tested on real blind students and teachers. ",
+      "id": "Aplikasi OCR untuk BRaiLLE: produk Samsung Solve For Tomorrow dari DotCode. Dilengkapi dengan sistem kamera terpandu untuk memastikan aksesibilitas bagi pengguna tunanetra, memindai kertas, dokumen, dan lembar kerja fisik dalam waktu kurang dari 1 detik dengan akurasi di atas 90%. Berbasis Google's ML Kit Text Recognition v2 dan ditingkatkan dengan Gemini serta Tesseract OCR. Mengonversi langsung ke braille beserta fitur text-to-speech dan tersinkronisasi dengan BraillePad. Diuji dan diimplementasikan langsung pada siswa dan guru tunanetra."
+    },
+    "period": {
+      "en": "Aug - Sep",
+      "id": "Agt - Sep"
+    },
+    "categories": [
+      "kotlin",
+      "android",
+      "mobile",
+      "ai",
+      "api integration",
+      "ocr",
+      "tesseract",
+      "accessibility"
+    ],
+    "link": "https://github.com/elitcx/sft-ocr",
+    "image": "/images/braille-ocr-acccc909.jpg"
+  },
+  {
     "title": "Personal Dashboard",
     "period": {
       "en": "May – Jun 2026",
