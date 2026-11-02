@@ -1,5 +1,27 @@
 [
   {
+    "title": "BraillePad",
+    "description": {
+      "en": "BraillePad Hardware for Samsung's Solve For Tomorrow Competition. Shows braille in real time through an OCR system (android application). Co-authored by me and my team: DotCode.",
+      "id": "Hardware BraillePad untuk Kompetisi Samsung Solve For Tomorrow. Menampilkan braille secara real-time melalui sistem OCR (aplikasi android). Dibuat bersama oleh saya dan tim saya: DotCode."
+    },
+    "period": {
+      "en": "Sep - Nov",
+      "id": "Sep - Nov"
+    },
+    "categories": [
+      "hardware",
+      "mobile",
+      "ai",
+      "iot",
+      "esp32",
+      "accessibility"
+    ],
+    "link": "",
+    "deployed": "",
+    "current": true
+  },
+  {
     "title": "Personal Dashboard",
     "period": {
       "en": "May – Jun 2026",
