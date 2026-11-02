@@ -1,5 +1,14 @@
 [
   {
+    "title": "Live Test Certificate",
+    "result": {
+      "en": "1st Place",
+      "id": ""
+    },
+    "tier": "gold",
+    "image": "/images/certificates/live-test-certificate-48221670.jpg"
+  },
+  {
     "image": "/images/certificates/osnk.png",
     "title": "OSN Informatika (OSN-K) Kota Surakarta 2026",
     "result": {
