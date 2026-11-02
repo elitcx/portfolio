@@ -6,8 +6,8 @@
       "id": "Hardware BraillePad untuk Kompetisi Samsung Solve For Tomorrow. Menampilkan braille secara real-time melalui sistem OCR (aplikasi android). Dibuat bersama oleh saya dan tim saya: DotCode."
     },
     "period": {
-      "en": "Sep - Nov",
-      "id": "Sep - Nov"
+      "en": "Sep - Now",
+      "id": "Sep - Now"
     },
     "categories": [
       "hardware",
@@ -19,7 +19,8 @@
     ],
     "link": "",
     "deployed": "",
-    "current": true
+    "current": true,
+    "image": "/images/braillepad-47bf2d0e.jpg"
   },
   {
     "title": "BRaiLLE OCR",
