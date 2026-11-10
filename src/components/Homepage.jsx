@@ -574,32 +574,29 @@ export default function HomePage() {
           {RESUME_GROUPS.map(({ value }) => {
             const entries = site.resume.filter((e) => e.group === value);
             if (!entries.length) return null;
+            // Education reads as big score cards, work as a dated timeline, and
+            // leadership as a compact grid: three shapes so the eye can tell the
+            // groups apart before reading a word.
+            const layout = { education: 'kj-res-cards', experience: 'kj-res-timeline' }[value] ?? 'kj-res-grid';
             return (
               <div key={value}>
-                <GroupLabel title={s(`resume.${value}`)} meta={entries.length} />
-                <div style={{ display: 'flex', flexDirection: 'column', marginTop: 24 }}>
-                  {entries.map((e, i) => (
-                    <div
-                      key={i}
-                      data-reveal
-                      ref={reveal}
-                      className="kj-row"
-                      style={{ ...ROW, padding: '22px 16px 24px', gap: 8, borderTop: '1px solid var(--line)' }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px 20px', flexWrap: 'wrap' }}>
-                        <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 21, lineHeight: 1.2, letterSpacing: '0.01em' }}>
-                          {l(e.title)}
-                        </span>
-                        <span style={{ ...META, color: 'var(--dim)' }}>{l(e.period)}</span>
-                      </div>
-                      {e.text && l(e.text) && (
-                        <span style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--mut)', maxWidth: '72ch', textWrap: 'pretty' }}>
-                          {l(e.text)}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                  <div style={{ borderTop: '1px solid var(--line)' }} />
+                <GroupLabel title={s(`resume.${value}`)} meta={String(entries.length).padStart(2, '0')} />
+                <div className={layout}>
+                  {entries.map((e, i) => {
+                    const text = e.text && l(e.text);
+                    const highlight = e.highlight && l(e.highlight);
+                    return (
+                      <article key={i} data-reveal ref={reveal} className="kj-res-item">
+                        {value === 'experience' && <span className="kj-res-dot" aria-hidden="true" />}
+                        <div className="kj-res-head">
+                          <span className="kj-res-period">{l(e.period)}</span>
+                          {highlight && <span className="kj-res-highlight">{highlight}</span>}
+                        </div>
+                        <h3 className="kj-res-title">{l(e.title)}</h3>
+                        {text && <p className="kj-res-text">{text}</p>}
+                      </article>
+                    );
+                  })}
                 </div>
               </div>
             );

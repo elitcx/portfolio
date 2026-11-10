@@ -42,6 +42,14 @@ const SKILL_ICONS = [
   { value: '/images/sql.webp', label: 'SQL' },
   { value: '/images/ReactJS.webp', label: 'React' },
   { value: '/images/tailwind.svg', label: 'Tailwind' },
+  { value: '/images/kotlin.svg', label: 'Kotlin' },
+  { value: '/images/nextjs.svg', label: 'Next.js' },
+  { value: '/images/fastapi.svg', label: 'FastAPI' },
+  { value: '/images/threejs.svg', label: 'Three.js' },
+  { value: '/images/pytorch.svg', label: 'PyTorch' },
+  { value: '/images/onnx.svg', label: 'ONNX' },
+  { value: '/images/pytest.svg', label: 'pytest' },
+  { value: '/images/ocr.svg', label: 'OCR' },
 ];
 
 // Order here is the order the Experience section shows the groups in.
@@ -104,6 +112,7 @@ export const SCHEMAS = {
     group: { type: 'select', label: 'Group', required: true, options: RESUME_GROUPS },
     title: { type: 'loc', label: 'Title', required: true },
     period: { type: 'loc', label: 'Period', required: true },
+    highlight: { type: 'loc', label: 'Highlight (a short number, e.g. 8.5)' },
     text: { type: 'locLong', label: 'Details' },
   },
   contact: {

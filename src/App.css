@@ -347,3 +347,124 @@
   outline-offset: 4px;
   border-radius: 6px;
 }
+
+/* ── Experience & education ──────────────────────────────────── */
+
+.kj-res-cards,
+.kj-res-grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+.kj-res-cards { grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
+.kj-res-grid  { grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); }
+
+.kj-res-cards .kj-res-item,
+.kj-res-grid .kj-res-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 24px 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg);
+  /* Opacity is listed so the scroll-reveal fade still runs on these cards. */
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.kj-res-cards .kj-res-item:hover,
+.kj-res-grid .kj-res-item:hover {
+  border-color: var(--red);
+  transform: translateY(-4px);
+}
+.kj-res-cards .kj-res-item { min-height: 230px; }
+
+.kj-res-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+.kj-res-period {
+  font-family: var(--label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red-l);
+}
+.kj-res-highlight {
+  font-family: var(--display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  color: var(--fg);
+}
+.kj-res-title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+}
+.kj-res-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mut);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+/* Education: the score leads, big, and the title settles at the bottom. */
+.kj-res-cards .kj-res-head { flex-direction: row-reverse; align-items: flex-start; }
+.kj-res-cards .kj-res-highlight { font-size: clamp(3.4rem, 6vw, 4.8rem); margin-right: auto; }
+.kj-res-cards .kj-res-title { margin-top: auto; font-size: 23px; }
+
+.kj-res-grid .kj-res-title { font-size: 19px; }
+.kj-res-grid .kj-res-text { font-size: 14px; }
+
+/* Work: a dated rail. Period sits in its own column on wide screens. */
+.kj-res-timeline {
+  position: relative;
+  margin-top: 24px;
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+.kj-res-timeline .kj-res-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  column-gap: 32px;
+  row-gap: 8px;
+  padding: 24px 16px 28px;
+  border-radius: 12px;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+}
+.kj-res-timeline .kj-res-item:hover { background: var(--hov); }
+.kj-res-timeline .kj-res-head {
+  grid-row: span 2;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.kj-res-timeline .kj-res-highlight { font-size: 2rem; color: var(--fg); }
+.kj-res-dot {
+  position: absolute;
+  left: -34px;
+  top: 30px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 4px var(--panel);
+}
+
+@media (max-width: 720px) {
+  .kj-res-timeline .kj-res-item { grid-template-columns: 1fr; padding: 20px 8px 24px; }
+  .kj-res-timeline .kj-res-head { grid-row: auto; flex-direction: row; align-items: baseline; }
+  .kj-res-timeline .kj-res-highlight { font-size: 1.5rem; }
+}

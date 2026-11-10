@@ -472,6 +472,20 @@
           "color": "#FCD34D"
         },
         {
+          "lang": "Kotlin",
+          "pct": 40,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Android / ML Kit",
+            "id": "Android / ML Kit"
+          },
+          "color": "#FCD34D",
+          "icon": "/images/kotlin.svg"
+        },
+        {
           "lang": "TypeScript",
           "icon": "/images/typescript.svg",
           "pct": 35,
@@ -484,19 +498,6 @@
             "id": "React Bertipe"
           },
           "color": "#6EE7B7"
-        },
-        {
-          "lang": "Kotlin",
-          "pct": 40,
-          "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
-          },
-          "detail": {
-            "en": "Android / ML Kit",
-            "id": "Android / ML Kit"
-          },
-          "color": "#FCD34D"
         },
         {
           "lang": "SQL",
@@ -525,6 +526,20 @@
       },
       "items": [
         {
+          "lang": "Tailwind CSS",
+          "icon": "/images/tailwind.svg",
+          "pct": 58,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Utility-first styling",
+            "id": "Styling utility-first"
+          },
+          "color": "#FCD34D"
+        },
+        {
           "lang": "React",
           "icon": "/images/ReactJS.webp",
           "pct": 52,
@@ -537,6 +552,20 @@
             "id": "Komponen / SPA"
           },
           "color": "#FCD34D"
+        },
+        {
+          "lang": "Next.js",
+          "pct": 45,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Full-stack / Prisma",
+            "id": "Full-stack / Prisma"
+          },
+          "color": "#FCD34D",
+          "icon": "/images/nextjs.svg"
         },
         {
           "lang": "React Native",
@@ -553,33 +582,6 @@
           "color": "#FCD34D"
         },
         {
-          "lang": "Tailwind CSS",
-          "icon": "/images/tailwind.svg",
-          "pct": 58,
-          "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
-          },
-          "detail": {
-            "en": "Utility-first styling",
-            "id": "Styling utility-first"
-          },
-          "color": "#FCD34D"
-        },
-        {
-          "lang": "Next.js",
-          "pct": 45,
-          "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
-          },
-          "detail": {
-            "en": "Full-stack / Prisma",
-            "id": "Full-stack / Prisma"
-          },
-          "color": "#FCD34D"
-        },
-        {
           "lang": "FastAPI",
           "pct": 42,
           "level": {
@@ -590,7 +592,8 @@
             "en": "Python APIs / SQLite",
             "id": "API Python / SQLite"
           },
-          "color": "#FCD34D"
+          "color": "#FCD34D",
+          "icon": "/images/fastapi.svg"
         },
         {
           "lang": "Three.js",
@@ -603,7 +606,8 @@
             "en": "3D / WebGL",
             "id": "3D / WebGL"
           },
-          "color": "#6EE7B7"
+          "color": "#6EE7B7",
+          "icon": "/images/threejs.svg"
         }
       ]
     },
@@ -628,7 +632,8 @@
             "en": "Ultralytics / 73k-photo dataset",
             "id": "Ultralytics / dataset 73 ribu foto"
           },
-          "color": "#FCD34D"
+          "color": "#FCD34D",
+          "icon": "/images/pytorch.svg"
         },
         {
           "lang": "ONNX + WebGPU",
@@ -641,7 +646,8 @@
             "en": "In-browser inference",
             "id": "Inferensi di browser"
           },
-          "color": "#FCD34D"
+          "color": "#FCD34D",
+          "icon": "/images/onnx.svg"
         },
         {
           "lang": "Model testing",
@@ -654,7 +660,8 @@
             "en": "Held-out photo evaluation",
             "id": "Evaluasi pada foto baru"
           },
-          "color": "#FCD34D"
+          "color": "#FCD34D",
+          "icon": "/images/pytest.svg"
         },
         {
           "lang": "OCR",
@@ -667,7 +674,8 @@
             "en": "ML Kit / Tesseract / Gemini",
             "id": "ML Kit / Tesseract / Gemini"
           },
-          "color": "#6EE7B7"
+          "color": "#6EE7B7",
+          "icon": "/images/ocr.svg"
         }
       ]
     }
@@ -720,9 +728,13 @@
         "en": "2024 – Present",
         "id": "2024 – Sekarang"
       },
+      "highlight": {
+        "en": "#1",
+        "id": "#1"
+      },
       "text": {
-        "en": "Report average 95, ranked 1st in the International Program.",
-        "id": "Rata-rata rapor 95, peringkat 1 di Program Internasional."
+        "en": "Ranked 1st in the International Program, with a report average of 95.",
+        "id": "Peringkat 1 di Program Internasional, dengan rata-rata rapor 95."
       }
     },
     {
@@ -732,8 +744,16 @@
         "id": "IELTS, Overall Band 8.5"
       },
       "period": {
-        "en": "CEFR C2",
-        "id": "CEFR C2"
+        "en": "Test score",
+        "id": "Nilai tes"
+      },
+      "highlight": {
+        "en": "8.5",
+        "id": "8.5"
+      },
+      "text": {
+        "en": "Overall band 8.5, CEFR level C2.",
+        "id": "Overall band 8.5, level CEFR C2."
       }
     },
     {
@@ -745,6 +765,10 @@
       "period": {
         "en": "Aug 2026 – Present",
         "id": "Agu 2026 – Sekarang"
+      },
+      "highlight": {
+        "en": "3 clients",
+        "id": "3 klien"
       },
       "text": {
         "en": "About three clients so far. Built a full e-commerce shop with admin and sales dashboards, a payment gateway, stock tracking, a database and customer logins, and edited a promotional video.",
@@ -760,6 +784,10 @@
       "period": {
         "en": "School entrepreneurship project",
         "id": "Proyek kewirausahaan sekolah"
+      },
+      "highlight": {
+        "en": "Rp 1M",
+        "id": "Rp 1 jt"
       },
       "text": {
         "en": "Ran an online coffee business end to end (sourcing, pricing, promotion, fulfilment) for about Rp 1,000,000 profit.",
