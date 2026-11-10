@@ -86,6 +86,29 @@ function ProjectLinks({ p }) {
           {s('projects.live')}
         </a>
       )}
+      {p.landing && (
+        <a
+          href={p.landing}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kj-ghost"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '10px 16px',
+            borderRadius: 999,
+            border: '1px solid var(--line)',
+            fontFamily: 'var(--label)',
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--fg)',
+          }}
+        >
+          {s('projects.landing')}
+        </a>
+      )}
     </div>
   );
 }
@@ -151,7 +174,7 @@ function CurrentProjectCard({ p, onZoom }) {
 
         {p.period && (
           <span style={{ ...META, color: 'var(--dim)', letterSpacing: '0.18em' }}>
-            {p.period} · {s('projects.solo')}
+            {p.period} · {p.team || s('projects.solo')}
           </span>
         )}
 
@@ -418,7 +441,7 @@ export default function PortfolioPage() {
                         marginTop: -4,
                       }}
                     >
-                      {p.period} · {s('projects.solo')}
+                      {p.period} · {p.team || s('projects.solo')}
                     </span>
                   )}
 

@@ -116,7 +116,7 @@ test('contact rows can be edited and moved, but not added or deleted', () => {
 });
 
 test('every section has a label and the lists it promises', () => {
-  const edited = { projects: [], certificates: [], site: { facts: [], stats: [], timeline: [], skillGroups: [], contact: [] } };
+  const edited = { projects: [], certificates: [], site: { facts: [], stats: [], timeline: [], skillGroups: [], resume: [], contact: [] } };
   for (const section of SECTIONS) {
     assert.ok(section.label);
     if (section.kind === 'lists') assert.ok(listsFor(section.id, edited).length > 0, section.id);

@@ -244,6 +244,30 @@
     "zoom.close": {
       "en": "Close",
       "id": "Tutup"
+    },
+    "projects.landing": {
+      "en": "Landing page →",
+      "id": "Halaman utama →"
+    },
+    "resume.label": {
+      "en": "Background",
+      "id": "Latar belakang"
+    },
+    "resume.heading": {
+      "en": "Experience & Education",
+      "id": "Pengalaman & Pendidikan"
+    },
+    "resume.education": {
+      "en": "Education & test scores",
+      "id": "Pendidikan & nilai tes"
+    },
+    "resume.experience": {
+      "en": "Work",
+      "id": "Pekerjaan"
+    },
+    "resume.leadership": {
+      "en": "Leadership & volunteering",
+      "id": "Kepemimpinan & relawan"
     }
   },
   "stats": [
@@ -393,8 +417,8 @@
       "year": "2026",
       "color": "var(--red-l)",
       "text": {
-        "en": "1st at OSNK Informatika. Samsung Solve for Tomorrow semifinals. More projects, more volunteering.",
-        "id": "Juara 1 OSNK Informatika. Semifinal Samsung Solve for Tomorrow. Lebih banyak proyek, lebih banyak kegiatan relawan."
+        "en": "1st at OSN-K Informatika and PINGFEST UNS. Samsung Solve for Tomorrow semifinals. Effluvium, BRaiLLE and first freelance clients.",
+        "id": "Juara 1 OSN-K Informatika dan PINGFEST UNS. Semifinal Samsung Solve for Tomorrow. Effluvium, BRaiLLE, dan klien freelance pertama."
       }
     }
   ],
@@ -466,6 +490,19 @@
           "color": "#6EE7B7"
         },
         {
+          "lang": "Kotlin",
+          "pct": 40,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Android / ML Kit",
+            "id": "Android / ML Kit"
+          },
+          "color": "#FCD34D"
+        },
+        {
           "lang": "SQL",
           "icon": "/images/sql.webp",
           "pct": 22,
@@ -532,6 +569,109 @@
             "id": "Styling utility-first"
           },
           "color": "#FCD34D"
+        },
+        {
+          "lang": "Next.js",
+          "pct": 45,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Full-stack / Prisma",
+            "id": "Full-stack / Prisma"
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "FastAPI",
+          "pct": 42,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Python APIs / SQLite",
+            "id": "API Python / SQLite"
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "Three.js",
+          "pct": 30,
+          "level": {
+            "en": "Learning",
+            "id": "Sedang Belajar"
+          },
+          "detail": {
+            "en": "3D / WebGL",
+            "id": "3D / WebGL"
+          },
+          "color": "#6EE7B7"
+        }
+      ]
+    },
+    {
+      "group": {
+        "en": "Machine learning",
+        "id": "Machine learning"
+      },
+      "meta": {
+        "en": "{count} skills",
+        "id": "{count} keahlian"
+      },
+      "items": [
+        {
+          "lang": "YOLO fine-tuning",
+          "pct": 45,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Ultralytics / 73k-photo dataset",
+            "id": "Ultralytics / dataset 73 ribu foto"
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "ONNX + WebGPU",
+          "pct": 40,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "In-browser inference",
+            "id": "Inferensi di browser"
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "Model testing",
+          "pct": 40,
+          "level": {
+            "en": "Intermediate",
+            "id": "Menengah"
+          },
+          "detail": {
+            "en": "Held-out photo evaluation",
+            "id": "Evaluasi pada foto baru"
+          },
+          "color": "#FCD34D"
+        },
+        {
+          "lang": "OCR",
+          "pct": 35,
+          "level": {
+            "en": "Learning",
+            "id": "Sedang Belajar"
+          },
+          "detail": {
+            "en": "ML Kit / Tesseract / Gemini",
+            "id": "ML Kit / Tesseract / Gemini"
+          },
+          "color": "#6EE7B7"
         }
       ]
     }
@@ -571,6 +711,142 @@
       "handle": "@kenneth_kiel",
       "href": "https://www.instagram.com/kenneth_kiel/",
       "flip": "none"
+    }
+  ],
+  "resume": [
+    {
+      "group": "education",
+      "title": {
+        "en": "SMA Regina Pacis Surakarta, International Program",
+        "id": "SMA Regina Pacis Surakarta, Program Internasional"
+      },
+      "period": {
+        "en": "2024 – Present",
+        "id": "2024 – Sekarang"
+      },
+      "text": {
+        "en": "Report average 95, ranked 1st in the International Program.",
+        "id": "Rata-rata rapor 95, peringkat 1 di Program Internasional."
+      }
+    },
+    {
+      "group": "education",
+      "title": {
+        "en": "IELTS, Overall Band 8.5",
+        "id": "IELTS, Overall Band 8.5"
+      },
+      "period": {
+        "en": "CEFR C2",
+        "id": "CEFR C2"
+      }
+    },
+    {
+      "group": "experience",
+      "title": {
+        "en": "Freelance Developer & Designer",
+        "id": "Developer & Desainer Lepas"
+      },
+      "period": {
+        "en": "Aug 2026 – Present",
+        "id": "Agu 2026 – Sekarang"
+      },
+      "text": {
+        "en": "About three clients so far. Built a full e-commerce shop with admin and sales dashboards, a payment gateway, stock tracking, a database and customer logins, and edited a promotional video.",
+        "id": "Sekitar tiga klien sejauh ini. Membuat toko e-commerce lengkap dengan dashboard admin dan penjualan, payment gateway, pencatatan stok, database, dan login pelanggan, serta mengedit video promosi."
+      }
+    },
+    {
+      "group": "experience",
+      "title": {
+        "en": "Founder & Lead, Online Coffee Venture",
+        "id": "Pendiri & Ketua, Usaha Kopi Online"
+      },
+      "period": {
+        "en": "School entrepreneurship project",
+        "id": "Proyek kewirausahaan sekolah"
+      },
+      "text": {
+        "en": "Ran an online coffee business end to end (sourcing, pricing, promotion, fulfilment) for about Rp 1,000,000 profit.",
+        "id": "Menjalankan usaha kopi online dari awal sampai akhir (bahan, harga, promosi, pengiriman) dengan laba sekitar Rp 1.000.000."
+      }
+    },
+    {
+      "group": "experience",
+      "title": {
+        "en": "Intern, Local Café, Surakarta",
+        "id": "Magang, Kafe Lokal, Surakarta"
+      },
+      "period": {
+        "en": "1 week",
+        "id": "1 minggu"
+      },
+      "text": {
+        "en": "Shadowed daily café operations, which led directly to the coffee venture.",
+        "id": "Mengikuti operasional harian kafe, yang langsung menjadi awal usaha kopi."
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "CTO, Effluvium",
+        "id": "CTO, Effluvium"
+      },
+      "period": {
+        "en": "2026",
+        "id": "2026"
+      },
+      "text": {
+        "en": "Led the technology for a five-person team: the AI model, kiosk, dashboard and backend.",
+        "id": "Memimpin teknologi untuk tim lima orang: model AI, kios, dashboard, dan backend."
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "Vice Chair, Robotics Division, Ursuline Technology (U-Tech)",
+        "id": "Wakil Ketua, Divisi Robotik, Ursuline Technology (U-Tech)"
+      },
+      "period": {
+        "en": "2026 – Present",
+        "id": "2026 – Sekarang"
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "Peer Tutor (Tutor Sebaya), SMA Regina Pacis Surakarta",
+        "id": "Tutor Sebaya, SMA Regina Pacis Surakarta"
+      },
+      "period": {
+        "en": "2024/2025",
+        "id": "2024/2025"
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "Volunteer & Event Organiser, Panti Asuhan Beth Shan",
+        "id": "Relawan & Penyelenggara Acara, Panti Asuhan Beth Shan"
+      },
+      "period": {
+        "en": "2026",
+        "id": "2026"
+      },
+      "text": {
+        "en": "Ran an event at the orphanage with Relawan Bersamaa.Baktikuu.",
+        "id": "Menyelenggarakan acara di panti asuhan bersama Relawan Bersamaa.Baktikuu."
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "Member, Ursulin Investment Club",
+        "id": "Anggota, Ursulin Investment Club"
+      },
+      "period": {
+        "en": "2024 – 2025",
+        "id": "2024 – 2025"
+      }
     }
   ]
 }

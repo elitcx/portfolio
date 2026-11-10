@@ -18,6 +18,15 @@
     "image": "/images/certificates/battle-of-technology-it-venture-pingfest-uns-2026-75e6a74f.jpg"
   },
   {
+    "image": "/images/certificates/futurepreneur-best-team-2026.jpg",
+    "title": "Best Team - Futurepreneur Integrated Learning Project (SMA Regina Pacis × Universitas Sugeng Hartono) 2026",
+    "result": {
+      "en": "Best Team",
+      "id": "Tim Terbaik"
+    },
+    "tier": "gold"
+  },
+  {
     "image": "/images/certificates/logicodix.webp",
     "title": "Programming & Logic Competition - LOGICODIX UNESA 2025",
     "result": {
@@ -68,6 +77,15 @@
     "result": {
       "en": "Finalist",
       "id": "Finalis"
+    },
+    "tier": "other"
+  },
+  {
+    "image": "/images/certificates/samsung-sft-2026-semifinal.png",
+    "title": "Samsung Solve for Tomorrow 2026 - Team DotCode",
+    "result": {
+      "en": "Semifinalist",
+      "id": "Semifinalis"
     },
     "tier": "other"
   },

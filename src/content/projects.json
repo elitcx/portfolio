@@ -1,13 +1,45 @@
 [
   {
+    "title": "Effluvium",
+    "period": {
+      "en": "Oct – Nov 2026",
+      "id": "Okt – Nov 2026"
+    },
+    "team": {
+      "en": "CTO · Team of 5",
+      "id": "CTO · Tim 5 orang"
+    },
+    "description": {
+      "en": "AI waste-sorting kiosk and analytics dashboard for schools: a camera tells each student which bin their trash goes in, and the dashboard reports what was sorted. As CTO of a five-person team I built the dataset and fine-tuned YOLOE-26s (Ultralytics) on 73,722 photos covering 21 waste types, including Indonesian packaging. It runs in the browser through ONNX Runtime Web on WebGPU at about 20 to 60 ms per frame, and no photo ever leaves the device. On photos it never trained on, it picks the right bin 83% of the time. FastAPI and SQLite backend, covered by pytest and JavaScript tests. Won Best Team at the Futurepreneur Integrated Learning Project.",
+      "id": "Kios pemilah sampah berbasis AI dan dashboard analitik untuk sekolah: kamera memberi tahu setiap siswa ke tong mana sampahnya dibuang, dan dashboard melaporkan apa saja yang sudah dipilah. Sebagai CTO di tim lima orang, saya menyusun dataset dan melatih ulang YOLOE-26s (Ultralytics) dengan 73.722 foto untuk 21 jenis sampah, termasuk kemasan produk Indonesia. Model berjalan di browser lewat ONNX Runtime Web di WebGPU dengan sekitar 20 sampai 60 ms per frame, dan tidak ada foto yang keluar dari perangkat. Pada foto yang tidak pernah dipakai latihan, model memilih tong yang benar 83% dari waktu. Backend FastAPI dan SQLite, diuji dengan pytest dan tes JavaScript. Meraih Best Team di Futurepreneur Integrated Learning Project."
+    },
+    "link": "https://github.com/elitcx/effluvium",
+    "deployed": "https://effluvium.vercel.app",
+    "landing": "https://effluvium-web.vercel.app",
+    "categories": [
+      "AI",
+      "Machine Learning",
+      "YOLO",
+      "ONNX",
+      "WebGPU",
+      "Python",
+      "FastAPI",
+      "SQLite",
+      "JavaScript",
+      "Full-Stack",
+      "Website"
+    ],
+    "image": "/images/effluvium.jpg"
+  },
+  {
     "title": "BraillePad",
     "description": {
       "en": "BraillePad Hardware for Samsung's Solve For Tomorrow Competition. Shows braille in real time through an OCR system (android application). Co-authored by me and my team: DotCode.",
       "id": "Hardware BraillePad untuk Kompetisi Samsung Solve For Tomorrow. Menampilkan braille secara real-time melalui sistem OCR (aplikasi android). Dibuat bersama oleh saya dan tim saya: DotCode."
     },
     "period": {
-      "en": "Sep - Now",
-      "id": "Sep - Now"
+      "en": "Sep 2026 – Now",
+      "id": "Sep 2026 – Sekarang"
     },
     "categories": [
       "hardware",
@@ -20,7 +52,11 @@
     "link": "",
     "deployed": "",
     "current": true,
-    "image": "/images/braillepad-47bf2d0e.jpg"
+    "image": "/images/braillepad-47bf2d0e.jpg",
+    "team": {
+      "en": "Team DotCode",
+      "id": "Tim DotCode"
+    }
   },
   {
     "title": "BRaiLLE OCR",
@@ -29,8 +65,8 @@
       "id": "Aplikasi OCR untuk BRaiLLE: produk Samsung Solve For Tomorrow dari DotCode. Dilengkapi dengan sistem kamera terpandu untuk memastikan aksesibilitas bagi pengguna tunanetra, memindai kertas, dokumen, dan lembar kerja fisik dalam waktu kurang dari 1 detik dengan akurasi di atas 90%. Berbasis Google's ML Kit Text Recognition v2 dan ditingkatkan dengan Gemini serta Tesseract OCR. Mengonversi langsung ke braille beserta fitur text-to-speech dan tersinkronisasi dengan BraillePad. Diuji dan diimplementasikan langsung pada siswa dan guru tunanetra."
     },
     "period": {
-      "en": "Aug - Sep",
-      "id": "Agt - Sep"
+      "en": "Aug – Sep 2026",
+      "id": "Agu – Sep 2026"
     },
     "categories": [
       "kotlin",
@@ -43,7 +79,11 @@
       "accessibility"
     ],
     "link": "https://github.com/elitcx/sft-ocr",
-    "image": "/images/braille-ocr-acccc909.jpg"
+    "image": "/images/braille-ocr-acccc909.jpg",
+    "team": {
+      "en": "Team DotCode",
+      "id": "Tim DotCode"
+    }
   },
   {
     "title": "Personal Dashboard",

@@ -6,6 +6,7 @@ export const SECTIONS = [
   { id: 'about', label: 'About & stats', kind: 'lists' },
   { id: 'timeline', label: 'Timeline', kind: 'lists' },
   { id: 'skills', label: 'Skills', kind: 'lists' },
+  { id: 'resume', label: 'Experience', kind: 'lists' },
   { id: 'contact', label: 'Contact', kind: 'lists' },
   { id: 'text', label: 'Page text', kind: 'text' },
   { id: 'files', label: 'CV & banner', kind: 'files' },
@@ -50,6 +51,11 @@ export function listsFor(sectionId, edited) {
           titleOf: (item) => item.lang || 'New skill',
         })),
       ];
+    case 'resume':
+      return [{
+        key: 'resume', label: 'Experience', file: 'site', path: ['resume'], schema: 'resume', ...editable,
+        titleOf: (item) => shown(item.title),
+      }];
     case 'contact':
       return [{
         key: 'contact', label: 'Contact', file: 'site', path: ['contact'], schema: 'contact', ...locked,

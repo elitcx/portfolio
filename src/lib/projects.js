@@ -18,6 +18,7 @@ export function indexProjects(projects, lang) {
       ...p,
       description,
       period: localize(p.period, lang),
+      team: p.team ? localize(p.team, lang) : '',
       thumb: p.image ? thumbSrc(p.image) : null,
       full: p.image ? fullSrc(p.image) : null,
       haystack: `${p.title} ${plainText(description)} ${p.categories.join(' ')}`.toLowerCase(),

@@ -13,10 +13,8 @@ test('site text has exactly the known keys, each with English', () => {
   for (const key of TEXT_KEYS) assert.ok(text[key].en, `${key} has no English`);
 });
 
-test('existing projects and certificates all moved across', () => {
+test('the first certificate is a gold first place', () => {
   const certificates = read('certificates');
-  assert.equal(read('projects').length, 9);
-  assert.equal(certificates.length, 20);
   assert.equal(certificates[0].tier, 'gold');
   assert.equal(certificates[0].result.en, '1st Place');
 });

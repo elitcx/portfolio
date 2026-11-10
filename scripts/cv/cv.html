@@ -9,9 +9,9 @@
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --ink:#141414; --body:#3d3d3d; --mut:#8a8a8a; --rule:#e4e2de; --red:#b91c1c; --panel:#f5f4f1; }
-  html, body { font-family: Barlow, Arial, sans-serif; color: var(--body); font-size: 9.6pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { font-family: Barlow, Arial, sans-serif; color: var(--body); font-size: 9.2pt; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   a { color: inherit; text-decoration: none; }
-  .page { width: 210mm; height: 297mm; padding: 14mm 17mm 12mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page { width: 210mm; height: 297mm; padding: 12mm 17mm 12mm; position: relative; page-break-after: always; overflow: hidden; }
   .page:last-child { page-break-after: auto; }
   .foot { position: absolute; left: 17mm; right: 17mm; bottom: 6.5mm; display: flex; justify-content: space-between; font-size: 7pt; letter-spacing: .18em; color: var(--mut); text-transform: uppercase; }
 
@@ -24,21 +24,21 @@
   .sep { color: #bbb; margin: 0 1.6mm; }
   .photo { width: 36mm; height: 42mm; object-fit: cover; border: 1px solid #ddd; flex: none; }
 
-  .stats { margin-top: 5mm; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--panel); padding: 4mm 0; }
+  .stats { margin-top: 4mm; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--panel); padding: 3.2mm 0; }
   .stat { padding: 0 5mm; border-left: 1px solid #dcdad5; }
   .stat:first-child { border-left: 0; }
   .stat b { display: block; font-family: "Barlow Semi Condensed", sans-serif; font-weight: 900; font-size: 20pt; line-height: 1; color: var(--ink); }
   .stat b.red { color: var(--red); }
   .stat span { display: block; margin-top: 1.5mm; font-size: 6.4pt; font-weight: 600; letter-spacing: .1em; color: #777; white-space: nowrap; text-transform: uppercase; }
 
-  section { margin-top: 4.6mm; }
-  h2 { display: flex; align-items: baseline; gap: 3.5mm; padding-top: 3mm; border-top: 1px solid var(--rule); font-size: 8.4pt; font-weight: 600; letter-spacing: .3em; color: var(--ink); text-transform: uppercase; margin-bottom: 2.2mm; }
+  section { margin-top: 3.6mm; }
+  h2 { display: flex; align-items: baseline; gap: 3.5mm; padding-top: 2.6mm; border-top: 1px solid var(--rule); font-size: 8.4pt; font-weight: 600; letter-spacing: .3em; color: var(--ink); text-transform: uppercase; margin-bottom: 2.2mm; }
   h2 i { font-style: normal; font-family: "Barlow Semi Condensed", sans-serif; font-weight: 900; font-size: 10pt; color: var(--red); letter-spacing: .05em; }
 
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 5mm; }
-  .item { margin-top: 2.2mm; }
+  .item { margin-top: 1.8mm; }
   .item:first-of-type { margin-top: 0; }
-  .t { font-weight: 600; color: var(--ink); font-size: 10.2pt; }
+  .t { font-weight: 600; color: var(--ink); font-size: 9.9pt; }
   .d { font-size: 7pt; font-weight: 500; letter-spacing: .16em; color: var(--mut); text-transform: uppercase; white-space: nowrap; }
   .stack { color: var(--red); font-size: 8.6pt; font-weight: 500; }
   .links { font-size: 8.4pt; margin-top: .6mm; }
@@ -87,14 +87,13 @@
 
   <section>
     <h2><i>01</i>Profile</h2>
-    <p>Grade 12 student at SMA Regina Pacis Surakarta, ranked first in the International Program. First place in OSN-K Informatika 2026, 10+ national placements in informatics, mathematics and English, and IELTS 8.5. Writing code since 2017, and I ship what I build: the projects below are all live or public on GitHub. Seeking university scholarship opportunities.</p>
+    <p>Grade 12 student at SMA Regina Pacis Surakarta, ranked first in the International Program. First place in OSN-K Informatika 2026 and PINGFEST UNS 2026, 10+ national placements, and IELTS 8.5. CTO of Effluvium, an AI waste-sorting kiosk trained on 73,722 photos, and a freelance developer since August 2026. Writing code since 2017; everything below is live or public on GitHub. Seeking university scholarship opportunities.</p>
   </section>
 
   <section>
     <h2><i>02</i>Education &amp; Test Scores</h2>
     <div class="item">
-      <div class="row"><span class="t">SMA Regina Pacis Surakarta — International Program</span><span class="d">2024 – Present</span></div>
-      <ul><li>Report average 95; ranked 1st in the International Program.</li></ul>
+      <div class="row"><span><span class="t">SMA Regina Pacis Surakarta — International Program</span> · report average 95, ranked 1st</span><span class="d">2024 – Present</span></div>
     </div>
     <div class="item">
       <div class="row"><span class="t">IELTS — Overall Band 8.5</span><span class="d">CEFR C2</span></div>
@@ -106,15 +105,17 @@
     <div class="sub">Informatics &amp; competitive programming</div>
     <div class="awards">
       <span class="p win">1st</span><span><b class="t" style="font-size:9.6pt">OSN Informatika (OSN-K)</b> — Kota Surakarta, 2026</span>
+      <span class="p win">1st</span><span><b class="t" style="font-size:9.6pt">Battle of Technology IT-Venture</b> — PINGFEST UNS, 2026</span>
       <span class="p">2nd</span><span>Programming &amp; Logic Competition — LOGICODIX UNESA, 2025</span>
       <span class="p">2nd</span><span>Competitive Programming — IAA UKDW Yogyakarta, 2025</span>
       <span class="p">2nd</span><span>Battle of Technology IT-Venture — PINGFEST UNS, 2025</span>
       <span class="p">3rd</span><span>Informatics Rally Games and Logic (IRGL) — UK Petra, 2025</span>
       <span class="p">Finalist</span><span>OSN-K Informatika Kota Surakarta, 2025 · Schematics NPC Junior, ITS, 2025</span>
-      <span class="p">Semifinal</span><span>ILPC Ubaya, 2026 · Samsung Solve for Tomorrow, 2026</span>
+      <span class="p">Semifinal</span><span>ILPC Ubaya, 2026 · Samsung Solve for Tomorrow (team DotCode), 2026</span>
     </div>
     <div class="sub">Mathematics, English &amp; business</div>
     <div class="awards">
+      <span class="p win">Best Team</span><span>Futurepreneur Integrated Learning Project (Effluvium) — Regina Pacis × U. Sugeng Hartono, 2026</span>
       <span class="p">Silver</span><span>Final Nasional OMNAS 13 — Mathematics and English (two medals), 2024</span>
       <span class="p">Silver</span><span>National Junior High School Math Competition — Practo Math Academy, 2023</span>
       <span class="p">Top 10</span><span>Entrepreneurship Business Challenge &amp; Competition 6.0 — UKWMS, 2024</span>
@@ -125,10 +126,10 @@
   <section>
     <h2><i>04</i>Selected Projects</h2>
     <div class="item">
-      <div class="row"><span class="t">Personal Dashboard</span><span class="d">May – Jun 2026</span></div>
-      <div class="stack">Next.js · TypeScript · Prisma · NextAuth</div>
-      <p>Full-stack dashboard with authentication, a Prisma database and Gemini-generated summaries. Tracks schedule, sleep, habits, gym and finances; syncs with Google Calendar; installs as a PWA.</p>
-      <div class="links"><span class="lbl">Live</span><a href="https://elitcx123.vercel.app">elitcx123.vercel.app</a><span class="sep">·</span><span class="lbl">Code</span><a href="https://github.com/elitcx/dashboard">github.com/elitcx/dashboard</a></div>
+      <div class="row"><span class="t">Effluvium — CTO, team of 5</span><span class="d">Oct – Nov 2026</span></div>
+      <div class="stack">YOLO (Ultralytics) · ONNX Runtime Web · WebGPU · FastAPI · SQLite · JavaScript</div>
+      <p>AI waste-sorting kiosk and analytics dashboard for schools. Built the dataset and fine-tuned YOLOE-26s on 73,722 photos for 21 waste types, including Indonesian packaging. Runs in the browser on WebGPU at 20–60 ms per frame, and no photo leaves the device. Picks the right bin 83% of the time on photos it never trained on. Tested with pytest and JS tests. Won Best Team at the Futurepreneur project.</p>
+      <div class="links"><span class="lbl">Prototype</span><a href="https://effluvium.vercel.app">effluvium.vercel.app</a><span class="sep">·</span><span class="lbl">Site</span><a href="https://effluvium-web.vercel.app">effluvium-web.vercel.app</a><span class="sep">·</span><span class="lbl">Code</span><a href="https://github.com/elitcx/effluvium">github.com/elitcx/effluvium</a></div>
     </div>
   </section>
 
@@ -140,28 +141,26 @@
   <section style="margin-top:0">
     <h2 style="border-top:0;padding-top:0"><i>04</i>Selected Projects (cont.)</h2>
     <div class="item">
+      <div class="row"><span class="t">BRaiLLE OCR &amp; BraillePad — team DotCode, Samsung Solve for Tomorrow</span><span class="d">Aug 2026 – Present</span></div>
+      <div class="stack">Kotlin · Android · ML Kit · Tesseract · Gemini API · ESP32</div>
+      <p>Android app with a guided camera for blind users that reads paper documents in under 1 second at above 90% accuracy, then converts the text to braille and speech. Tested with blind students and teachers. BraillePad, the matching braille display hardware, is in progress.</p>
+      <div class="links"><span class="lbl">Code</span><a href="https://github.com/elitcx/sft-ocr">github.com/elitcx/sft-ocr</a></div>
+    </div>
+    <div class="item">
+      <div class="row"><span class="t">Personal Dashboard</span><span class="d">May – Jun 2026</span></div>
+      <div class="stack">Next.js · TypeScript · Prisma · NextAuth</div>
+      <p>Full-stack dashboard with logins, a Prisma database and Gemini summaries. Tracks schedule, sleep, habits, gym and money; syncs with Google Calendar; works offline as a PWA.</p>
+      <div class="links"><span class="lbl">Live</span><a href="https://elitcx123.vercel.app">elitcx123.vercel.app</a><span class="sep">·</span><span class="lbl">Code</span><a href="https://github.com/elitcx/dashboard">github.com/elitcx/dashboard</a></div>
+    </div>
+    <div class="item">
       <div class="row"><span class="t">StudyMate</span><span class="d">Apr – Jun 2026</span></div>
       <div class="stack">React Native · Expo · Firebase</div>
       <p>Cross-platform learning app for students, teachers and admins: exams, materials, quizzes and grades behind role-based access. Demoed to a teacher and a group of students.</p>
       <div class="links"><span class="lbl">Code</span><a href="https://github.com/elitcx/StudyMate">github.com/elitcx/StudyMate</a></div>
     </div>
     <div class="item">
-      <div class="row"><span class="t">U-Tech Capture Station</span><span class="d">Aug 2026</span></div>
-      <div class="stack">JavaScript · Three.js / WebGL · Web Media APIs</div>
-      <p>Procedural 3D rotary telephone built for a school event. Picking up the handset turns the page into a live camera and microphone booth with a waveform visualiser that saves each take.</p>
-      <div class="links"><span class="lbl">Live</span><a href="https://utech-phone.vercel.app">utech-phone.vercel.app</a><span class="sep">·</span><span class="lbl">Code</span><a href="https://github.com/elitcx/utech-phone">github.com/elitcx/utech-phone</a></div>
-    </div>
-    <div class="item">
-      <div class="row"><span class="t">Traffic Maze Solver</span><span class="d">Aug 2025 – Apr 2026</span></div>
-      <div class="stack">C++ · Algorithms</div>
-      <p>Dijkstra over a simulated 2D traffic grid, weighting each cell by congestion rather than distance, with path reconstruction and an ASCII render of the route.</p>
-      <div class="links"><span class="lbl">Code</span><a href="https://github.com/elitcx/Traffic-Maze-Solver">github.com/elitcx/Traffic-Maze-Solver</a></div>
-    </div>
-    <div class="item">
-      <div class="row"><span class="t">UTech Community Website</span><span class="d">May – Jun 2026</span></div>
-      <div class="stack">React · React Router · Vite</div>
-      <p>Community site for U-Tech, the technology community for SMP and SMA Regina Pacis students.</p>
-      <div class="links"><span class="lbl">Live</span><a href="https://ursulinetechnology.vercel.app">ursulinetechnology.vercel.app</a><span class="sep">·</span><span class="lbl">Code</span><a href="https://github.com/elitcx/utech-website">github.com/elitcx/utech-website</a></div>
+      <div class="row"><span class="t">More on GitHub</span></div>
+      <p>U-Tech Capture Station · Traffic Maze Solver (C++) · UTech Website · One Choice Endless Paths · Push-up Challenge · Tokopedia Webscraper · Finance Tracker</p>
     </div>
   </section>
 
@@ -169,15 +168,18 @@
     <h2><i>05</i>Skills</h2>
     <div class="kv">
       <span class="k">Competition</span><span class="v"><b>C++</b> · <b>Python</b></span>
-      <span class="k">Intermediate</span><span class="v"><b>JavaScript</b> · <b>React</b> · <b>React Native</b> · <b>Tailwind CSS</b></span>
-      <span class="k">Learning</span><span class="v">TypeScript · SQL</span>
-      <span class="k">Tools</span><span class="v">Git · Vite · Expo · Firebase · Prisma</span>
+      <span class="k">Intermediate</span><span class="v"><b>JavaScript</b> · <b>React</b> · <b>React Native</b> · <b>Kotlin / Android</b> · <b>Next.js</b> · <b>FastAPI</b> · Tailwind CSS</span>
+      <span class="k">Learning</span><span class="v">TypeScript · SQL / SQLite · Three.js</span>
+      <span class="k">Machine learning</span><span class="v">YOLO fine-tuning (Ultralytics) · dataset building · ONNX · in-browser WebGPU inference · unseen-data testing</span>
+      <span class="k">Practices</span><span class="v">Offline web apps (PWAs) · automated testing (pytest, JS tests) · payment gateway integration</span>
+      <span class="k">Tools</span><span class="v">Git · Vercel · Expo · Firebase · Prisma · Hugging Face · Gemini API · ML Kit · Tesseract · video editing</span>
       <span class="k">Languages</span><span class="v">Indonesian (native) · <b>English (IELTS 8.5)</b> · Chinese</span>
     </div>
   </section>
 
   <section>
     <h2><i>06</i>Leadership &amp; Activities</h2>
+    <div class="item"><div class="row"><span class="t">CTO — Effluvium</span><span class="d">2026</span></div></div>
     <div class="item"><div class="row"><span class="t">Vice Chair, Robotics Division — Ursuline Technology (U-Tech)</span><span class="d">2026 – Present</span></div></div>
     <div class="item"><div class="row"><span class="t">Peer Tutor (Tutor Sebaya) — SMA Regina Pacis Surakarta</span><span class="d">2024/2025</span></div></div>
     <div class="item">
@@ -189,19 +191,19 @@
   <section>
     <h2><i>07</i>Experience</h2>
     <div class="item">
-      <div class="row"><span class="t">Founder &amp; Lead — Online Coffee Venture</span><span class="d">School entrepreneurship project</span></div>
-      <p>Ran an online coffee business end to end (sourcing, pricing, promotion, fulfilment) for ~Rp 1,000,000 profit.</p>
+      <div class="row"><span class="t">Freelance Developer &amp; Designer</span><span class="d">Aug 2026 – Present</span></div>
+      <p>About 3 clients: a full e-commerce shop (dashboards, payment gateway, stock, database, logins) and a video edit.</p>
     </div>
     <div class="item">
-      <div class="row"><span class="t">Intern — Local cafe, Surakarta</span><span class="d">1 week</span></div>
-      <p>Shadowed daily cafe operations, which led directly to the coffee venture.</p>
+      <div class="row"><span class="t">Founder &amp; Lead — Online Coffee Venture</span><span class="d">School entrepreneurship project</span></div>
+      <p>Ran an online coffee business end to end (sourcing, pricing, promotion, fulfilment) for ~Rp 1,000,000 profit, after a one-week café internship.</p>
     </div>
   </section>
 
   <section>
     <h2><i>08</i>Courses, Certifications &amp; Other</h2>
     <ul>
-      <li>Intro to Software Engineering — RevoU Coding Camp, 2025 · Cybersecurity Workshop “Breaking the Code” — PSB Academy Singapore, 2025</li>
+      <li>Intro to Software Engineering — RevoU, 2025 · Cybersecurity Workshop — PSB Academy Singapore, 2025</li>
       <li>Basic Programming with C++ — tlx.toki.id · Python for Everybody — freeCodeCamp</li>
       <li>Also competed — FIND IT! UGM 2026 · TechSoft Polindra Web Design 2026 · UWG National Business Plan 2025</li>
     </ul>

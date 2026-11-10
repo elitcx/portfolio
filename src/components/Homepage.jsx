@@ -6,6 +6,7 @@ import RichText from './RichText.jsx';
 import { certificates, site } from '../content/index.js';
 import { useLang } from '../i18n/lang.js';
 import { plainText } from '../lib/richText.js';
+import { RESUME_GROUPS } from '../lib/contentSchema.js';
 import {
   CERT_PREVIEW_COUNT,
   CV,
@@ -564,10 +565,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 03 · Certifications ---------------------------------------------- */}
-      <section data-screen-label="Certifications" style={{ ...SECTION, background: 'var(--panel)' }}>
+      {/* 03 · Experience & education --------------------------------------- */}
+      <section data-screen-label="Experience" style={{ ...SECTION, background: 'var(--panel)' }}>
         <div style={SHELL}>
-          <SectionHeader num="03" label={s('certs.label')} meta={plainText(s('certs.meta'), { count: certificates.length })} />
+          <SectionHeader num="03" label={s('resume.label')} />
+          <h2 style={{ ...HEADING, marginBottom: 0 }}>{s('resume.heading')}</h2>
+
+          {RESUME_GROUPS.map(({ value }) => {
+            const entries = site.resume.filter((e) => e.group === value);
+            if (!entries.length) return null;
+            return (
+              <div key={value}>
+                <GroupLabel title={s(`resume.${value}`)} meta={entries.length} />
+                <div style={{ display: 'flex', flexDirection: 'column', marginTop: 24 }}>
+                  {entries.map((e, i) => (
+                    <div
+                      key={i}
+                      data-reveal
+                      ref={reveal}
+                      className="kj-row"
+                      style={{ ...ROW, padding: '22px 16px 24px', gap: 8, borderTop: '1px solid var(--line)' }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px 20px', flexWrap: 'wrap' }}>
+                        <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 21, lineHeight: 1.2, letterSpacing: '0.01em' }}>
+                          {l(e.title)}
+                        </span>
+                        <span style={{ ...META, color: 'var(--dim)' }}>{l(e.period)}</span>
+                      </div>
+                      {e.text && l(e.text) && (
+                        <span style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--mut)', maxWidth: '72ch', textWrap: 'pretty' }}>
+                          {l(e.text)}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                  <div style={{ borderTop: '1px solid var(--line)' }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 04 · Certifications ---------------------------------------------- */}
+      <section data-screen-label="Certifications" style={{ ...SECTION, background: 'var(--bg)' }}>
+        <div style={SHELL}>
+          <SectionHeader num="04" label={s('certs.label')} meta={plainText(s('certs.meta'), { count: certificates.length })} />
           <h2 style={HEADING}>{s('certs.heading')}</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 24 }}>

@@ -44,6 +44,13 @@ const SKILL_ICONS = [
   { value: '/images/tailwind.svg', label: 'Tailwind' },
 ];
 
+// Order here is the order the Experience section shows the groups in.
+export const RESUME_GROUPS = [
+  { value: 'education', label: 'Education & test scores' },
+  { value: 'experience', label: 'Work' },
+  { value: 'leadership', label: 'Leadership & volunteering' },
+];
+
 const ICON_FLIP = [
   { value: 'none', label: 'Keep colours' },
   { value: 'var(--iconflip)', label: 'Invert in dark mode' },
@@ -55,9 +62,11 @@ export const SCHEMAS = {
     title: { type: 'text', label: 'Title', required: true },
     description: { type: 'locLong', label: 'Description', required: true },
     period: { type: 'loc', label: 'Period', required: true },
+    team: { type: 'loc', label: 'Team (leave empty if solo)' },
     categories: { type: 'tags', label: 'Categories', required: true },
     link: { type: 'link', label: 'Repo link', required: whileBuilding },
     deployed: { type: 'link', label: 'Live link' },
+    landing: { type: 'link', label: 'Landing page link' },
     image: { type: 'image', label: 'Picture', required: whileBuilding, upload: 'project', pattern: ROOT_IMAGE },
   },
   certificate: {
@@ -92,6 +101,12 @@ export const SCHEMAS = {
     color: { type: 'select', label: 'Colour', required: true, options: SKILL_COLORS },
     icon: { type: 'select', label: 'Icon', options: SKILL_ICONS },
   },
+  resume: {
+    group: { type: 'select', label: 'Group', required: true, options: RESUME_GROUPS },
+    title: { type: 'loc', label: 'Title', required: true },
+    period: { type: 'loc', label: 'Period', required: true },
+    text: { type: 'locLong', label: 'Details' },
+  },
   contact: {
     label: { type: 'text', label: 'Name', required: true },
     handle: { type: 'text', label: 'Shown as', required: true },
@@ -101,7 +116,7 @@ export const SCHEMAS = {
   },
 };
 
-const NAMES = { project: 'Project', certificate: 'Certificate', stat: 'Stat', fact: 'Fact', timeline: 'Timeline entry', skillGroup: 'Skill group', skill: 'Skill', contact: 'Contact' };
+const NAMES = { project: 'Project', certificate: 'Certificate', stat: 'Stat', fact: 'Fact', timeline: 'Timeline entry', skillGroup: 'Skill group', skill: 'Skill', resume: 'Experience entry', contact: 'Contact' };
 
 export function isSafeLink(url, { mailto = false } = {}) {
   if (typeof url !== 'string') return false;
@@ -209,7 +224,7 @@ function checkList(kind, list, { uniqueTitles = false } = {}) {
 
 function checkSite(site) {
   if (!isPlainObject(site)) return ['Site content is not valid'];
-  const allowed = ['banner', 'text', 'stats', 'facts', 'timeline', 'skillGroups', 'contact'];
+  const allowed = ['banner', 'text', 'stats', 'facts', 'timeline', 'skillGroups', 'resume', 'contact'];
   const unknown = Object.keys(site).filter((key) => !allowed.includes(key));
   if (unknown.length) return [`Site content has an unknown section: ${unknown[0]}`];
 
@@ -231,6 +246,7 @@ function checkSite(site) {
   errors.push(...checkList('fact', site.facts));
   errors.push(...checkList('timeline', site.timeline));
   errors.push(...checkList('skillGroup', site.skillGroups));
+  errors.push(...checkList('resume', site.resume));
   errors.push(...checkList('contact', site.contact));
   return errors;
 }

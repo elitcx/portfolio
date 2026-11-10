@@ -46,6 +46,14 @@ export const CATEGORY_COLORS = {
   webgl: '#990000',
   '3d': '#f472b6',
   'web apis': '#2dd4bf',
+  'machine learning': '#c084fc',
+  yolo: '#a3e635',
+  onnx: '#9ca3af',
+  webgpu: '#f87171',
+  fastapi: '#059669',
+  sqlite: '#7dd3fc',
+  kotlin: '#a78bfa',
+  ocr: '#fbbf24',
 };
 
 export function getCategoryColor(cat) {
