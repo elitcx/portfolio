@@ -264,6 +264,10 @@
     "resume.leadership": {
       "en": "Leadership & volunteering",
       "id": "Kepemimpinan & relawan"
+    },
+    "resume.count": {
+      "en": "{count} entries",
+      "id": "{count} entri"
     }
   },
   "stats": [
@@ -434,8 +438,8 @@
           "icon": "/images/c.webp",
           "pct": 82,
           "level": {
-            "en": "Competition Level",
-            "id": "Tingkat Kompetisi"
+            "en": "Advanced",
+            "id": "Mahir"
           },
           "detail": {
             "en": "Algorithms / CP",
@@ -448,8 +452,8 @@
           "icon": "/images/python.webp",
           "pct": 72,
           "level": {
-            "en": "Competition Level",
-            "id": "Tingkat Kompetisi"
+            "en": "Advanced",
+            "id": "Mahir"
           },
           "detail": {
             "en": "Automation / Scripts",
@@ -490,8 +494,8 @@
           "icon": "/images/typescript.svg",
           "pct": 35,
           "level": {
-            "en": "Learning",
-            "id": "Sedang Belajar"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "Typed React",
@@ -583,24 +587,24 @@
         },
         {
           "lang": "FastAPI",
-          "pct": 42,
+          "pct": 30,
           "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "Python APIs / SQLite",
             "id": "API Python / SQLite"
           },
-          "color": "#FCD34D",
+          "color": "#6EE7B7",
           "icon": "/images/fastapi.svg"
         },
         {
           "lang": "Three.js",
           "pct": 30,
           "level": {
-            "en": "Learning",
-            "id": "Sedang Belajar"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "3D / WebGL",
@@ -623,52 +627,52 @@
       "items": [
         {
           "lang": "YOLO fine-tuning",
-          "pct": 45,
+          "pct": 30,
           "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "Ultralytics / 73k-photo dataset",
             "id": "Ultralytics / dataset 73 ribu foto"
           },
-          "color": "#FCD34D",
+          "color": "#6EE7B7",
           "icon": "/images/pytorch.svg"
         },
         {
           "lang": "ONNX + WebGPU",
-          "pct": 40,
+          "pct": 26,
           "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "In-browser inference",
             "id": "Inferensi di browser"
           },
-          "color": "#FCD34D",
+          "color": "#6EE7B7",
           "icon": "/images/onnx.svg"
         },
         {
           "lang": "Model testing",
-          "pct": 40,
+          "pct": 26,
           "level": {
-            "en": "Intermediate",
-            "id": "Menengah"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "Held-out photo evaluation",
             "id": "Evaluasi pada foto baru"
           },
-          "color": "#FCD34D",
+          "color": "#6EE7B7",
           "icon": "/images/pytest.svg"
         },
         {
           "lang": "OCR",
-          "pct": 35,
+          "pct": 24,
           "level": {
-            "en": "Learning",
-            "id": "Sedang Belajar"
+            "en": "Beginner",
+            "id": "Pemula"
           },
           "detail": {
             "en": "ML Kit / Tesseract / Gemini",
@@ -849,16 +853,31 @@
     {
       "group": "leadership",
       "title": {
-        "en": "Volunteer & Event Organiser, Panti Asuhan Beth Shan",
-        "id": "Relawan & Penyelenggara Acara, Panti Asuhan Beth Shan"
+        "en": "Volunteer, Panti Asuhan Beth Shan",
+        "id": "Relawan, Panti Asuhan Beth Shan"
       },
       "period": {
-        "en": "2026",
-        "id": "2026"
+        "en": "Aug 2026",
+        "id": "Agu 2026"
       },
       "text": {
-        "en": "Ran an event at the orphanage with Relawan Bersamaa.Baktikuu.",
-        "id": "Menyelenggarakan acara di panti asuhan bersama Relawan Bersamaa.Baktikuu."
+        "en": "Volunteered at the orphanage with Relawan Bersamaa.Baktikuu.",
+        "id": "Menjadi relawan di panti asuhan bersama Relawan Bersamaa.Baktikuu."
+      }
+    },
+    {
+      "group": "leadership",
+      "title": {
+        "en": "Volunteer & Event Organiser, Panti Asuhan Rumah Peduli Anak",
+        "id": "Relawan & Penyelenggara Acara, Panti Asuhan Rumah Peduli Anak"
+      },
+      "period": {
+        "en": "Sep 2025",
+        "id": "Sep 2025"
+      },
+      "text": {
+        "en": "Volunteered at the orphanage and organised an event for the children.",
+        "id": "Menjadi relawan di panti asuhan dan menyelenggarakan acara untuk anak-anak."
       }
     },
     {

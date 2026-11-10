@@ -571,32 +571,31 @@ export default function HomePage() {
           <SectionHeader num="03" label={s('resume.label')} />
           <h2 style={{ ...HEADING, marginBottom: 0 }}>{s('resume.heading')}</h2>
 
+          {/* One ledger for every group: dates in a fixed column, the entry in the
+              middle, and the number that proves it on the right. Same hairline rows
+              as Skills, so the section reads as part of the page, not a widget. */}
           {RESUME_GROUPS.map(({ value }) => {
             const entries = site.resume.filter((e) => e.group === value);
             if (!entries.length) return null;
-            // Education reads as big score cards, work as a dated timeline, and
-            // leadership as a compact grid: three shapes so the eye can tell the
-            // groups apart before reading a word.
-            const layout = { education: 'kj-res-cards', experience: 'kj-res-timeline' }[value] ?? 'kj-res-grid';
             return (
               <div key={value}>
-                <GroupLabel title={s(`resume.${value}`)} meta={String(entries.length).padStart(2, '0')} />
-                <div className={layout}>
+                <GroupLabel title={s(`resume.${value}`)} meta={plainText(s('resume.count'), { count: entries.length })} />
+                <div style={{ marginTop: 24 }}>
                   {entries.map((e, i) => {
                     const text = e.text && l(e.text);
                     const highlight = e.highlight && l(e.highlight);
                     return (
-                      <article key={i} data-reveal ref={reveal} className="kj-res-item">
-                        {value === 'experience' && <span className="kj-res-dot" aria-hidden="true" />}
-                        <div className="kj-res-head">
-                          <span className="kj-res-period">{l(e.period)}</span>
-                          {highlight && <span className="kj-res-highlight">{highlight}</span>}
+                      <div key={i} data-reveal ref={reveal} className={highlight ? 'kj-row kj-ledger' : 'kj-row kj-ledger is-compact'}>
+                        <span className="kj-ledger-period">{l(e.period)}</span>
+                        <div>
+                          <h3 className="kj-ledger-title">{l(e.title)}</h3>
+                          {text && <p className="kj-ledger-text">{text}</p>}
                         </div>
-                        <h3 className="kj-res-title">{l(e.title)}</h3>
-                        {text && <p className="kj-res-text">{text}</p>}
-                      </article>
+                        {highlight && <span className="kj-ledger-num">{highlight}</span>}
+                      </div>
                     );
                   })}
+                  <div style={{ borderTop: '1px solid var(--line)', marginLeft: -16 }} />
                 </div>
               </div>
             );

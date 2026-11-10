@@ -46,6 +46,7 @@ export const TEXT_KEYS = [
   'resume.education',
   'resume.experience',
   'resume.leadership',
+  'resume.count',
   'projects.eyebrow',
   'projects.heading',
   'projects.shipped',

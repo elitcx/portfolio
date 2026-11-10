@@ -28,9 +28,9 @@ const TIMELINE_COLORS = [
 ];
 
 const SKILL_COLORS = [
-  { value: 'var(--red)', label: 'Red (competition level)' },
+  { value: 'var(--red)', label: 'Red (advanced)' },
   { value: '#FCD34D', label: 'Yellow (intermediate)' },
-  { value: '#6EE7B7', label: 'Green (learning)' },
+  { value: '#6EE7B7', label: 'Green (beginner)' },
 ];
 
 const SKILL_ICONS = [
