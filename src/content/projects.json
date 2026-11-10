@@ -14,8 +14,7 @@
       "id": "Kios pemilah sampah berbasis AI dan dashboard analitik untuk sekolah: kamera memberi tahu setiap siswa ke tong mana sampahnya dibuang, dan dashboard melaporkan apa saja yang sudah dipilah. Sebagai CTO di tim lima orang, saya menyusun dataset dan melatih ulang YOLOE-26s (Ultralytics) dengan 73.722 foto untuk 21 jenis sampah, termasuk kemasan produk Indonesia. Model berjalan di browser lewat ONNX Runtime Web di WebGPU dengan sekitar 20 sampai 60 ms per frame, dan tidak ada foto yang keluar dari perangkat. Pada foto yang tidak pernah dipakai latihan, model memilih tong yang benar 83% dari waktu. Backend FastAPI dan SQLite, diuji dengan pytest dan tes JavaScript. Meraih Best Team di Futurepreneur Integrated Learning Project."
     },
     "link": "https://github.com/elitcx/effluvium",
-    "deployed": "https://effluvium.vercel.app",
-    "landing": "https://effluvium-web.vercel.app",
+    "deployed": "https://effluvium-web.vercel.app",
     "categories": [
       "AI",
       "Machine Learning",

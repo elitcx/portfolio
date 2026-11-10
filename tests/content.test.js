@@ -34,7 +34,7 @@ test('every picture the content names exists in public/', () => {
     site.banner,
     ...read('projects').map((p) => p.image),
     ...read('certificates').map((c) => c.image),
-  ];
+  ].filter(Boolean);
   for (const path of paths) {
     assert.ok(existsSync(new URL(`../public${path}`, import.meta.url)), path);
   }

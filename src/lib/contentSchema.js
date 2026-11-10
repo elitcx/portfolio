@@ -66,14 +66,13 @@ export const SCHEMAS = {
     categories: { type: 'tags', label: 'Categories', required: true },
     link: { type: 'link', label: 'Repo link', required: whileBuilding },
     deployed: { type: 'link', label: 'Live link' },
-    landing: { type: 'link', label: 'Landing page link' },
     image: { type: 'image', label: 'Picture', required: whileBuilding, upload: 'project', pattern: ROOT_IMAGE },
   },
   certificate: {
     title: { type: 'text', label: 'Title', required: true },
     result: { type: 'loc', label: 'Result', required: true },
     tier: { type: 'select', label: 'Badge colour', required: true, options: TIER_OPTIONS },
-    image: { type: 'image', label: 'Picture', required: true, upload: 'certificate', pattern: CERT_IMAGE },
+    image: { type: 'image', label: 'Picture (leave empty if there is no certificate)', upload: 'certificate', pattern: CERT_IMAGE },
   },
   stat: {
     value: { type: 'loc', label: 'Value', required: true },

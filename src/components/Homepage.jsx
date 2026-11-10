@@ -614,15 +614,18 @@ export default function HomePage() {
           <h2 style={HEADING}>{s('certs.heading')}</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 24 }}>
-            {(showAllCerts ? certificates : certificates.slice(0, CERT_PREVIEW_COUNT)).map((c, i) => (
+            {(showAllCerts ? certificates : certificates.slice(0, CERT_PREVIEW_COUNT)).map((c, i) => {
+              // An award without a certificate has nothing to zoom into, so it is not a button.
+              const Card = c.image ? 'button' : 'div';
+              return (
               // The expanded batch mounts on an explicit click, often already past the
               // scroll position that would trigger the observer — so those cards are
               // revealed outright instead of waiting for a further scroll.
-              <button
+              <Card
                 key={c.title}
                 data-reveal
                 ref={i < CERT_PREVIEW_COUNT ? reveal : undefined}
-                onClick={() => setZoom({ src: fullSrc(c.image), alt: c.title })}
+                onClick={c.image ? () => setZoom({ src: fullSrc(c.image), alt: c.title }) : undefined}
                 className={i < CERT_PREVIEW_COUNT ? 'kj-card' : 'kj-card is-revealed'}
                 style={{
                   display: 'flex',
@@ -633,12 +636,12 @@ export default function HomePage() {
                   borderRadius: 16,
                   overflow: 'hidden',
                   background: 'var(--card)',
-                  cursor: 'zoom-in',
+                  cursor: c.image ? 'zoom-in' : 'default',
                   fontFamily: 'inherit',
                 }}
               >
                 <span style={{ position: 'relative', display: 'block', width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg)' }}>
-                  <img
+                  {c.image ? <img
                     className="kj-card-img"
                     src={thumbSrc(c.image)}
                     alt={c.title}
@@ -655,7 +658,26 @@ export default function HomePage() {
                       // Rest/hover filter and its transition live in App.css so the
                       // hover rule can actually win; inline would outrank it.
                     }}
-                  />
+                  /> : (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        padding: '0 18px 18px',
+                        fontFamily: 'var(--display)',
+                        fontWeight: 900,
+                        fontSize: 'clamp(2.4rem, 4vw, 3.2rem)',
+                        lineHeight: 0.9,
+                        letterSpacing: '-0.02em',
+                        textTransform: 'uppercase',
+                        color: getBadgeColor(c.tier),
+                      }}
+                    >
+                      {l(c.result)}
+                    </span>
+                  )}
                   <span
                     style={{
                       position: 'absolute',
@@ -701,8 +723,9 @@ export default function HomePage() {
                     {l(c.result)}
                   </span>
                 </span>
-              </button>
-            ))}
+              </Card>
+              );
+            })}
           </div>
 
           {certificates.length > CERT_PREVIEW_COUNT && (

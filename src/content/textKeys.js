@@ -56,7 +56,6 @@ export const TEXT_KEYS = [
   'projects.solo',
   'projects.repo',
   'projects.live',
-  'projects.landing',
   'projects.viewShot',
   'projects.emptyTitle',
   'projects.emptyBody',
